@@ -13,7 +13,9 @@
         <form runat="server" id="formLogin">
             <asp:TextBox ID="txtLogin" runat="server" CssClass="txtClass" placeholder="Usuario"></asp:TextBox>
             <asp:TextBox ID="txtPassword" runat="server" CssClass="txtClass" TextMode="Password" placeholder="Password"></asp:TextBox>
-            <asp:Button ID="btnLogin" runat="server" Text="Ingresar" CssClass="btnClass"  />
+            <asp:Button ID="btnLogin" runat="server" Text="Ingresar" CssClass="btnClass" OnClick="btnLogin_Click"  />
+
+             <asp:GridView ID="gridListaMaterias" runat="server"></asp:GridView>
         </form>
     </div>
 
@@ -22,6 +24,9 @@
             <div id="mensajeContenido">
                 <span id="mensajeTexto" runat="server"></span>
                 <button id="cerrarMensaje" class="btnClass btnMensaje" onclick="cerrarMensaje()">Cerrar</button>
+
+                
+                  
             </div>
         </div>
     </div>

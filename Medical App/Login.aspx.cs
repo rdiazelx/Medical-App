@@ -27,7 +27,7 @@ namespace Medical_App
 
                 //configurar el comportamiento del FileUpload
                 string folder = Server.MapPath("~/Uploads/");
-                string nombreArchivo = "BaseDedatos.xlsx";
+                string nombreArchivo = "BaseDeDatos.xlsx";
                 string filePath = Path.Combine(folder, nombreArchivo);
                 string fileContent = File.ReadAllText(filePath);
 
@@ -63,8 +63,8 @@ namespace Medical_App
                 connExcel.Close();
 
                 //puede mostrar en el gridView
-                //gridListaMaterias.DataSource = dt;
-                //gridListaMaterias.DataBind();
+                gridListaMaterias.DataSource = dt;
+                gridListaMaterias.DataBind();
 
               
                 //recorrer la tabla para generar la lista
@@ -73,31 +73,33 @@ namespace Medical_App
                 if (dt.Rows.Count > 0)
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
-                    { 
-                    
-                    
-                    
+                    {
+
+                    var objUsuario = new oUsuarios();
+
+                        int idUsuarios;
+                        if (int.TryParse(dt.Rows[i]["ID"].ToString(), out idUsuarios))
+                        {
+                            objUsuario.Id = idUsuarios;
+                        }
+                        else
+                        {
+                     
+                        }
+                        objUsuario.usuario = dt.Rows[i]["Usuario"].ToString();
+                        objUsuario.password = dt.Rows[i]["Password"].ToString();
+                        objUsuario.rol = dt.Rows[i]["Rol"].ToString();
+
+
+                        listaUsuario.Add(objUsuario);
+
                     }
 
                 }
 
-
-
-
-
-
-                    //agregarlo a la session             
-                    Session["listaUsuarios"] = listaUsuario;
-
-                  
-                     
-                
-
-             
-                
-
-
-            }
+                //agregarlo a la session             
+                Session["listaUsuarios"] = listaUsuario;
+           }
             catch (Exception ex)
             {
                 // Establecer el texto del mensaje
@@ -119,14 +121,14 @@ namespace Medical_App
             string password = txtPassword.Text;
 
 
-            if (user != null || password != null)
+            if (!string.IsNullOrEmpty(user) || !string.IsNullOrEmpty(password))
 
             {
 
-                var objUsuarios = new oUsuarios();
-                listaUsuario.Add(objUsuarios);
+             var objUsuarios = new oUsuarios();
 
 
+             
 
             }
             else
@@ -142,5 +144,11 @@ namespace Medical_App
             }
 
         }
+
+
+
+
+
+
     }
 }
