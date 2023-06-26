@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.ComponentModel;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace Medical_App
 {
@@ -121,20 +122,28 @@ namespace Medical_App
             if (!string.IsNullOrEmpty(user) && !string.IsNullOrEmpty(password))
             {
                 bool validCredentials = false;
+                string rol = "";
 
                 foreach (var usuario in listaUsuarios)
                 {
                     if (usuario.usuario == user && usuario.password == password)
                     {
                         validCredentials = true;
+                        rol = usuario.rol;
                         break;
                     }
                 }
 
                 if (validCredentials)
                 {
-                    mensajeTexto.InnerText = "Bienvenido";
-                    divMensaje.Style["display"] = "block";
+                    if (rol == "administrador")
+                    {
+                        Response.Redirect("/admin.aspx");
+                    }
+                    else if (rol == "medico")
+                    {
+                        Response.Redirect("/medicos.aspx");
+                    }
                 }
                 else
                 {
@@ -144,11 +153,11 @@ namespace Medical_App
             }
             else
             {
-
                 mensajeTexto.InnerText = "El usuario o la contraseña no pueden estar vacios.";
                 divMensaje.Style["display"] = "block";
             }
         }
+
 
 
 
