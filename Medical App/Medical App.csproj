@@ -69,6 +69,9 @@
   <ItemGroup>
     <Content Include="admin.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Login.aspx" />
+    <Content Include="Scripts\General.js" />
+    <Content Include="Styles\Style.css" />
     <Content Include="medicos.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
