@@ -6,6 +6,7 @@
 <head runat="server">
     <title></title>
     <link href="Styles/Style.css" rel="stylesheet" />
+    <script src="Scripts/General.js"></script>
 </head>
 <body>
     <h2>Iniciar sesión</h2>
@@ -15,7 +16,7 @@
             <asp:TextBox ID="txtPassword" runat="server" CssClass="txtClass" TextMode="Password" placeholder="Password"></asp:TextBox>
             <asp:Button ID="btnLogin" runat="server" Text="Ingresar" CssClass="btnClass" OnClick="btnLogin_Click"  />
 
-             <asp:GridView ID="gridListaMaterias" runat="server"></asp:GridView>
+           <!--<asp:GridView ID="gridListaMaterias" runat="server"></asp:GridView>  -->  
         </form>
     </div>
 

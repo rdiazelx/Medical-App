@@ -63,8 +63,8 @@ namespace Medical_App
                 connExcel.Close();
 
                 //puede mostrar en el gridView
-                gridListaMaterias.DataSource = dt;
-                gridListaMaterias.DataBind();
+                //gridListaMaterias.DataSource = dt;
+                //gridListaMaterias.DataBind();
 
               
                 //recorrer la tabla para generar la lista
@@ -112,38 +112,44 @@ namespace Medical_App
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-
-            //Validarlogin
+            // Validar login
             var listaUsuarios = (List<oUsuarios>)Session["listaUsuarios"];
-
 
             string user = txtLogin.Text;
             string password = txtPassword.Text;
 
-
-            if (!string.IsNullOrEmpty(user) || !string.IsNullOrEmpty(password))
-
+            if (!string.IsNullOrEmpty(user) && !string.IsNullOrEmpty(password))
             {
+                bool validCredentials = false;
 
-             var objUsuarios = new oUsuarios();
+                foreach (var usuario in listaUsuarios)
+                {
+                    if (usuario.usuario == user && usuario.password == password)
+                    {
+                        validCredentials = true;
+                        break;
+                    }
+                }
 
-
-             
-
+                if (validCredentials)
+                {
+                    mensajeTexto.InnerText = "Bienvenido";
+                    divMensaje.Style["display"] = "block";
+                }
+                else
+                {
+                    mensajeTexto.InnerText = "Usuario o contraseña incorrectos. Intente de nuevo.";
+                    divMensaje.Style["display"] = "block";
+                }
             }
             else
             {
-
-                // Establecer el texto del mensaje
+             
                 mensajeTexto.InnerText = "El usuario o la contraseña no pueden estar vacios.";
-                // Mostrar el cuadro de mensaje
                 divMensaje.Style["display"] = "block";
-
-
-
             }
-
         }
+
 
 
 
