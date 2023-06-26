@@ -72,6 +72,7 @@
   <ItemGroup>
     <Content Include="admin.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="fallido.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\General.js" />
     <Content Include="Styles\Style.css" />
@@ -88,6 +89,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="medicos.aspx.cs">
       <DependentUpon>medicos.aspx</DependentUpon>

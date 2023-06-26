@@ -15,7 +15,7 @@ namespace Medical_App
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-        Autenticacion();
+            Autenticacion();
         }
 
         private void Autenticacion()
@@ -66,7 +66,7 @@ namespace Medical_App
                 //gridListaMaterias.DataSource = dt;
                 //gridListaMaterias.DataBind();
 
-              
+
                 //recorrer la tabla para generar la lista
                 var listaUsuario = new List<oUsuarios>();
 
@@ -75,7 +75,7 @@ namespace Medical_App
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
 
-                    var objUsuario = new oUsuarios();
+                        var objUsuario = new oUsuarios();
 
                         int idUsuarios;
                         if (int.TryParse(dt.Rows[i]["ID"].ToString(), out idUsuarios))
@@ -84,7 +84,7 @@ namespace Medical_App
                         }
                         else
                         {
-                     
+
                         }
                         objUsuario.usuario = dt.Rows[i]["Usuario"].ToString();
                         objUsuario.password = dt.Rows[i]["Password"].ToString();
@@ -99,7 +99,7 @@ namespace Medical_App
 
                 //agregarlo a la session             
                 Session["listaUsuarios"] = listaUsuario;
-           }
+            }
             catch (Exception ex)
             {
                 // Establecer el texto del mensaje
@@ -144,7 +144,7 @@ namespace Medical_App
             }
             else
             {
-             
+
                 mensajeTexto.InnerText = "El usuario o la contraseña no pueden estar vacios.";
                 divMensaje.Style["display"] = "block";
             }
