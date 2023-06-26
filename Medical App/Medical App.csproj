@@ -72,7 +72,6 @@
   <ItemGroup>
     <Content Include="admin.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="fallido.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\General.js" />
     <Content Include="Styles\Style.css" />
