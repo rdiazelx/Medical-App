@@ -25,9 +25,7 @@
             <div id="mensajeContenido">
                 <span id="mensajeTexto" runat="server"></span>
                 <button id="cerrarMensaje" class="btnClass btnMensaje" onclick="cerrarMensaje()">Cerrar</button>
-
-                
-                  
+                                              
             </div>
         </div>
     </div>
