@@ -132,6 +132,10 @@
     <Folder Include="css\" />
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="D:\Documentos de estudio\Universidad Hispanoamericana\quinto cuatrimestre\programacion 4\material de clase\tarea\ClosedXML.dll" />
+    <Analyzer Include="D:\Documentos de estudio\Universidad Hispanoamericana\quinto cuatrimestre\programacion 4\material de clase\tarea\DocumentFormat.OpenXml.dll" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
