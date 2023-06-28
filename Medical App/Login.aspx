@@ -18,7 +18,7 @@
             <asp:Button ID="btnLogin" runat="server" Text="Ingresar" CssClass="btnClass" OnClick="btnLogin_Click"  />
 
            <!--<asp:GridView ID="gridListaMaterias" runat="server"></asp:GridView>  -->  
-        </form>
+        
 
     </div>
 
@@ -28,8 +28,8 @@
                 <span id="mensajeTexto" runat="server"></span>
                 <button id="cerrarMensaje" class="btnClass btnMensaje" onclick="cerrarMensaje()">Cerrar</button>
                                               
+                                         
             </div>
-
         </div>
     </div>
     </form>
