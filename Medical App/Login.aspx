@@ -18,7 +18,7 @@
             <asp:Button ID="btnLogin" runat="server" Text="Ingresar" CssClass="btnClass" OnClick="btnLogin_Click"  />
 
            <!--<asp:GridView ID="gridListaMaterias" runat="server"></asp:GridView>  -->  
-        
+        </form>
 
     </div>
 
@@ -32,6 +32,6 @@
             </div>
         </div>
     </div>
-    </form>
+    
 </body>
 </html>
