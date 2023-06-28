@@ -19,6 +19,7 @@
 
            <!--<asp:GridView ID="gridListaMaterias" runat="server"></asp:GridView>  -->  
         </form>
+
     </div>
 
     <div class="dialog-container" id="divMensaje" style="display: none;" runat="server">
