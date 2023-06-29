@@ -43,7 +43,7 @@ namespace Medical_App
 
 
                 string hojaPacientes = "Pacientes$";
-                string hojaEnfermedades = "Enfermedades$";
+                //string hojaEnfermedades = "Enfermedades$";
 
                 //crear un datatable
                 DataTable dtPacientes = new DataTable();
@@ -54,10 +54,10 @@ namespace Medical_App
                 adapterExcel.SelectCommand = cmdExcel;
                 adapterExcel.Fill(dtPacientes);
 
-                //obtiene la data del la hoja Enfermedades
-                cmdExcel.CommandText = "Select * from [" + hojaEnfermedades + "]";
-                adapterExcel.SelectCommand = cmdExcel;
-                adapterExcel.Fill(dtEnfermedades);
+                ////obtiene la data del la hoja Enfermedades
+                //cmdExcel.CommandText = "Select * from [" + hojaEnfermedades + "]";
+                //adapterExcel.SelectCommand = cmdExcel;
+                //adapterExcel.Fill(dtEnfermedades);
 
 
                 connExcel.Close();
@@ -238,7 +238,58 @@ namespace Medical_App
                 divMensaje.Style["display"] = "block";
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private DataTable GeneraTablaDinamica<T>(List<T> lista)
+        {
+            DataTable dt = new DataTable();
+            PropertyDescriptorCollection listaProp = TypeDescriptor.GetProperties(typeof(T));
+
+            for (int i = 0; i < listaProp.Count; i++)
+            {
+                PropertyDescriptor prop = listaProp[i];
+                dt.Columns.Add(prop.Name, prop.PropertyType);
+            }
+
+            object[] valores = new object[listaProp.Count];
+            foreach (T item in lista)
+            {
+                for (int i = 0; i < valores.Length; i++)
+                {
+                    valores[i] = listaProp[i].GetValue(item);
+                }
+                dt.Rows.Add(valores);
+            }
+            return dt;
+        }
+
+
+
+
     }
+}
 }
  
        

@@ -112,13 +112,11 @@
               <div class="about_taital">
                 <h4 class="about_text">About</h4>
                 <asp:GridView ID="gridLista" runat="server" class="gridview">
-                   
                 </asp:GridView>
               </div>
             </div>
            
-              <asp:GridView ID="gridMatricula" runat="server" CssClass="gridview"></asp:GridView>
-                <label id="labelInfoCargada" runat="server"></label>
+         
           </div>
         </div>
       </div>
@@ -136,7 +134,7 @@
       <script src="js/owl.carousel.js"></script>
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 
-              <!--<asp:GridView ID="gridListaMaterias" runat="server"></asp:GridView>  -->  
+            
         </form>
     </div>
 

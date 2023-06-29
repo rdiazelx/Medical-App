@@ -78,33 +78,6 @@ namespace Medical_App
         protected global::System.Web.UI.WebControls.GridView gridLista;
 
         /// <summary>
-        /// gridMatricula control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridMatricula;
-
-        /// <summary>
-        /// labelInfoCargada control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl labelInfoCargada;
-
-        /// <summary>
-        /// gridListaMaterias control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridListaMaterias;
-
-        /// <summary>
         /// divMensaje control.
         /// </summary>
         /// <remarks>
