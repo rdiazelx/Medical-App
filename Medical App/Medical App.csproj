@@ -99,6 +99,7 @@
     <Compile Include="medicos.aspx.designer.cs">
       <DependentUpon>medicos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Objetos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Usuarios.cs" />
   </ItemGroup>

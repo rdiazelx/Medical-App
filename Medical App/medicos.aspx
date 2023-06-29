@@ -40,27 +40,25 @@
           <div class="logo"></div>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                     <asp:Button ID="BSuc" runat="server" class="button button5" Text="Sucursales" OnClick="BIngresar_Click" />
+             <li class="nav-item">
+                     <asp:Button ID="BSucursal" runat="server" class="button button5" Text="Sucursales" />
               </li>
               <li class="nav-item">
-                  <asp:Button ID="BMed" runat="server" class="button button5" Text="Médicos" OnClick="BIngresar_Click" />
+                  <asp:Button ID="BMedicos" runat="server" class="button button5" Text="Médicos"  />
               </li>
               <li class="nav-item">
-                  <asp:Button ID="BPac" runat="server" class="button button5" Text="Sucursales" OnClick="BIngresar_Click" />
+                  <asp:Button ID="bPaciente" runat="server" class="button button5" Text="Pacientes" />
               </li>
               <li class="nav-item">
                 <a class="logo_main" href="#"><img src="images/logo.png"></a>
               </li>
               <li class="nav-item">
-                <asp:Button ID="BMedmtos" runat="server" class="button button5" Text="Sucursales" OnClick="BIngresar_Click" />
+                <asp:Button ID="BMedicamentos" runat="server" class="button button5" Text="Enfermedades"  />
               </li>
               <li class="nav-item">
-                <asp:Button ID="BEnfer" runat="server" class="button button5" Text="Sucursales" OnClick="BIngresar_Click" />
+                <asp:Button ID="BEnfermedades" runat="server" class="button button5" Text="Medicamentos" />
               </li>
-              <li class="nav-item">
-                  <asp:Button ID="BUsu" runat="server" class="button button5" Text="Usuarios" OnClick="BIngresar_Click" /> 
-              </li>             
+                        
             </ul>
           </div>
         </nav>
@@ -111,7 +109,7 @@
             <div class="col-md-6">
               <div class="about_taital">
                 <h4 class="about_text">About</h4>
-                <asp:GridView ID="gridListaMaterias" runat="server" class="gridview" OnRowCommand="gridListaMaterias_RowCommand">
+                <asp:GridView ID="gridListaMaterias" runat="server" class="gridview">
                    
                 </asp:GridView>
               </div>
