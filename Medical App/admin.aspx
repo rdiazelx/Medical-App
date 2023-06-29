@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="admin.aspx.cs" Inherits="Medical_App.admin" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="admin.aspx.cs" Inherits="Medical_App.admin" EnableEventValidation="false" %>
 
 <!DOCTYPE html>
 
@@ -112,8 +112,11 @@
             <div class="col-md-6">
               <div class="about_taital">
                 <h4 class="about_text">About</h4>
-                <asp:GridView ID="gridLista" runat="server" class="gridview" OnRowCommand="gridLista_RowCommand">
-                </asp:GridView>
+                <asp:GridView ID="gridLista" runat="server" class="gridview" OnRowCommand="gridLista_RowCommand"></asp:GridView>
+                   <Columns>
+                     <asp:ButtonField ButtonType="Button" CommandName="Select" Text="Seleccionar" ControlStyle-CssClass="button-select" />
+                     <!-- Other columns... -->
+                 </columns>
               </div>
             </div>
            

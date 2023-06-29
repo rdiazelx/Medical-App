@@ -15,6 +15,7 @@ namespace Medical_App
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            cargarEnfermdades();
 
         }
 
@@ -312,7 +313,92 @@ namespace Medical_App
         }
 
 
-        protected void bEnfermedades_Click(object sender, EventArgs e)
+        private void cargarEnfermdades()
+        {
+            try
+            {
+                string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
+
+                //leer el archivo de excel
+                string conec = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
+
+                conec = string.Format(conec, ruta, "Yes");
+
+                OleDbConnection connExcel = new OleDbConnection(conec);
+                OleDbCommand cmdExcel = new OleDbCommand();
+                OleDbDataAdapter adapterExcel = new OleDbDataAdapter();
+
+                cmdExcel.Connection = connExcel;
+
+                //abrir el archivo
+                //obtener el nombre de la primer hoja
+                connExcel.Open();
+                DataTable dtExcel = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                string hojaExcel = dtExcel.Rows[0]["TABLE_NAME"].ToString();
+
+
+                string hojaEnfermedades = "Enfermedades$";
+
+
+                //crear un datatable
+                DataTable dtEnfermedades = new DataTable();
+
+
+                //obtiene la data del la hoja Enfermedades
+                cmdExcel.CommandText = "Select * from [" + hojaEnfermedades + "]";
+                adapterExcel.SelectCommand = cmdExcel;
+                adapterExcel.Fill(dtEnfermedades);
+
+                connExcel.Close();
+
+
+                //Recorrer la tabla (dt) para cargar la lista de enfermedades
+                var listaEnfermedades = new List<oEnfermedades>();
+
+                if (dtEnfermedades.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dtEnfermedades.Rows.Count; i++)
+                    {
+                        var objEnfermedades = new oEnfermedades();
+
+                        // Parsing the 'id' field
+                        int id;
+                        if (int.TryParse(dtEnfermedades.Rows[i]["Id"].ToString(), out id))
+                        {
+                            objEnfermedades.id = id;
+                        }
+                        else
+                        {
+                            // Handle the parsing error
+                            // For example, you can assign a default value or log an error message
+                            objEnfermedades.id = 0; // Default value or appropriate error handling
+                        }
+
+                        objEnfermedades.nombre = dtEnfermedades.Rows[i]["Nombre de enfermedad"].ToString();
+                        objEnfermedades.descripcion = dtEnfermedades.Rows[i]["Descripcion"].ToString();
+
+                        listaEnfermedades.Add(objEnfermedades);
+                    }
+
+
+                    Session["listaEnfermedades"] = listaEnfermedades;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // Establecer el texto del mensaje
+                mensajeTexto.InnerText = "Ocurrió un error. (Error: " + ex.Message + ")";
+                // Mostrar el cuadro de mensaje
+                divMensaje.Style["display"] = "block";
+            }
+
+
+        }
+        
+
+
+            protected void bEnfermedades_Click(object sender, EventArgs e)
         {
             try
             {
@@ -412,8 +498,7 @@ namespace Medical_App
 
             try
             {
-                if (!Page.IsPostBack)
-                {
+                              
                     if (e.CommandName == "Select")
                     {
                         int rowIndex = Convert.ToInt32(e.CommandArgument);
@@ -433,7 +518,7 @@ namespace Medical_App
 
                     }
 
-                }
+                
                    
 
             }
