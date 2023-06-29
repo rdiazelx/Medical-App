@@ -22,11 +22,8 @@ namespace Medical_App
 
     public class oEnfermedades
     {
-<<<<<<< HEAD
         public int id { get; set; }
-=======
         public int IdPaciente { get; set; }
->>>>>>> Ricardo
         public string nombre { get; set; }
 
         public string descripcion { get; set; }
