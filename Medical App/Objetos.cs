@@ -60,19 +60,14 @@ namespace Medical_App
 
         public string tipoIdentificacion { get; set; }
 
-<<<<<<< HEAD
         public int numeroIdentificacion { get; set; }
 
         public DateTime fechaNacimiento { get; set; }
 
         public string especialidad { get; set; }
 
-=======
         public int identificacion { get; set; }
-
-        public DateTime fechaNacimiento { get; set; }
-
->>>>>>> Ricardo
+        
         public int telefono { get; set; }
 
         public string correo { get; set; }
@@ -82,8 +77,7 @@ namespace Medical_App
 
     }
 
-<<<<<<< HEAD
-=======
+
     public class oMedicos
     {
         public int id { get; set; }
@@ -105,6 +99,5 @@ namespace Medical_App
 
 
 
->>>>>>> Ricardo
 
 }
