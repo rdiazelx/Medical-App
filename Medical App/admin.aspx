@@ -45,7 +45,7 @@
                      <asp:Button ID="bSucursal" runat="server" class="button button5" Text="Sucursales" OnClick="bSucursal_Click"  />
               </li>
               <li class="nav-item">
-                  <asp:Button ID="bMedicos" runat="server" class="button button5" Text="Médicos"  />
+                  <asp:Button ID="bMedicos" runat="server" class="button button5" Text="Médicos" OnClick="bMedicos_Click"  />
               </li>
               <li class="nav-item">
                   <asp:Button ID="bPaciente" runat="server" class="button button5" Text="Pacientes" OnClick="bPaciente_Click" />
@@ -60,7 +60,7 @@
                 <asp:Button ID="bEnfermedades" runat="server" class="button button5" Text="Enfermedades" OnClick="bEnfermedades_Click" />
               </li>
               <li class="nav-item">
-                  <asp:Button ID="bUsu" runat="server" class="button button5" Text="Usuarios"  /> 
+                  <asp:Button ID="bUsu" runat="server" class="button button5" Text="Usuarios"  OnClick="bUsu_Click"  /> 
               </li>             
             </ul>
           </div>

@@ -15,22 +15,22 @@ namespace Medical_App
     {
 
         /// <summary>
-        /// BSucursal control.
+        /// bSucursal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BSucursal;
+        protected global::System.Web.UI.WebControls.Button bSucursal;
 
         /// <summary>
-        /// BMedicos control.
+        /// bMedicos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BMedicos;
+        protected global::System.Web.UI.WebControls.Button bMedicos;
 
         /// <summary>
         /// bPaciente control.
@@ -42,48 +42,57 @@ namespace Medical_App
         protected global::System.Web.UI.WebControls.Button bPaciente;
 
         /// <summary>
-        /// BMedicamentos control.
+        /// bMedicamentos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BMedicamentos;
+        protected global::System.Web.UI.WebControls.Button bMedicamentos;
 
         /// <summary>
-        /// BEnfermedades control.
+        /// bEnfermedades control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BEnfermedades;
+        protected global::System.Web.UI.WebControls.Button bEnfermedades;
 
         /// <summary>
-        /// gridListaMaterias control.
+        /// bCitas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridListaMaterias;
+        protected global::System.Web.UI.WebControls.Button bCitas;
 
         /// <summary>
-        /// gridMatricula control.
+        /// gridLista control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridMatricula;
+        protected global::System.Web.UI.WebControls.GridView gridLista;
 
         /// <summary>
-        /// labelInfoCargada control.
+        /// divMensaje control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl labelInfoCargada;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMensaje;
+
+        /// <summary>
+        /// mensajeTexto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mensajeTexto;
     }
 }
