@@ -11,71 +11,98 @@ namespace Medical_App
 {
 
 
-    public partial class admin
+    public partial class Catalogos
     {
 
         /// <summary>
-        /// bSucursal control.
+        /// formCatalogo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bSucursal;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formCatalogo;
 
         /// <summary>
-        /// bMedicos control.
+        /// btnPacientes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bMedicos;
+        protected global::System.Web.UI.WebControls.Button btnPacientes;
 
         /// <summary>
-        /// bPaciente control.
+        /// gridListaPacientes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bPaciente;
+        protected global::System.Web.UI.WebControls.GridView gridListaPacientes;
 
         /// <summary>
-        /// bMedicamentos control.
+        /// btnSucursales control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bMedicamentos;
+        protected global::System.Web.UI.WebControls.Button btnSucursales;
 
         /// <summary>
-        /// bEnfermedades control.
+        /// gridSucursales control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bEnfermedades;
+        protected global::System.Web.UI.WebControls.GridView gridSucursales;
 
         /// <summary>
-        /// bUsu control.
+        /// btnEnfermedades control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bUsu;
+        protected global::System.Web.UI.WebControls.Button btnEnfermedades;
 
         /// <summary>
-        /// gridLista control.
+        /// gridListaEnfermedades control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridLista;
+        protected global::System.Web.UI.WebControls.GridView gridListaEnfermedades;
+
+        /// <summary>
+        /// btnMedicamentos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMedicamentos;
+
+        /// <summary>
+        /// gridMedicamentos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridMedicamentos;
+
+        /// <summary>
+        /// labelInfoCargada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl labelInfoCargada;
 
         /// <summary>
         /// divMensaje control.
