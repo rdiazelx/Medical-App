@@ -598,7 +598,7 @@ namespace Medical_App
             }
         }
 
-        protected void bEbCitas_Click(object sender, EventArgs e)
+        protected void bCitas_Click(object sender, EventArgs e)
         {
         //aqui va la logica para crear citas (Jefferson)
 
