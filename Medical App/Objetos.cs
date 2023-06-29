@@ -22,7 +22,11 @@ namespace Medical_App
 
     public class oEnfermedades
     {
+<<<<<<< HEAD
         public int id { get; set; }
+=======
+        public int IdPaciente { get; set; }
+>>>>>>> Ricardo
         public string nombre { get; set; }
 
         public string descripcion { get; set; }
@@ -59,12 +63,19 @@ namespace Medical_App
 
         public string tipoIdentificacion { get; set; }
 
+<<<<<<< HEAD
         public int numeroIdentificacion { get; set; }
 
         public DateTime fechaNacimiento { get; set; }
 
         public string especialidad { get; set; }
 
+=======
+        public int identificacion { get; set; }
+
+        public DateTime fechaNacimiento { get; set; }
+
+>>>>>>> Ricardo
         public int telefono { get; set; }
 
         public string correo { get; set; }
@@ -74,5 +85,29 @@ namespace Medical_App
 
     }
 
+<<<<<<< HEAD
+=======
+    public class oMedicos
+    {
+        public int id { get; set; }
+        public string nombre { get; set; }
+        public string apellido { get; set; }
+        public string tipoIdentificacion { get; set; }
+        public int identificacion { get; set; }
+        public string genero { get; set; }
+        public string estadoCivil { get; set; }
+        public DateTime fechaNacimiento { get; set; }
+        public string especialidad { get; set; }
+        public int telefono { get; set; }
+        public string correo { get; set; }
+
+
+
+
+    }
+
+
+
+>>>>>>> Ricardo
 
 }

@@ -1,10 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="admin.aspx.cs" Inherits="Medical_App.admin" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="admin.aspx.cs" Inherits="Medical_App.admin" EnableEventValidation="false" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <form runat="server">
 <head>
+    <script src="Scripts/General.js"></script>
       <!-- basic -->
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,25 +42,25 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                     <asp:Button ID="BSuc" runat="server" class="button button5" Text="Sucursales" OnClick="BIngresar_Click" />
+                     <asp:Button ID="bSucursal" runat="server" class="button button5" Text="Sucursales" OnClick="bSucursal_Click"  />
               </li>
               <li class="nav-item">
-                  <asp:Button ID="BMed" runat="server" class="button button5" Text="Médicos" OnClick="BIngresar_Click" />
+                  <asp:Button ID="bMedicos" runat="server" class="button button5" Text="Médicos" OnClick="bMedicos_Click"  />
               </li>
               <li class="nav-item">
-                  <asp:Button ID="BPac" runat="server" class="button button5" Text="Sucursales" OnClick="BIngresar_Click" />
+                  <asp:Button ID="bPaciente" runat="server" class="button button5" Text="Pacientes" OnClick="bPaciente_Click" />
               </li>
               <li class="nav-item">
                 <a class="logo_main" href="#"><img src="images/logo.png"></a>
               </li>
               <li class="nav-item">
-                <asp:Button ID="BMedmtos" runat="server" class="button button5" Text="Sucursales" OnClick="BIngresar_Click" />
+                <asp:Button ID="bMedicamentos" runat="server" class="button button5" Text="Medicamentos"  OnClick="bMedicamentos_Click"  />
               </li>
               <li class="nav-item">
-                <asp:Button ID="BEnfer" runat="server" class="button button5" Text="Sucursales" OnClick="BIngresar_Click" />
+                <asp:Button ID="bEnfermedades" runat="server" class="button button5" Text="Enfermedades" OnClick="bEnfermedades_Click" />
               </li>
               <li class="nav-item">
-                  <asp:Button ID="BUsu" runat="server" class="button button5" Text="Usuarios" OnClick="BIngresar_Click" /> 
+                  <asp:Button ID="bUsu" runat="server" class="button button5" Text="Usuarios"  OnClick="bUsu_Click"  /> 
               </li>             
             </ul>
           </div>
@@ -111,16 +112,15 @@
             <div class="col-md-6">
               <div class="about_taital">
                 <h4 class="about_text">About</h4>
-                <asp:GridView ID="gridListaMaterias" runat="server" class="gridview" OnRowCommand="gridListaMaterias_RowCommand">
-                   
-                </asp:GridView>
+                <asp:GridView ID="gridLista" runat="server" class="gridview" OnRowCommand="gridLista_RowCommand"></asp:GridView>
+                   <Columns>
+                     <asp:ButtonField ButtonType="Button" CommandName="Select" Text="Seleccionar" ControlStyle-CssClass="button-select" />
+                     <!-- Other columns... -->
+                 </columns>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="image_2" href="#"><img src="images/img-2.png"></div>
-            </div>
-              <asp:GridView ID="gridMatricula" runat="server" CssClass="gridview"></asp:GridView>
-                <label id="labelInfoCargada" runat="server"></label>
+           
+         
           </div>
         </div>
       </div>
@@ -137,6 +137,29 @@
       <!-- javascript --> 
       <script src="js/owl.carousel.js"></script>
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+            
+        </form>
+    </div>
+
+    <div class="dialog-container" id="divMensaje" style="display: none;" runat="server">
+        <div class="message-box">
+            <div id="mensajeContenido">
+                <span id="mensajeTexto" runat="server"></span>
+                <button id="cerrarMensaje" class="btnClass btnMensaje" onclick="cerrarMensaje()">Cerrar</button>
+                                              
+            </div>
+
+        </div>
+    </div>
+    </form>
+  <div class="col-md-6">
+    <div class="image_2" style="text-align: center;">
+        <img src="images/img-2.png" style="max-width: 50%; height: auto;">
+    </div>
+</div>
+
+
    </body>
 </form>
 </html>

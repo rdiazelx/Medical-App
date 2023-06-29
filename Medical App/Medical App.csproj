@@ -43,12 +43,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClosedXML, Version=0.69.1.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\OneDrive\UH\11vo Cuatri\Progra IV\archivos de clase\ClosedXML.dll</HintPath>
-    </Reference>
-    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DocumentFormat.OpenXml">
       <HintPath>..\..\..\..\OneDrive\UH\11vo Cuatri\Progra IV\archivos de clase\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -76,9 +71,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin.aspx" />
-    <Content Include="Catalogos.aspx" />
-    <Content Include="Global.asax" />
-    <Content Include="Imagenes\hospital.png" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\General.js" />
     <Content Include="Styles\Style.css" />
@@ -92,16 +84,6 @@
     </Compile>
     <Compile Include="admin.aspx.designer.cs">
       <DependentUpon>admin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Catalogos.aspx.cs">
-      <DependentUpon>Catalogos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Catalogos.aspx.designer.cs">
-      <DependentUpon>Catalogos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -124,7 +106,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Uploads\BaseDeDatos.xlsx" />
-    <Content Include="Uploads\Basedatos-Catalogos.xlsx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -136,10 +117,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="css\" />
     <Folder Include="Models\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="D:\Documentos de estudio\Universidad Hispanoamericana\quinto cuatrimestre\programacion 4\material de clase\tarea\ClosedXML.dll" />
-    <Analyzer Include="D:\Documentos de estudio\Universidad Hispanoamericana\quinto cuatrimestre\programacion 4\material de clase\tarea\DocumentFormat.OpenXml.dll" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
