@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <form runat="server">
 <head>
+    <script src="Scripts/General.js"></script>
       <!-- basic -->
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,10 +54,10 @@
                 <a class="logo_main" href="#"><img src="images/logo.png"></a>
               </li>
               <li class="nav-item">
-                <asp:Button ID="bMedicamentos" runat="server" class="button button5" Text="Enfermedades"  />
+                <asp:Button ID="bMedicamentos" runat="server" class="button button5" Text="Medicamentos"  OnClick="bMedicamentos_Click"  />
               </li>
               <li class="nav-item">
-                <asp:Button ID="bEnfermedades" runat="server" class="button button5" Text="Medicamentos" />
+                <asp:Button ID="bEnfermedades" runat="server" class="button button5" Text="Enfermedades" OnClick="bEnfermedades_Click" />
               </li>
               <li class="nav-item">
                   <asp:Button ID="bUsu" runat="server" class="button button5" Text="Usuarios"  /> 
@@ -111,7 +112,7 @@
             <div class="col-md-6">
               <div class="about_taital">
                 <h4 class="about_text">About</h4>
-                <asp:GridView ID="gridLista" runat="server" class="gridview">
+                <asp:GridView ID="gridLista" runat="server" class="gridview" OnRowCommand="gridLista_RowCommand">
                 </asp:GridView>
               </div>
             </div>
