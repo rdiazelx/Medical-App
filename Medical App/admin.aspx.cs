@@ -115,6 +115,12 @@ namespace Medical_App
         {
             try
             {
+                btnAñadirSucu.Style["display"] = "block";
+                btnAñadirMeds.Style["display"] = "none";
+                btnAñadirMedico.Style["display"] = "none";
+                btnAñadirEnfe.Style["display"] = "none";
+                btnAñadirUsu.Style["display"] = "none";
+
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
 
@@ -167,7 +173,7 @@ namespace Medical_App
                         objSucursales.lugar = dtSucursales.Rows[i]["Sucursal"].ToString();
                         objSucursales.dirreccion = dtSucursales.Rows[i]["Dirección"].ToString();
                         objSucursales.telefono = dtSucursales.Rows[i]["Teléfono"].ToString();
-                        objSucursales.correo = dtSucursales.Rows[i]["Correo electrónico"].ToString();
+                        objSucursales.correo = dtSucursales.Rows[i]["Correo"].ToString();
 
                         listaSucursales.Add(objSucursales);
                     }
@@ -189,6 +195,10 @@ namespace Medical_App
             try
             {
                 btnAñadirMedico.Style["display"] = "block";
+                btnAñadirMeds.Style["display"] = "none";
+                btnAñadirEnfe.Style["display"] = "none";
+                btnAñadirSucu.Style["display"] = "none";
+                btnAñadirUsu.Style["display"] = "none";
 
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
@@ -281,6 +291,11 @@ namespace Medical_App
         {
             try
             {
+                btnAñadirMeds.Style["display"] = "block";
+                btnAñadirEnfe.Style["display"] = "none";
+                btnAñadirMedico.Style["display"] = "none";
+                btnAñadirSucu.Style["display"] = "none";
+                btnAñadirUsu.Style["display"] = "none";
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
                 //leer el archivo de excel
@@ -373,6 +388,7 @@ namespace Medical_App
         {
             try
             {
+                btnAñadirEnfe.Style["display"] = "block";
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
                 //leer el archivo de excel
@@ -430,7 +446,7 @@ namespace Medical_App
                             objEnfermedades.IdPaciente = 0; // Default value or appropriate error handling
                         }
 
-                        objEnfermedades.nombre = dtEnfermedades.Rows[i]["Nombre de enfermedad"].ToString();
+                        objEnfermedades.nombre = dtEnfermedades.Rows[i]["Enfermedad"].ToString();
                         objEnfermedades.descripcion = dtEnfermedades.Rows[i]["Descripcion"].ToString();
 
                         listaEnfermedades.Add(objEnfermedades);
@@ -458,6 +474,11 @@ namespace Medical_App
         {
             try
             {
+                btnAñadirEnfe.Style["display"] = "block";
+                btnAñadirMeds.Style["display"] = "none";
+                btnAñadirMedico.Style["display"] = "none";
+                btnAñadirSucu.Style["display"] = "none";
+                btnAñadirUsu.Style["display"] = "none";
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
                 //leer el archivo de excel
@@ -527,7 +548,7 @@ namespace Medical_App
                             objEnfermedades.IdPaciente = 0; // Default value or appropriate error handling
                         }
 
-                        objEnfermedades.nombre = dtEnfermedades.Rows[i]["Nombre de enfermedad"].ToString();
+                        objEnfermedades.nombre = dtEnfermedades.Rows[i]["Enfermedad"].ToString();
                         objEnfermedades.descripcion = dtEnfermedades.Rows[i]["Descripcion"].ToString();
 
                         listaEnfermedades.Add(objEnfermedades);
@@ -554,6 +575,10 @@ namespace Medical_App
             try
             {
                 btnAñadirUsu.Style["display"] = "block";
+                btnAñadirMeds.Style["display"] = "none";
+                btnAñadirMedico.Style["display"] = "none";
+                btnAñadirSucu.Style["display"] = "none";
+                btnAñadirEnfe.Style["display"] = "none";
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
                 //leer el archivo de excel
@@ -779,13 +804,226 @@ namespace Medical_App
                     // Mostrar el cuadro de mensaje
                     divMensaje.Style["display"] = "block";
                 }
+            }
+            catch (Exception ex)
+            {
+                // Establecer el texto del mensaje
+                mensajeTexto.InnerText = "Ocurrió un error. (Error: " + ex.Message + ")";
+                // Mostrar el cuadro de mensaje
+                divMensaje.Style["display"] = "block";
+
+            }
 
 
+        }
+
+        protected void bAgregarMeds_Click(object sender, EventArgs e)
+        {
 
 
+            try
+            {
+
+                int ID = Int32.Parse(txtID_Meds.Text);
+                string Nombre = txtNombre_Meds.Text;
+                string CasaFarma = txt_CasaFarma.Text;
+                int Cantidad = Int32.Parse(txtCantidad.Text);
 
 
+                if (ID != 0 || !string.IsNullOrEmpty(Nombre) || !string.IsNullOrEmpty(CasaFarma))
+                {
 
+
+                    string ruta = "C:\\Users\\Rivas\\source\\repos\\Medical-App3\\Medical App\\Uploads\\BaseDeDatos.xlsx"; // Ruta del archivo en la carpeta "Uploads"
+
+                    //leer el archivo de excel
+                    string conec = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
+
+                    conec = string.Format(conec, ruta, "Yes");
+
+                    OleDbConnection connExcel = new OleDbConnection(conec);
+                    OleDbCommand cmdExcel = new OleDbCommand();
+                    OleDbDataAdapter adapterExcel = new OleDbDataAdapter();
+
+                    cmdExcel.Connection = connExcel;
+
+                    //abrir el archivo
+                    //obtener el nombre de la primer hoja
+                    connExcel.Open();
+                    DataTable dtExcel = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                    string hojaExcel = dtExcel.Rows[0]["TABLE_NAME"].ToString();
+
+
+                    string hojaUsu = "Medicamentos$";
+                    string consulta = "INSERT INTO [" + hojaUsu + "]  VALUES (@id, @Nombre, @Farmacéutica, @Cantidad)";
+
+                    cmdExcel.Parameters.AddWithValue("@ID", ID);
+                    cmdExcel.Parameters.AddWithValue("@Nombre", Nombre);
+                    cmdExcel.Parameters.AddWithValue("@Farmacéutica", CasaFarma);
+                    cmdExcel.Parameters.AddWithValue("@Cantidad", Cantidad);
+
+                    cmdExcel.CommandText = consulta;
+                    cmdExcel.ExecuteNonQuery();
+                    //adapterExcel.SelectCommand = cmdExcel;
+
+
+                    connExcel.Close();
+
+                }
+                else
+                {
+                    // Establecer el texto del mensaje
+                    mensajeTexto.InnerText = "El nombre o la identificación no puede ser vacío.";
+                    // Mostrar el cuadro de mensaje
+                    divMensaje.Style["display"] = "block";
+                }
+            }
+            catch (Exception ex)
+            {
+                // Establecer el texto del mensaje
+                mensajeTexto.InnerText = "Ocurrió un error. (Error: " + ex.Message + ")";
+                // Mostrar el cuadro de mensaje
+                divMensaje.Style["display"] = "block";
+
+            }
+
+
+        }
+
+
+        protected void bAgregarSucu_Click(object sender, EventArgs e)
+        {
+
+
+            try
+            {
+
+                string Sucursal = txtLugar_Sucu.Text;
+                string Direccion = txtDireccion.Text;
+                string Telefono = txtTelefono.Text;
+                string Correo = txtCorreo_Sucu.Text;
+
+
+                if (!string.IsNullOrEmpty(Sucursal) || !string.IsNullOrEmpty(Direccion))
+                {
+
+
+                    string ruta = "C:\\Users\\Rivas\\source\\repos\\Medical-App3\\Medical App\\Uploads\\BaseDeDatos.xlsx"; // Ruta del archivo en la carpeta "Uploads"
+
+                    //leer el archivo de excel
+                    string conec = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
+
+                    conec = string.Format(conec, ruta, "Yes");
+
+                    OleDbConnection connExcel = new OleDbConnection(conec);
+                    OleDbCommand cmdExcel = new OleDbCommand();
+                    OleDbDataAdapter adapterExcel = new OleDbDataAdapter();
+
+                    cmdExcel.Connection = connExcel;
+
+                    //abrir el archivo
+                    //obtener el nombre de la primer hoja
+                    connExcel.Open();
+                    DataTable dtExcel = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                    string hojaExcel = dtExcel.Rows[0]["TABLE_NAME"].ToString();
+
+
+                    string hojaUsu = "Sucursales$";
+                    string consulta = "INSERT INTO [" + hojaUsu + "]  VALUES (@Sucursal, @Dirección, @Teléfono, @Correo)";
+
+                    cmdExcel.Parameters.AddWithValue("@Sucursal", Sucursal);
+                    cmdExcel.Parameters.AddWithValue("@Dirección", Direccion);
+                    cmdExcel.Parameters.AddWithValue("@Teléfono", Telefono);
+                    cmdExcel.Parameters.AddWithValue("@Correo", Correo);
+
+                    cmdExcel.CommandText = consulta;
+                    cmdExcel.ExecuteNonQuery();
+                    //adapterExcel.SelectCommand = cmdExcel;
+
+
+                    connExcel.Close();
+
+                }
+                else
+                {
+                    // Establecer el texto del mensaje
+                    mensajeTexto.InnerText = "El nombre o la identificación no puede ser vacío.";
+                    // Mostrar el cuadro de mensaje
+                    divMensaje.Style["display"] = "block";
+                }
+            }
+            catch (Exception ex)
+            {
+                // Establecer el texto del mensaje
+                mensajeTexto.InnerText = "Ocurrió un error. (Error: " + ex.Message + ")";
+                // Mostrar el cuadro de mensaje
+                divMensaje.Style["display"] = "block";
+
+            }
+
+
+        }
+
+        protected void bAgregarEnfe_Click(object sender, EventArgs e)
+        {
+
+
+            try
+            {
+
+                int ID_Pac = Int32.Parse(txtID_Pac.Text);
+                string Nom_Enfe = txtNom_Enfe.Text;
+                string Des_Enfe = txtDescri_Enfe.Text;
+                
+
+
+                if (!string.IsNullOrEmpty(Nom_Enfe) || !string.IsNullOrEmpty(Des_Enfe))
+                {
+
+
+                    string ruta = "C:\\Users\\Rivas\\source\\repos\\Medical-App3\\Medical App\\Uploads\\BaseDeDatos.xlsx"; // Ruta del archivo en la carpeta "Uploads"
+
+                    //leer el archivo de excel
+                    string conec = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
+
+                    conec = string.Format(conec, ruta, "Yes");
+
+                    OleDbConnection connExcel = new OleDbConnection(conec);
+                    OleDbCommand cmdExcel = new OleDbCommand();
+                    OleDbDataAdapter adapterExcel = new OleDbDataAdapter();
+
+                    cmdExcel.Connection = connExcel;
+
+                    //abrir el archivo
+                    //obtener el nombre de la primer hoja
+                    connExcel.Open();
+                    DataTable dtExcel = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                    string hojaExcel = dtExcel.Rows[0]["TABLE_NAME"].ToString();
+
+
+                    string hojaUsu = "Enfermedades$";
+                    string consulta = "INSERT INTO [" + hojaUsu + "]  VALUES (@IdPaciente, @Enfermedad, @Descripcion)";
+
+                    cmdExcel.Parameters.AddWithValue("@IdPaciente", ID_Pac);
+                    cmdExcel.Parameters.AddWithValue("@Enfermedad", Nom_Enfe);
+                    cmdExcel.Parameters.AddWithValue("@Descripcion", Des_Enfe);
+                    
+
+                    cmdExcel.CommandText = consulta;
+                    cmdExcel.ExecuteNonQuery();
+                    //adapterExcel.SelectCommand = cmdExcel;
+
+
+                    connExcel.Close();
+
+                }
+                else
+                {
+                    // Establecer el texto del mensaje
+                    mensajeTexto.InnerText = "El nombre o la identificación no puede ser vacío.";
+                    // Mostrar el cuadro de mensaje
+                    divMensaje.Style["display"] = "block";
+                }
             }
             catch (Exception ex)
             {
@@ -814,14 +1052,34 @@ namespace Medical_App
         protected void btnMostrarMedic_Click(object sender, EventArgs e)
         {
             divAgregarMedico.Style["display"] = "block";
-
-
-
         }
         protected void btnCerrarMedic_Click(object sender, EventArgs e)
         {
             divAgregarMedico.Style["display"] = "none";
-
+        }
+        protected void btnMostrarMeds_Click(object sender, EventArgs e)
+        {
+            divAgregarMeds.Style["display"] = "block";
+        }
+        protected void btnCerrarMeds_Click(object sender, EventArgs e)
+        {
+            divAgregarMeds.Style["display"] = "none";
+        }
+        protected void btnMostrarSucu_Click(object sender, EventArgs e)
+        {
+            divAgregarSucu.Style["display"] = "block";
+        }
+        protected void btnCerrarSucu_Click(object sender, EventArgs e)
+        {
+            divAgregarSucu.Style["display"] = "none";
+        }
+        protected void btnMostrarEnfe_Click(object sender, EventArgs e)
+        {
+            divAgregarEnfe.Style["display"] = "block";
+        }
+        protected void btnCerrarEnfe_Click(object sender, EventArgs e)
+        {
+            divAgregarEnfe.Style["display"] = "none";
         }
 
 

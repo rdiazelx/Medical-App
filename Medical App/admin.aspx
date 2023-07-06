@@ -143,12 +143,12 @@
             
         
     
-    <div> <asp:Button ID="btnAñadirUsu" runat="server" Text="Insertar Persona" CssClass="btnClass" OnClick="btnMostrarUsu_Click" Height="59px" Width="246px" style =" display: none"/></div>
+    <div> <asp:Button ID="btnAñadirUsu" runat="server" Text="Insertar Usuario" CssClass="btnClass" OnClick="btnMostrarUsu_Click" Height="59px" Width="246px" style =" display: none"/></div>
     <div> <asp:Button ID="btnAñadirMedico" runat="server" Text="Insertar Médico" CssClass="btnClass" OnClick="btnMostrarMedic_Click" Height="59px" Width="246px" style =" display: none"/></div>
-    <div> <asp:Button ID="btnAñadirMeds" runat="server" Text="Insertar Persona" CssClass="btnClass" OnClick="btnMostrarUsu_Click" Height="59px" Width="246px" style =" display: none"/></div>
-    <div> <asp:Button ID="btnAñadirSucu" runat="server" Text="Insertar Persona" CssClass="btnClass" OnClick="btnMostrarUsu_Click" Height="59px" Width="246px" style =" display: none"/></div>
+    <div> <asp:Button ID="btnAñadirMeds" runat="server" Text="Insertar Medicamentos" CssClass="btnClass" OnClick="btnMostrarMeds_Click" Height="59px" Width="246px" style =" display: none"/></div>
+    <div> <asp:Button ID="btnAñadirSucu" runat="server" Text="Insertar Sucursal" CssClass="btnClass" OnClick="btnMostrarSucu_Click" Height="59px" Width="246px" style =" display: none"/></div>
     <div> <asp:Button ID="btnAñadirPac" runat="server" Text="Insertar Persona" CssClass="btnClass" OnClick="btnMostrarUsu_Click" Height="59px" Width="246px" style =" display: none"/></div>
-    <div> <asp:Button ID="btnAñadirEnfe" runat="server" Text="Insertar Persona" CssClass="btnClass" OnClick="btnMostrarUsu_Click" Height="59px" Width="246px" style =" display: none"/></div>
+    <div> <asp:Button ID="btnAñadirEnfe" runat="server" Text="Insertar Enfermedad" CssClass="btnClass" OnClick="btnMostrarEnfe_Click" Height="59px" Width="246px" style =" display: none"/></div>
 
     <div class="dialog-container" id="divAgregarUsu" style="display: none;" runat="server">
         <div class="container">
@@ -187,6 +187,66 @@
                 
                 <asp:Button ID="Button1" runat="server" Text="Cerrar" CssClass="btnClass" OnClick="btnCerrarMedic_Click" />
                 <asp:Button ID="Button2" runat="server" Text="Agregar" CssClass="btnClass" OnClick="bAgregarMedic_Click" />
+                
+            </div>
+        </div>
+    </div>
+
+     <div class="dialog-container" id="divAgregarMeds" style="display: none;" runat="server">
+        <div class="container">
+            <div id="mensajeContenidoMedicamen">
+               
+                    <asp:TextBox ID="txtID_Meds" runat="server" CssClass="txtClass" placeholder="ID de medicamento"></asp:TextBox>
+                <asp:TextBox ID="txtNombre_Meds" runat="server" CssClass="txtClass"  placeholder="Nombre del medicamento"></asp:TextBox>
+                <asp:TextBox ID="txt_CasaFarma" runat="server" CssClass="txtClass"  placeholder="Casa farmaceútica"></asp:TextBox>
+                <asp:TextBox ID="txtCantidad" runat="server" CssClass="txtClass"  placeholder="Cantidad"></asp:TextBox>
+               
+                
+                
+                
+                
+                <asp:Button ID="bCerrarMeds" runat="server" Text="Cerrar" CssClass="btnClass" OnClick="btnCerrarMeds_Click" />
+                <asp:Button ID="bGuardarMeds" runat="server" Text="Agregar" CssClass="btnClass" OnClick="bAgregarMeds_Click" />
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="dialog-container" id="divAgregarSucu" style="display: none;" runat="server">
+        <div class="container">
+            <div id="mensajeContenidoSucu">
+               
+                    <asp:TextBox ID="txtLugar_Sucu" runat="server" CssClass="txtClass" placeholder="Provincia de la sucursal"></asp:TextBox>
+                <asp:TextBox ID="txtDireccion" runat="server" CssClass="txtClass"  placeholder="Dirección"></asp:TextBox>
+                <asp:TextBox ID="txtTelefono" runat="server" CssClass="txtClass"  placeholder="Teléfono"></asp:TextBox>
+                <asp:TextBox ID="txtCorreo_Sucu" runat="server" CssClass="txtClass"  placeholder="Correo"></asp:TextBox>
+               
+                
+                
+                
+                
+                <asp:Button ID="bCerrar_Sucu" runat="server" Text="Cerrar" CssClass="btnClass" OnClick="btnCerrarSucu_Click" />
+                <asp:Button ID="bGuardar_Sucu" runat="server" Text="Agregar" CssClass="btnClass" OnClick="bAgregarSucu_Click" />
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="dialog-container" id="divAgregarEnfe" style="display: none;" runat="server">
+        <div class="container">
+            <div id="mensajeContenidoEnfe">
+               
+                <asp:TextBox ID="txtID_Pac" runat="server" CssClass="txtClass" placeholder="ID del paciente"></asp:TextBox>
+                <asp:TextBox ID="txtNom_Enfe" runat="server" CssClass="txtClass"  placeholder="Nombre de la enfermedad"></asp:TextBox>
+                <asp:TextBox ID="txtDescri_Enfe" runat="server" CssClass="txtClassBig"  placeholder="Descripción de la enfermedad"></asp:TextBox>
+                
+               
+                
+                
+                
+                
+                <asp:Button ID="bCerrar_Enfe" runat="server" Text="Cerrar" CssClass="btnClass" OnClick="btnCerrarEnfe_Click" />
+                <asp:Button ID="bGuardar_Enfe" runat="server" Text="Agregar" CssClass="btnClass" OnClick="bAgregarEnfe_Click" />
                 
             </div>
         </div>

@@ -11,6 +11,14 @@ h2 {
     border-radius: 4px;
     box-sizing: border-box;
 }
+.txtClassBig {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 0px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
 
     .txtClass:hover {
         background-color: silver;
