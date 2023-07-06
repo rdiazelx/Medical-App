@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<form runat="server">
+
 <head>
     <script src="Scripts/General.js"></script>
       <!-- basic -->
@@ -17,6 +17,7 @@
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
+       <link href="Styles/Style.css" rel="stylesheet" />
       <!-- bootstrap css -->
       <link rel="stylesheet" href="css/bootstrap.min.css">
       <!-- style css -->
@@ -35,6 +36,7 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     </head>
     <body>
+        <form runat="server">
       <!-- header section start -->
       <div class="header_section">
         <nav class="destop_header navbar navbar-expand-lg navbar-light bg-light">
@@ -111,7 +113,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="about_taital">
-                <h4 class="about_text">About</h4>
+                <h4 class="about_text">Tabla de información</h4>
                 <asp:GridView ID="gridLista" runat="server" class="gridview" OnRowCommand="gridLista_RowCommand"></asp:GridView>
                    <Columns>
                      <asp:ButtonField ButtonType="Button" CommandName="Select" Text="Seleccionar" ControlStyle-CssClass="button-select" />
@@ -139,27 +141,75 @@
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 
             
-        </form>
+        
+    
+    <div> <asp:Button ID="btnAñadirUsu" runat="server" Text="Insertar Persona" CssClass="btnClass" OnClick="btnMostrarUsu_Click" Height="59px" Width="246px" style =" display: none"/></div>
+    <div> <asp:Button ID="btnAñadirMedico" runat="server" Text="Insertar Médico" CssClass="btnClass" OnClick="btnMostrarMedic_Click" Height="59px" Width="246px" style =" display: none"/></div>
+    <div> <asp:Button ID="btnAñadirMeds" runat="server" Text="Insertar Persona" CssClass="btnClass" OnClick="btnMostrarUsu_Click" Height="59px" Width="246px" style =" display: none"/></div>
+    <div> <asp:Button ID="btnAñadirSucu" runat="server" Text="Insertar Persona" CssClass="btnClass" OnClick="btnMostrarUsu_Click" Height="59px" Width="246px" style =" display: none"/></div>
+    <div> <asp:Button ID="btnAñadirPac" runat="server" Text="Insertar Persona" CssClass="btnClass" OnClick="btnMostrarUsu_Click" Height="59px" Width="246px" style =" display: none"/></div>
+    <div> <asp:Button ID="btnAñadirEnfe" runat="server" Text="Insertar Persona" CssClass="btnClass" OnClick="btnMostrarUsu_Click" Height="59px" Width="246px" style =" display: none"/></div>
+
+    <div class="dialog-container" id="divAgregarUsu" style="display: none;" runat="server">
+        <div class="container">
+            <div id="mensajeContenido">
+                <asp:TextBox ID="txtID_usu" runat="server" CssClass="txtClass" placeholder="ID de usuario"></asp:TextBox>
+                <asp:TextBox ID="txtCorreo" runat="server" CssClass="txtClass"  placeholder="Correo"></asp:TextBox>
+                <asp:TextBox ID="txtPass" runat="server" CssClass="txtClass"  placeholder="Contraseña"></asp:TextBox>
+                <asp:TextBox ID="txtRol" runat="server" CssClass="txtClass"  placeholder="Rol"></asp:TextBox>
+                 
+                
+                <asp:Button ID="BtnCerrar" runat="server" Text="Cerrar" CssClass="btnClass" OnClick="btnCerrar_Click" />
+                <asp:Button ID="BtnAgregar" runat="server" Text="Agregar" CssClass="btnClass" OnClick="bAgregarUsu_Click" />
+                
+            </div>
+        </div>
+    </div>
+    <div class="dialog-container" id="divAgregarMedico" style="display: none;" runat="server">
+        <div class="container">
+            <div id="mensajeContenidoMedic">
+               
+                    <asp:TextBox ID="txtID_Medic" runat="server" CssClass="txtClass" placeholder="ID de médico"></asp:TextBox>
+                <asp:TextBox ID="txtNom_Medic" runat="server" CssClass="txtClass"  placeholder="Nombre"></asp:TextBox>
+                <asp:TextBox ID="txtApell_Medic" runat="server" CssClass="txtClass"  placeholder="Apellido"></asp:TextBox>
+                <asp:TextBox ID="txtTipoIdent" runat="server" CssClass="txtClass"  placeholder="Tipo de Identificación"></asp:TextBox>
+                <asp:TextBox ID="txtIdenti" runat="server" CssClass="txtClass"  placeholder="Identificación"></asp:TextBox>
+                    
+                    <asp:TextBox ID="txtGenero" runat="server" CssClass="txtClass"  placeholder="Género"></asp:TextBox>
+                 <asp:TextBox ID="txtEstadoCivil" runat="server" CssClass="txtClass"  placeholder="Estado Civil"></asp:TextBox>
+                 <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="txtClass" placeholder="Fecha de Nacimiento" type="datetime-local"></asp:TextBox>
+                <asp:TextBox ID="txtEspec" runat="server" CssClass="txtClass"  placeholder="Especialidad"></asp:TextBox>
+                <asp:TextBox ID="txtTelef" runat="server" CssClass="txtClass"  placeholder="Teléfono"></asp:TextBox>
+                 <asp:TextBox ID="txtCorreo_Med" runat="server" CssClass="txtClass"  placeholder="Correo"></asp:TextBox>
+                
+                
+                
+                
+                <asp:Button ID="Button1" runat="server" Text="Cerrar" CssClass="btnClass" OnClick="btnCerrarMedic_Click" />
+                <asp:Button ID="Button2" runat="server" Text="Agregar" CssClass="btnClass" OnClick="bAgregarMedic_Click" />
+                
+            </div>
+        </div>
     </div>
 
     <div class="dialog-container" id="divMensaje" style="display: none;" runat="server">
         <div class="message-box">
-            <div id="mensajeContenido">
+            <div id="mensajeContenido2">
                 <span id="mensajeTexto" runat="server"></span>
-                <button id="cerrarMensaje" class="btnClass btnMensaje" onclick="cerrarMensaje()">Cerrar</button>
+                <button id="cerrarMensaje2" class="btnClass btnMensaje" onclick="cerrarMensaje()">Cerrar</button>
                                               
             </div>
 
         </div>
     </div>
-    </form>
+   
   <div class="col-md-6">
     <div class="image_2" style="text-align: center;">
         <img src="images/img-2.png" style="max-width: 50%; height: auto;">
     </div>
 </div>
 
-
+        </form>
    </body>
-</form>
+
 </html>

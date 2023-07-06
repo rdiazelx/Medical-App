@@ -13,10 +13,11 @@ namespace Medical_App
 {
     public partial class admin : System.Web.UI.Page
     {
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargarEnfermedades();
-
+            //cargarEnfermedades();
+            
         }
 
         protected void bPaciente_Click(object sender, EventArgs e)
@@ -81,35 +82,13 @@ namespace Medical_App
                         objPacientes.nombre = dtPacientes.Rows[i]["Nombre"].ToString();
                         objPacientes.apellido = dtPacientes.Rows[i]["Apellido"].ToString();
                         objPacientes.tipoIdentificacion = dtPacientes.Rows[i]["Tipo de identificación"].ToString();
-
-                        int identificacion;
-                        if (Int32.TryParse(dtPacientes.Rows[i]["Identificación"].ToString(), out identificacion))
-                        {
-                            objPacientes.identificacion = identificacion;
-                        }
-                        else
-                        {
-                            // Manejar el caso cuando la conversión falla, por ejemplo, asignar un valor predeterminado o mostrar un mensaje de error.
-                            // objPacientes.identificacion = valorPorDefecto;
-                        }
-
+                        objPacientes.identificacion = dtPacientes.Rows[i]["Identificación"].ToString();
+                        objPacientes.telefono = dtPacientes.Rows[i]["Teléfono"].ToString();
                         objPacientes.genero = dtPacientes.Rows[i]["Género"].ToString();
                         objPacientes.estadoCivil = dtPacientes.Rows[i]["Estado civil"].ToString();
                         objPacientes.fechaNacimiento = DateTime.Parse(dtPacientes.Rows[i]["Fecha de nacimiento"].ToString());
                         objPacientes.nacionalidad = dtPacientes.Rows[i]["Nacionalidad"].ToString();
                         objPacientes.provincia = dtPacientes.Rows[i]["Provincia"].ToString();
-
-                        int telefono;
-                        if (Int32.TryParse(dtPacientes.Rows[i]["Teléfono"].ToString(), out telefono))
-                        {
-                            objPacientes.telefono = telefono;
-                        }
-                        else
-                        {
-                            // Manejar el caso cuando la conversión falla.
-                            // objPacientes.telefono = valorPorDefecto;
-                        }
-
                         objPacientes.correo = dtPacientes.Rows[i]["correo"].ToString();
 
                         listaPacientes.Add(objPacientes);
@@ -187,18 +166,7 @@ namespace Medical_App
                         var objSucursales = new oSucursales();
                         objSucursales.lugar = dtSucursales.Rows[i]["Sucursal"].ToString();
                         objSucursales.dirreccion = dtSucursales.Rows[i]["Dirección"].ToString();
-
-                        int telefono;
-                        if (Int32.TryParse(dtSucursales.Rows[i]["Teléfono"].ToString(), out telefono))
-                        {
-                            objSucursales.telefono = telefono;
-                        }
-                        else
-                        {
-                            // Manejar el caso cuando la conversión falla.
-                            // objSucursales.telefono = valorPorDefecto;
-                        }
-
+                        objSucursales.telefono = dtSucursales.Rows[i]["Teléfono"].ToString();
                         objSucursales.correo = dtSucursales.Rows[i]["Correo electrónico"].ToString();
 
                         listaSucursales.Add(objSucursales);
@@ -220,6 +188,8 @@ namespace Medical_App
         {
             try
             {
+                btnAñadirMedico.Style["display"] = "block";
+
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
                 //leer el archivo de excel
@@ -278,34 +248,12 @@ namespace Medical_App
                         objMedicos.nombre = dtMedicos.Rows[i]["Nombre"].ToString();
                         objMedicos.apellido = dtMedicos.Rows[i]["Apellido"].ToString();
                         objMedicos.tipoIdentificacion = dtMedicos.Rows[i]["Tipo de identificación"].ToString();
-
-                        int identificacion;
-                        if (Int32.TryParse(dtMedicos.Rows[i]["Identificación"].ToString(), out identificacion))
-                        {
-                            objMedicos.identificacion = identificacion;
-                        }
-                        else
-                        {
-                            // Manejar el caso cuando la conversión falla, por ejemplo, asignar un valor predeterminado o mostrar un mensaje de error.
-                            // objPacientes.identificacion = valorPorDefecto;
-                        }
-
+                        objMedicos.identificacion = dtMedicos.Rows[i]["Identificación"].ToString();
+                        objMedicos.telefono = dtMedicos.Rows[i]["Teléfono"].ToString();
                         objMedicos.genero = dtMedicos.Rows[i]["Género"].ToString();
                         objMedicos.estadoCivil = dtMedicos.Rows[i]["Estado civil"].ToString();
                         objMedicos.fechaNacimiento = DateTime.Parse(dtMedicos.Rows[i]["Fecha de nacimiento"].ToString());
                         objMedicos.especialidad = dtMedicos.Rows[i]["Especialidad"].ToString();
-                    
-                        int telefono;
-                        if (Int32.TryParse(dtMedicos.Rows[i]["Teléfono"].ToString(), out telefono))
-                        {
-                            objMedicos.telefono = telefono;
-                        }
-                        else
-                        {
-                            // Manejar el caso cuando la conversión falla.
-                            // objPacientes.telefono = valorPorDefecto;
-                        }
-
                         objMedicos.correo = dtMedicos.Rows[i]["correo"].ToString();
 
                         listaMedicos.Add(objMedicos);
@@ -605,6 +553,7 @@ namespace Medical_App
         {
             try
             {
+                btnAñadirUsu.Style["display"] = "block";
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
                 //leer el archivo de excel
@@ -681,6 +630,197 @@ namespace Medical_App
                 // Mostrar el cuadro de mensaje
                 divMensaje.Style["display"] = "block";
             }
+
+        }
+        protected void bAgregarUsu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                int ID = Int32.Parse(txtID_usu.Text);
+                string Usuario = txtCorreo.Text;
+                string Password = txtPass.Text;
+                string Rol = txtRol.Text;
+                /*string fechaNacimiento = txtFechaNacimiento.Text;
+                string estadoCivil = dpEstadoCivil.SelectedItem.Text;
+                string tipoIdentificacion = dptipoIdentificacion.SelectedItem.Text;
+                string genero = dpGenero.SelectedItem.Text;*/
+
+                if (!string.IsNullOrEmpty(Usuario) || !string.IsNullOrEmpty(Password))
+                {
+
+
+                    string ruta = "C:\\Users\\Rivas\\source\\repos\\Medical-App3\\Medical App\\Uploads\\BaseDeDatos.xlsx"; // Ruta del archivo en la carpeta "Uploads"
+
+                    //leer el archivo de excel
+                    string conec = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
+
+                    conec = string.Format(conec, ruta, "Yes");
+
+                    OleDbConnection connExcel = new OleDbConnection(conec);
+                    OleDbCommand cmdExcel = new OleDbCommand();
+                    OleDbDataAdapter adapterExcel = new OleDbDataAdapter();
+
+                    cmdExcel.Connection = connExcel;
+
+                    //abrir el archivo
+                    //obtener el nombre de la primer hoja
+                    connExcel.Open();
+                    DataTable dtExcel = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                    string hojaExcel = dtExcel.Rows[0]["TABLE_NAME"].ToString();
+
+
+                    string hojaUsu = "Usuarios$";
+                    string consulta = "INSERT INTO [" + hojaUsu + "]  VALUES (@ID, @Usuario, @Password, @Rol)";
+
+                    cmdExcel.Parameters.AddWithValue("@ID", ID);
+                    cmdExcel.Parameters.AddWithValue("@Usuario", Usuario);
+                    cmdExcel.Parameters.AddWithValue("@Password", Password);
+                    cmdExcel.Parameters.AddWithValue("@Rol", Rol);
+
+                    cmdExcel.CommandText = consulta;
+                    cmdExcel.ExecuteNonQuery();
+                    //adapterExcel.SelectCommand = cmdExcel;
+
+
+                    connExcel.Close();
+
+                }
+                else
+                {
+                    // Establecer el texto del mensaje
+                    //mensajeTexto.InnerText = "El nombre o la identificación no puede ser vacío.";
+                    // Mostrar el cuadro de mensaje
+                    //divMensaje.Style["display"] = "block";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // Establecer el texto del mensaje
+                mensajeTexto.InnerText = "Ocurrió un error. (Error: " + ex.Message + ")";
+                // Mostrar el cuadro de mensaje
+                divMensaje.Style["display"] = "block";
+                
+            }
+
+        }
+        protected void bAgregarMedic_Click(object sender, EventArgs e)
+        {
+           
+
+            try
+            {
+
+                int ID = Int32.Parse(txtID_Medic.Text);
+                string Nombre = txtNom_Medic.Text;
+                string Apellido = txtApell_Medic.Text;
+                string TipoIdent = txtTipoIdent.Text;
+                string Identif = txtIdenti.Text;
+                string Genero = txtGenero.Text;
+                string EstadCivil = txtEstadoCivil.Text;
+                string FechNac = txtFechaNacimiento.Text;
+                string Espec = txtEspec.Text;
+                string Telef = txtTelef.Text;
+                string Correo_Med = txtCorreo_Med.Text;
+                
+
+                if ( ID != 0 || !string.IsNullOrEmpty(Nombre) || !string.IsNullOrEmpty(Apellido))
+                {
+
+
+                    string ruta = "C:\\Users\\Rivas\\source\\repos\\Medical-App3\\Medical App\\Uploads\\BaseDeDatos.xlsx"; // Ruta del archivo en la carpeta "Uploads"
+
+                    //leer el archivo de excel
+                    string conec = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
+
+                    conec = string.Format(conec, ruta, "Yes");
+
+                    OleDbConnection connExcel = new OleDbConnection(conec);
+                    OleDbCommand cmdExcel = new OleDbCommand();
+                    OleDbDataAdapter adapterExcel = new OleDbDataAdapter();
+
+                    cmdExcel.Connection = connExcel;
+
+                    //abrir el archivo
+                    //obtener el nombre de la primer hoja
+                    connExcel.Open();
+                    DataTable dtExcel = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                    string hojaExcel = dtExcel.Rows[0]["TABLE_NAME"].ToString();
+
+
+                    string hojaUsu = "Medicos$";
+                    string consulta = "INSERT INTO [" + hojaUsu + "]  VALUES (@ID, @Nombre, @Apellido, @TipoIden, @Iden, @Genero, @EstadCiv, @FechaNac, @Espec, @Telef, @Correo)";
+
+                    cmdExcel.Parameters.AddWithValue("@ID", ID);
+                    cmdExcel.Parameters.AddWithValue("@Nombre", Nombre);
+                    cmdExcel.Parameters.AddWithValue("@Apellido", Apellido);
+                    cmdExcel.Parameters.AddWithValue("@TipoIden", TipoIdent);
+                    cmdExcel.Parameters.AddWithValue("@Iden", Identif);
+                    cmdExcel.Parameters.AddWithValue("@Genero", Genero);
+                    cmdExcel.Parameters.AddWithValue("@EstadCiv", EstadCivil);
+                    cmdExcel.Parameters.AddWithValue("@FechaNac", DateTime.Parse(FechNac));
+                    cmdExcel.Parameters.AddWithValue("@Espec", Espec);
+                    cmdExcel.Parameters.AddWithValue("@Telef", Telef);
+                    cmdExcel.Parameters.AddWithValue("@Correo", Correo_Med);
+
+                    cmdExcel.CommandText = consulta;
+                    cmdExcel.ExecuteNonQuery();
+                    //adapterExcel.SelectCommand = cmdExcel;
+
+
+                    connExcel.Close();
+
+                }
+                else
+                {
+                    // Establecer el texto del mensaje
+                    mensajeTexto.InnerText = "El nombre o la identificación no puede ser vacío.";
+                    // Mostrar el cuadro de mensaje
+                    divMensaje.Style["display"] = "block";
+                }
+
+
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                // Establecer el texto del mensaje
+                mensajeTexto.InnerText = "Ocurrió un error. (Error: " + ex.Message + ")";
+                // Mostrar el cuadro de mensaje
+                divMensaje.Style["display"] = "block";
+
+            }
+
+
+        }
+
+        protected void btnMostrarUsu_Click(object sender, EventArgs e)
+        {
+            divAgregarUsu.Style["display"] = "block";
+            
+            
+
+        }
+        protected void btnCerrar_Click(object sender, EventArgs e)
+        {
+            divAgregarUsu.Style["display"] = "none";
+
+        }
+        protected void btnMostrarMedic_Click(object sender, EventArgs e)
+        {
+            divAgregarMedico.Style["display"] = "block";
+
+
+
+        }
+        protected void btnCerrarMedic_Click(object sender, EventArgs e)
+        {
+            divAgregarMedico.Style["display"] = "none";
 
         }
 

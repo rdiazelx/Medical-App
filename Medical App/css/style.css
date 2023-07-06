@@ -157,6 +157,7 @@ a,
 img {
      max-width: 100%;
      height: auto;
+     z-index: -5
 }
 
  :focus {
@@ -236,6 +237,7 @@ blockquote {
 .logo {
     width: 15%;
     float: left;
+    z-index: -5
 }
 .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
     color: #0cd268;
@@ -243,7 +245,7 @@ blockquote {
 .logo_main {
     position: relative;
     top: 20px;
-    z-index: 1;
+    z-index: -5;
 }
 .banner_section{
      width: 100%;
@@ -408,6 +410,7 @@ blockquote {
     width: 100%;
     float: left;
     padding-top: 25px;
+    z-index: -5
 }
 .care_section{
      width: 100%;
@@ -851,3 +854,33 @@ blockquote {
     .gridview tr:hover {
         background-color: #eaeaea;
     }
+.btnClass {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+.container {
+    max-width: 400px;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.dialog-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(5px); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -80,35 +80,13 @@ namespace Medical_App
                         objPacientes.nombre = dtPacientes.Rows[i]["Nombre"].ToString();
                         objPacientes.apellido = dtPacientes.Rows[i]["Apellido"].ToString();
                         objPacientes.tipoIdentificacion = dtPacientes.Rows[i]["Tipo de identificación"].ToString();
-
-                        int identificacion;
-                        if (Int32.TryParse(dtPacientes.Rows[i]["Identificación"].ToString(), out identificacion))
-                        {
-                            objPacientes.identificacion = identificacion;
-                        }
-                        else
-                        {
-                            // Manejar el caso cuando la conversión falla, por ejemplo, asignar un valor predeterminado o mostrar un mensaje de error.
-                            // objPacientes.identificacion = valorPorDefecto;
-                        }
-
+                        objPacientes.identificacion = dtPacientes.Rows[i]["Identificación"].ToString();
                         objPacientes.genero = dtPacientes.Rows[i]["Género"].ToString();
                         objPacientes.estadoCivil = dtPacientes.Rows[i]["Estado civil"].ToString();
                         objPacientes.fechaNacimiento = DateTime.Parse(dtPacientes.Rows[i]["Fecha de nacimiento"].ToString());
                         objPacientes.nacionalidad = dtPacientes.Rows[i]["Nacionalidad"].ToString();
                         objPacientes.provincia = dtPacientes.Rows[i]["Provincia"].ToString();
-
-                        int telefono;
-                        if (Int32.TryParse(dtPacientes.Rows[i]["Teléfono"].ToString(), out telefono))
-                        {
-                            objPacientes.telefono = telefono;
-                        }
-                        else
-                        {
-                            // Manejar el caso cuando la conversión falla.
-                            // objPacientes.telefono = valorPorDefecto;
-                        }
-
+                        objPacientes.telefono = dtPacientes.Rows[i]["Teléfono"].ToString();
                         objPacientes.correo = dtPacientes.Rows[i]["correo"].ToString();
 
                         listaPacientes.Add(objPacientes);
@@ -186,18 +164,7 @@ namespace Medical_App
                         var objSucursales = new oSucursales();
                         objSucursales.lugar = dtSucursales.Rows[i]["Sucursal"].ToString();
                         objSucursales.dirreccion = dtSucursales.Rows[i]["Dirección"].ToString();
-
-                        int telefono;
-                        if (Int32.TryParse(dtSucursales.Rows[i]["Teléfono"].ToString(), out telefono))
-                        {
-                            objSucursales.telefono = telefono;
-                        }
-                        else
-                        {
-                            // Manejar el caso cuando la conversión falla.
-                            // objSucursales.telefono = valorPorDefecto;
-                        }
-
+                        objSucursales.telefono = dtSucursales.Rows[i]["Teléfono"].ToString();
                         objSucursales.correo = dtSucursales.Rows[i]["Correo electrónico"].ToString();
 
                         listaSucursales.Add(objSucursales);
@@ -277,34 +244,12 @@ namespace Medical_App
                         objMedicos.nombre = dtMedicos.Rows[i]["Nombre"].ToString();
                         objMedicos.apellido = dtMedicos.Rows[i]["Apellido"].ToString();
                         objMedicos.tipoIdentificacion = dtMedicos.Rows[i]["Tipo de identificación"].ToString();
-
-                        int identificacion;
-                        if (Int32.TryParse(dtMedicos.Rows[i]["Identificación"].ToString(), out identificacion))
-                        {
-                            objMedicos.identificacion = identificacion;
-                        }
-                        else
-                        {
-                            // Manejar el caso cuando la conversión falla, por ejemplo, asignar un valor predeterminado o mostrar un mensaje de error.
-                            // objPacientes.identificacion = valorPorDefecto;
-                        }
-
+                        objMedicos.identificacion = dtMedicos.Rows[i]["Identificación"].ToString();
                         objMedicos.genero = dtMedicos.Rows[i]["Género"].ToString();
                         objMedicos.estadoCivil = dtMedicos.Rows[i]["Estado civil"].ToString();
                         objMedicos.fechaNacimiento = DateTime.Parse(dtMedicos.Rows[i]["Fecha de nacimiento"].ToString());
                         objMedicos.especialidad = dtMedicos.Rows[i]["Especialidad"].ToString();
-
-                        int telefono;
-                        if (Int32.TryParse(dtMedicos.Rows[i]["Teléfono"].ToString(), out telefono))
-                        {
-                            objMedicos.telefono = telefono;
-                        }
-                        else
-                        {
-                            // Manejar el caso cuando la conversión falla.
-                            // objPacientes.telefono = valorPorDefecto;
-                        }
-
+                        objMedicos.telefono = dtMedicos.Rows[i]["Teléfono"].ToString();
                         objMedicos.correo = dtMedicos.Rows[i]["correo"].ToString();
 
                         listaMedicos.Add(objMedicos);

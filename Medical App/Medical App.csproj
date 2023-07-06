@@ -47,6 +47,7 @@
       <HintPath>..\..\..\..\OneDrive\UH\11vo Cuatri\Progra IV\archivos de clase\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />

@@ -8,13 +8,26 @@ namespace Medical_App
     public class Objetos
     {
     }
+    public class oTipoIdentificacion
+    {
+        public int id { get; set; }
+        public string tipoIdentificacion { get; set; }
+
+    }
+
+    public class oGenero
+    {
+        public int id { get; set; }
+        public string genero { get; set; }
+
+    }
     public class oSucursales
     {
         public string lugar { get; set; }
 
         public string dirreccion { get; set; }
 
-        public int telefono { get; set; }
+        public string telefono { get; set; }
 
         public string correo { get; set; }
 
@@ -60,15 +73,15 @@ namespace Medical_App
 
         public string tipoIdentificacion { get; set; }
 
-        public int numeroIdentificacion { get; set; }
+        public string numeroIdentificacion { get; set; }
 
         public DateTime fechaNacimiento { get; set; }
 
         public string especialidad { get; set; }
 
-        public int identificacion { get; set; }
+        public string identificacion { get; set; }
         
-        public int telefono { get; set; }
+        public string telefono { get; set; }
 
         public string correo { get; set; }
 
@@ -84,12 +97,12 @@ namespace Medical_App
         public string nombre { get; set; }
         public string apellido { get; set; }
         public string tipoIdentificacion { get; set; }
-        public int identificacion { get; set; }
+        public string identificacion { get; set; }
         public string genero { get; set; }
         public string estadoCivil { get; set; }
         public DateTime fechaNacimiento { get; set; }
         public string especialidad { get; set; }
-        public int telefono { get; set; }
+        public string telefono { get; set; }
         public string correo { get; set; }
 
 
