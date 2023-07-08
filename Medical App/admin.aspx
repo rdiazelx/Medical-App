@@ -272,6 +272,18 @@
             </div>
         </div>
 
+
+          <div class="dialog-container" id="divMensaje2" style="display: none;" runat="server">
+            <div class="message-box">
+                <div id="mensajeContenido2">
+                    <span id="mensajeTexto2" runat="server"></span>
+                    
+                </div>
+
+            </div>
+        </div>
+
+
         <div class="col-md-6">
             <div class="image_2" style="text-align: center;">
                 <img src="images/img-2.png" style="max-width: 50%; height: auto;">

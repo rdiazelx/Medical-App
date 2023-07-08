@@ -663,12 +663,12 @@ namespace Medical_App
                     connExcel.Close();
                     divAgregarUsu.Style["display"] = "none";
 
-                    mensajeTexto.InnerText = "Usuario Agregado";
-                    divMensaje.Style["display"] = "block";
+                    mensajeTexto2.InnerText = "Usuario Agregado";
+                    divMensaje2.Style["display"] = "block";
 
                     string script = @"<script>
                     setTimeout(function(){
-                        document.getElementById('" + divMensaje.ClientID + @"').style.display = 'none';
+                        document.getElementById('" + divMensaje2.ClientID + @"').style.display = 'none';
                     }, 1000);
                 </script>";
 
@@ -721,7 +721,7 @@ namespace Medical_App
                 {
 
 
-                    string ruta = "C:\\Users\\Rivas\\source\\repos\\Medical-App3\\Medical App\\Uploads\\BaseDeDatos.xlsx"; // Ruta del archivo en la carpeta "Uploads"
+                    string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx");
 
                     //leer el archivo de excel
                     string conec = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
@@ -759,9 +759,24 @@ namespace Medical_App
                     cmdExcel.CommandText = consulta;
                     cmdExcel.ExecuteNonQuery();
                     //adapterExcel.SelectCommand = cmdExcel;
-
-
                     connExcel.Close();
+
+
+                    divAgregarMedico.Style["display"] = "none";
+
+                    mensajeTexto2.InnerText = "Usuario Agregado";
+                    divMensaje2.Style["display"] = "block";
+
+                    string script = @"<script>
+                    setTimeout(function(){
+                        document.getElementById('" + divMensaje2.ClientID + @"').style.display = 'none';
+                    }, 1000);
+                </script>";
+
+                    ClientScript.RegisterStartupScript(this.GetType(), "HideMessage", script);
+
+
+                    cargarMedicos();
 
                 }
                 else
@@ -801,7 +816,7 @@ namespace Medical_App
                 {
 
 
-                    string ruta = "C:\\Users\\Rivas\\source\\repos\\Medical-App3\\Medical App\\Uploads\\BaseDeDatos.xlsx"; // Ruta del archivo en la carpeta "Uploads"
+                    string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx");
 
                     //leer el archivo de excel
                     string conec = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
@@ -832,9 +847,24 @@ namespace Medical_App
                     cmdExcel.CommandText = consulta;
                     cmdExcel.ExecuteNonQuery();
                     //adapterExcel.SelectCommand = cmdExcel;
-
-
                     connExcel.Close();
+
+                    divAgregarMeds.Style["display"] = "none";
+
+                    mensajeTexto2.InnerText = "Usuario Agregado";
+                    divMensaje2.Style["display"] = "block";
+
+                    string script = @"<script>
+                    setTimeout(function(){
+                        document.getElementById('" + divMensaje2.ClientID + @"').style.display = 'none';
+                    }, 1000);
+                </script>";
+
+                    ClientScript.RegisterStartupScript(this.GetType(), "HideMessage", script);
+
+
+                    cargarMedicamentos();
+
 
                 }
                 else
@@ -875,7 +905,7 @@ namespace Medical_App
                 {
 
 
-                    string ruta = "C:\\Users\\Rivas\\source\\repos\\Medical-App3\\Medical App\\Uploads\\BaseDeDatos.xlsx"; // Ruta del archivo en la carpeta "Uploads"
+                    string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx");
 
                     //leer el archivo de excel
                     string conec = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
@@ -906,9 +936,23 @@ namespace Medical_App
                     cmdExcel.CommandText = consulta;
                     cmdExcel.ExecuteNonQuery();
                     //adapterExcel.SelectCommand = cmdExcel;
-
-
                     connExcel.Close();
+
+                    divAgregarSucu.Style["display"] = "none";
+
+                    mensajeTexto2.InnerText = "Usuario Agregado";
+                    divMensaje2.Style["display"] = "block";
+
+                    string script = @"<script>
+                    setTimeout(function(){
+                        document.getElementById('" + divMensaje2.ClientID + @"').style.display = 'none';
+                    }, 1000);
+                </script>";
+
+                    ClientScript.RegisterStartupScript(this.GetType(), "HideMessage", script);
+
+
+                    cargarSucursales();
 
                 }
                 else
@@ -948,7 +992,7 @@ namespace Medical_App
                 {
 
 
-                    string ruta = "C:\\Users\\Rivas\\source\\repos\\Medical-App3\\Medical App\\Uploads\\BaseDeDatos.xlsx"; // Ruta del archivo en la carpeta "Uploads"
+                    string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx");
 
                     //leer el archivo de excel
                     string conec = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
@@ -979,9 +1023,24 @@ namespace Medical_App
                     cmdExcel.CommandText = consulta;
                     cmdExcel.ExecuteNonQuery();
                     //adapterExcel.SelectCommand = cmdExcel;
-
-
                     connExcel.Close();
+
+                    divAgregarEnfe.Style["display"] = "none";
+
+                    mensajeTexto2.InnerText = "Usuario Agregado";
+                    divMensaje2.Style["display"] = "block";
+
+                    string script = @"<script>
+                    setTimeout(function(){
+                        document.getElementById('" + divMensaje2.ClientID + @"').style.display = 'none';
+                    }, 1000);
+                </script>";
+
+                    ClientScript.RegisterStartupScript(this.GetType(), "HideMessage", script);
+
+
+                    cargarEnfermedades();
+
 
                 }
                 else
