@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin.aspx" />
+    <Content Include="Expediente.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\General.js" />
     <Content Include="Styles\Style.css" />
@@ -87,6 +88,13 @@
     </Compile>
     <Compile Include="admin.aspx.designer.cs">
       <DependentUpon>admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Expediente.aspx.cs">
+      <DependentUpon>Expediente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Expediente.aspx.designer.cs">
+      <DependentUpon>Expediente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

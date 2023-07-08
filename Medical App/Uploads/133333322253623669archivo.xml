@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+<SessionData>
+  <Data>
+    <NombreCompleto>Carlos Gómez A</NombreCompleto>
+    <FechaNacimiento>3/10/1995 12:00:00 AM</FechaNacimiento>
+    <NombreMedico>Alejandro González</NombreMedico>
+    <Especialidad>Pediatría</Especialidad>
+    <FechaConsulta>7/8/2023 12:00:00 AM</FechaConsulta>
+    <Medicamentos>Paracetamol</Medicamentos>
+    <Indicaciones>Tomar 1 cada 12 horas</Indicaciones>
+    <FechaPrescripcion>8/8/2023 12:00:00 AM</FechaPrescripcion>
+    <Sucursal>San José</Sucursal>
+  </Data>
+</SessionData>
