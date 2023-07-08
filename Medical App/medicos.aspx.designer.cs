@@ -78,7 +78,7 @@ namespace Medical_App
         protected global::System.Web.UI.WebControls.GridView gridLista;
 
         /// <summary>
-        /// btnAñadirMeds control.
+        ///  btnAñadirMeds control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

@@ -147,17 +147,9 @@
         <script src="js/owl.carousel.js"></script>
         <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 
-
-
-
-        <div>
-            <asp:Button ID="btnAñadirMeds" runat="server" Text="Insertar Medicamentos" CssClass="btnClass" OnClick="btnMostrarMeds_Click" Height="59px" Width="246px" Style="display: none" />
-        </div>
-        <div>
-            <asp:Button ID="btnAñadirEnfe" runat="server" Text="Insertar Enfermedad" CssClass="btnClass" OnClick="btnMostrarEnfe_Click" Height="59px" Width="246px" Style="display: none" />
-        </div>
-
-
+   
+    <div> <asp:Button ID="btnAñadirMeds" runat="server" Text="Insertar Medicamentos" CssClass="btnClass" OnClick="btnMostrarMeds_Click" Height="59px" Width="246px" style =" display: none"/></div>
+    <div> <asp:Button ID="btnAñadirEnfe" runat="server" Text="Insertar Enfermedad" CssClass="btnClass" OnClick="btnMostrarEnfe_Click" Height="59px" Width="246px" style =" display: none"/></div>
 
         <!-- Funciones de insertar Medico -->
 

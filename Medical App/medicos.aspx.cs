@@ -107,13 +107,16 @@ namespace Medical_App
                 // Mostrar el cuadro de mensaje
                 divMensaje.Style["display"] = "block";
             }
-
         }
         private void cargarSucursales()
         {
             try
             {
-              
+                
+                btnAñadirMeds.Style["display"] = "none";
+                btnAñadirEnfe.Style["display"] = "none";
+               
+
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
 
@@ -187,7 +190,8 @@ namespace Medical_App
         {
             try
             {
-         
+                btnAñadirMeds.Style["display"] = "none";
+                btnAñadirEnfe.Style["display"] = "none";
 
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
@@ -272,14 +276,16 @@ namespace Medical_App
                 // Mostrar el cuadro de mensaje
                 divMensaje.Style["display"] = "block";
             }
-
         }
 
         private void cargarMedicamentos()
         {
             try
             {
-                
+                btnAñadirMeds.Style["display"] = "block";
+                btnAñadirEnfe.Style["display"] = "none";
+
+
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
                 //leer el archivo de excel
@@ -365,14 +371,16 @@ namespace Medical_App
                 // Mostrar el cuadro de mensaje de error
                 divMensaje.Style["display"] = "block";
             }
-
         }
 
         private void cargarEnfermedades()
         {
             try
             {
-               
+                btnAñadirMeds.Style["display"] = "none";
+                btnAñadirEnfe.Style["display"] = "block";
+
+
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
                 //leer el archivo de excel
@@ -460,15 +468,14 @@ namespace Medical_App
                 // Mostrar el cuadro de mensaje
                 divMensaje.Style["display"] = "block";
             }
-
-
         }
 
         private void cargarUsuarios()
         {
             try
             {
-                
+                btnAñadirMeds.Style["display"] = "none";
+                btnAñadirEnfe.Style["display"] = "none";
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
                 //leer el archivo de excel
@@ -545,7 +552,6 @@ namespace Medical_App
                 // Mostrar el cuadro de mensaje
                 divMensaje.Style["display"] = "block";
             }
-
         }
 
 
@@ -581,6 +587,11 @@ namespace Medical_App
             cargarPacientes();
 
         }
+
+
+
+
+
 
         //funciones escribir en archivo
 
