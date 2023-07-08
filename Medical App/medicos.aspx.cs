@@ -601,12 +601,17 @@ namespace Medical_App
             try
             {
 
+
+
                 Random random = new Random();
                 int ID = random.Next(10000, 100000);
                 string Nombre = txtNombre_Meds.Text;
                 string CasaFarma = txt_CasaFarma.Text;
                 int Cantidad = Int32.Parse(txtCantidad.Text);
 
+                txtNombre_Meds.Text = string.Empty;
+                txt_CasaFarma.Text = string.Empty;
+                txtCantidad.Text = string.Empty;
 
                 if (ID != 0 || !string.IsNullOrEmpty(Nombre) || !string.IsNullOrEmpty(CasaFarma))
                 {
@@ -647,7 +652,7 @@ namespace Medical_App
 
                     divAgregarMeds.Style["display"] = "none";
                     cargarMedicamentos();
-
+                  
 
                 }
                 else
@@ -680,6 +685,8 @@ namespace Medical_App
                 string Des_Enfe = txtDescri_Enfe.Text;
 
 
+                txtNom_Enfe.Text = string.Empty;
+                txtDescri_Enfe.Text = string.Empty;
 
                 if (!string.IsNullOrEmpty(Nom_Enfe) || !string.IsNullOrEmpty(Des_Enfe))
                 {

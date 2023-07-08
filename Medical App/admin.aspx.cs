@@ -624,6 +624,10 @@ namespace Medical_App
                 string tipoIdentificacion = dptipoIdentificacion.SelectedItem.Text;
                 string genero = dpGenero.SelectedItem.Text;*/
 
+                txtCorreo.Text = string.Empty;
+                txtPass.Text = string.Empty;
+                txtRol.Text = string.Empty;
+
                 if (!string.IsNullOrEmpty(Usuario) || !string.IsNullOrEmpty(Password))
                 {
 
@@ -703,6 +707,8 @@ namespace Medical_App
                 string Telef = txtTelef.Text;
                 string Correo_Med = txtCorreo_Med.Text;
                 
+
+
 
                 if ( ID != 0 || !string.IsNullOrEmpty(Nombre) || !string.IsNullOrEmpty(Apellido))
                 {
