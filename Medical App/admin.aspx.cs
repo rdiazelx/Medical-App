@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.ComponentModel;
+using DocumentFormat.OpenXml.Drawing;
 
 namespace Medical_App
 {
@@ -662,19 +663,6 @@ namespace Medical_App
 
                     connExcel.Close();
                     divAgregarUsu.Style["display"] = "none";
-
-                    mensajeTexto2.InnerText = "Usuario Agregado";
-                    divMensaje2.Style["display"] = "block";
-
-                    string script = @"<script>
-                    setTimeout(function(){
-                        document.getElementById('" + divMensaje2.ClientID + @"').style.display = 'none';
-                    }, 1000);
-                </script>";
-
-                    ClientScript.RegisterStartupScript(this.GetType(), "HideMessage", script);
-
-
                     cargarUsuarios();
 
                 }
@@ -699,12 +687,11 @@ namespace Medical_App
         }
         protected void bAgregarMedic_Click(object sender, EventArgs e)
         {
-           
-
             try
             {
 
-                int ID = Int32.Parse(txtID_Medic.Text);
+                Random random = new Random();
+                int ID = random.Next(10000, 100000);
                 string Nombre = txtNom_Medic.Text;
                 string Apellido = txtApell_Medic.Text;
                 string TipoIdent = txtTipoIdent.Text;
@@ -764,7 +751,7 @@ namespace Medical_App
 
                     divAgregarMedico.Style["display"] = "none";
 
-                    mensajeTexto2.InnerText = "Usuario Agregado";
+                    mensajeTexto2.InnerText = "Medicamento Agregado";
                     divMensaje2.Style["display"] = "block";
 
                     string script = @"<script>
@@ -795,18 +782,15 @@ namespace Medical_App
                 divMensaje.Style["display"] = "block";
 
             }
-
-
         }
 
         protected void bAgregarMeds_Click(object sender, EventArgs e)
         {
-
-
             try
             {
 
-                int ID = Int32.Parse(txtID_Meds.Text);
+                Random random = new Random();
+                int ID = random.Next(10000, 100000);
                 string Nombre = txtNombre_Meds.Text;
                 string CasaFarma = txt_CasaFarma.Text;
                 int Cantidad = Int32.Parse(txtCantidad.Text);
@@ -850,19 +834,6 @@ namespace Medical_App
                     connExcel.Close();
 
                     divAgregarMeds.Style["display"] = "none";
-
-                    mensajeTexto2.InnerText = "Usuario Agregado";
-                    divMensaje2.Style["display"] = "block";
-
-                    string script = @"<script>
-                    setTimeout(function(){
-                        document.getElementById('" + divMensaje2.ClientID + @"').style.display = 'none';
-                    }, 1000);
-                </script>";
-
-                    ClientScript.RegisterStartupScript(this.GetType(), "HideMessage", script);
-
-
                     cargarMedicamentos();
 
 
@@ -883,15 +854,10 @@ namespace Medical_App
                 divMensaje.Style["display"] = "block";
 
             }
-
-
         }
-
 
         protected void bAgregarSucu_Click(object sender, EventArgs e)
         {
-
-
             try
             {
 
@@ -939,19 +905,6 @@ namespace Medical_App
                     connExcel.Close();
 
                     divAgregarSucu.Style["display"] = "none";
-
-                    mensajeTexto2.InnerText = "Usuario Agregado";
-                    divMensaje2.Style["display"] = "block";
-
-                    string script = @"<script>
-                    setTimeout(function(){
-                        document.getElementById('" + divMensaje2.ClientID + @"').style.display = 'none';
-                    }, 1000);
-                </script>";
-
-                    ClientScript.RegisterStartupScript(this.GetType(), "HideMessage", script);
-
-
                     cargarSucursales();
 
                 }
@@ -971,18 +924,15 @@ namespace Medical_App
                 divMensaje.Style["display"] = "block";
 
             }
-
-
         }
 
         protected void bAgregarEnfe_Click(object sender, EventArgs e)
         {
-
-
             try
             {
 
-                int ID_Pac = Int32.Parse(txtID_Pac.Text);
+                Random random = new Random();
+                int ID = random.Next(10000, 100000);
                 string Nom_Enfe = txtNom_Enfe.Text;
                 string Des_Enfe = txtDescri_Enfe.Text;
                 
@@ -1015,7 +965,7 @@ namespace Medical_App
                     string hojaUsu = "Enfermedades$";
                     string consulta = "INSERT INTO [" + hojaUsu + "]  VALUES (@IdPaciente, @Enfermedad, @Descripcion)";
 
-                    cmdExcel.Parameters.AddWithValue("@IdPaciente", ID_Pac);
+                    cmdExcel.Parameters.AddWithValue("@IdPaciente", ID);
                     cmdExcel.Parameters.AddWithValue("@Enfermedad", Nom_Enfe);
                     cmdExcel.Parameters.AddWithValue("@Descripcion", Des_Enfe);
                     
@@ -1027,7 +977,8 @@ namespace Medical_App
 
                     divAgregarEnfe.Style["display"] = "none";
 
-                    mensajeTexto2.InnerText = "Usuario Agregado";
+                    /*
+                    mensajeTexto2.InnerText = "Enfermedad agregada";
                     divMensaje2.Style["display"] = "block";
 
                     string script = @"<script>
@@ -1037,10 +988,10 @@ namespace Medical_App
                 </script>";
 
                     ClientScript.RegisterStartupScript(this.GetType(), "HideMessage", script);
-
+                    */
 
                     cargarEnfermedades();
-
+                    
 
                 }
                 else
@@ -1059,16 +1010,15 @@ namespace Medical_App
                 divMensaje.Style["display"] = "block";
 
             }
-
-
         }
+
+
+        //funciones mostrar
 
         protected void btnMostrarUsu_Click(object sender, EventArgs e)
         {
             divAgregarUsu.Style["display"] = "block";
             
-            
-
         }
         protected void btnCerrar_Click(object sender, EventArgs e)
         {

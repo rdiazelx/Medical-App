@@ -195,15 +195,6 @@ namespace Medical_App
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAgregarMedico;
 
         /// <summary>
-        /// txtID_Medic control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtID_Medic;
-
-        /// <summary>
         /// txtNom_Medic control.
         /// </summary>
         /// <remarks>
@@ -321,15 +312,6 @@ namespace Medical_App
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAgregarMeds;
 
         /// <summary>
-        /// txtID_Meds control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtID_Meds;
-
-        /// <summary>
         /// txtNombre_Meds control.
         /// </summary>
         /// <remarks>
@@ -445,15 +427,6 @@ namespace Medical_App
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAgregarEnfe;
-
-        /// <summary>
-        /// txtID_Pac control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtID_Pac;
 
         /// <summary>
         /// txtNom_Enfe control.
