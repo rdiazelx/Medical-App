@@ -20,7 +20,9 @@ namespace Medical_App
             
         }
 
-        protected void bPaciente_Click(object sender, EventArgs e)
+
+
+        private void cargarPacientes()
         {
             try
             {
@@ -45,7 +47,7 @@ namespace Medical_App
 
 
                 string hojaPacientes = "Pacientes$";
-     
+
                 //crear un datatable
                 DataTable dtPacientes = new DataTable();
                 DataTable dtEnfermedades = new DataTable();
@@ -97,7 +99,7 @@ namespace Medical_App
 
                     Session["listaPacientes"] = listaPacientes;
                 }
-               
+
 
 
             }
@@ -110,8 +112,7 @@ namespace Medical_App
             }
 
         }
-               
-        protected void bSucursal_Click(object sender, EventArgs e)
+        private void cargarSucursales()
         {
             try
             {
@@ -188,9 +189,9 @@ namespace Medical_App
                 // Mostrar el cuadro de mensaje
                 divMensaje.Style["display"] = "block";
             }
-        }
-
-        protected void bMedicos_Click(object sender, EventArgs e)
+         }
+  
+        private void cargarMedicos()
         {
             try
             {
@@ -284,10 +285,9 @@ namespace Medical_App
                 divMensaje.Style["display"] = "block";
             }
 
+        }     
 
-        }
-
-        protected void bMedicamentos_Click(object sender, EventArgs e)
+        private void cargarMedicamentos()
         {
             try
             {
@@ -381,96 +381,10 @@ namespace Medical_App
                 // Mostrar el cuadro de mensaje de error
                 divMensaje.Style["display"] = "block";
             }
-        }
-
-
-        private void cargarEnfermedades()
-        {
-            try
-            {
-                btnAñadirEnfe.Style["display"] = "block";
-                string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
-
-                //leer el archivo de excel
-                string conec = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
-
-                conec = string.Format(conec, ruta, "Yes");
-
-                OleDbConnection connExcel = new OleDbConnection(conec);
-                OleDbCommand cmdExcel = new OleDbCommand();
-                OleDbDataAdapter adapterExcel = new OleDbDataAdapter();
-
-                cmdExcel.Connection = connExcel;
-
-                //abrir el archivo
-                //obtener el nombre de la primer hoja
-                connExcel.Open();
-                DataTable dtExcel = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-                string hojaExcel = dtExcel.Rows[0]["TABLE_NAME"].ToString();
-
-
-                string hojaEnfermedades = "Enfermedades$";
-
-
-                //crear un datatable
-                DataTable dtEnfermedades = new DataTable();
-
-
-                //obtiene la data del la hoja Enfermedades
-                cmdExcel.CommandText = "Select * from [" + hojaEnfermedades + "]";
-                adapterExcel.SelectCommand = cmdExcel;
-                adapterExcel.Fill(dtEnfermedades);
-
-                connExcel.Close();
-
-
-                //Recorrer la tabla (dt) para cargar la lista de enfermedades
-                var listaEnfermedades = new List<oEnfermedades>();
-
-                if (dtEnfermedades.Rows.Count > 0)
-                {
-                    for (int i = 0; i < dtEnfermedades.Rows.Count; i++)
-                    {
-                        var objEnfermedades = new oEnfermedades();
-
-                        // Parsing the 'id' field
-                        int IdPaciente;
-                        if (int.TryParse(dtEnfermedades.Rows[i]["IdPaciente"].ToString(), out IdPaciente))
-                        {
-                            objEnfermedades.IdPaciente = IdPaciente;
-                        }
-                        else
-                        {
-                            // Handle the parsing error
-                            // For example, you can assign a default value or log an error message
-                            objEnfermedades.IdPaciente = 0; // Default value or appropriate error handling
-                        }
-
-                        objEnfermedades.nombre = dtEnfermedades.Rows[i]["Enfermedad"].ToString();
-                        objEnfermedades.descripcion = dtEnfermedades.Rows[i]["Descripcion"].ToString();
-
-                        listaEnfermedades.Add(objEnfermedades);
-                    }
-
-
-                    Session["listaEnfermedades"] = listaEnfermedades;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                // Establecer el texto del mensaje
-                mensajeTexto.InnerText = "Ocurrió un error. (Error: " + ex.Message + ")";
-                // Mostrar el cuadro de mensaje
-                divMensaje.Style["display"] = "block";
-            }
-
 
         }
         
-
-
-            protected void bEnfermedades_Click(object sender, EventArgs e)
+        private void cargarEnfermedades()
         {
             try
             {
@@ -536,16 +450,16 @@ namespace Medical_App
                         var objEnfermedades = new oEnfermedades();
 
                         // Parsing the 'id' field
-                        int IdPaciente;
-                        if (int.TryParse(dtEnfermedades.Rows[i]["IdPaciente"].ToString(), out IdPaciente))
+                        int Id;
+                        if (int.TryParse(dtEnfermedades.Rows[i]["Id"].ToString(), out Id))
                         {
-                            objEnfermedades.IdPaciente = IdPaciente;
+                            objEnfermedades.id = Id;
                         }
                         else
                         {
                             // Handle the parsing error
                             // For example, you can assign a default value or log an error message
-                            objEnfermedades.IdPaciente = 0; // Default value or appropriate error handling
+                            objEnfermedades.id = 0; // Default value or appropriate error handling
                         }
 
                         objEnfermedades.nombre = dtEnfermedades.Rows[i]["Enfermedad"].ToString();
@@ -557,7 +471,7 @@ namespace Medical_App
 
                     Session["listaEnfermedades"] = listaEnfermedades;
                 }
-                                            
+
             }
             catch (Exception ex)
             {
@@ -566,11 +480,11 @@ namespace Medical_App
                 // Mostrar el cuadro de mensaje
                 divMensaje.Style["display"] = "block";
             }
+
+
         }
-
-
-
-        protected void bUsu_Click(object sender, EventArgs e)
+       
+        private void cargarUsuarios()
         {
             try
             {
@@ -637,7 +551,7 @@ namespace Medical_App
                         objUsuarios.Id = Int32.Parse(dtUsuarios.Rows[i]["Id"].ToString());
                         objUsuarios.usuario = dtUsuarios.Rows[i]["Usuario"].ToString();
                         objUsuarios.rol = dtUsuarios.Rows[i]["rol"].ToString();
-                   
+
                         listaUsuarios.Add(objUsuarios);
                     }
 
@@ -657,12 +571,50 @@ namespace Medical_App
             }
 
         }
+
+
+
+        //funciones click
+        protected void bUsu_Click(object sender, EventArgs e)
+        {
+            cargarUsuarios();
+
+        }
+        protected void bEnfermedades_Click(object sender, EventArgs e)
+        {
+            cargarEnfermedades();
+        }
+
+        protected void bMedicamentos_Click(object sender, EventArgs e)
+        {
+            cargarMedicamentos();
+        }
+
+        protected void bMedicos_Click(object sender, EventArgs e)
+        {
+           cargarMedicos();
+        }
+
+        protected void bSucursal_Click(object sender, EventArgs e)
+        {
+            cargarSucursales();
+        }
+
+        protected void bPaciente_Click(object sender, EventArgs e)
+        {
+            cargarPacientes();
+
+        }
+
+        //funciones escribir en archivo
+
+
         protected void bAgregarUsu_Click(object sender, EventArgs e)
         {
             try
             {
-
-                int ID = Int32.Parse(txtID_usu.Text);
+                Random random = new Random();
+                int ID = random.Next(10000, 100000);
                 string Usuario = txtCorreo.Text;
                 string Password = txtPass.Text;
                 string Rol = txtRol.Text;
@@ -675,7 +627,7 @@ namespace Medical_App
                 {
 
 
-                    string ruta = "C:\\Users\\Rivas\\source\\repos\\Medical-App3\\Medical App\\Uploads\\BaseDeDatos.xlsx"; // Ruta del archivo en la carpeta "Uploads"
+                    string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx");
 
                     //leer el archivo de excel
                     string conec = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
@@ -709,6 +661,21 @@ namespace Medical_App
 
 
                     connExcel.Close();
+                    divAgregarUsu.Style["display"] = "none";
+
+                    mensajeTexto.InnerText = "Usuario Agregado";
+                    divMensaje.Style["display"] = "block";
+
+                    string script = @"<script>
+                    setTimeout(function(){
+                        document.getElementById('" + divMensaje.ClientID + @"').style.display = 'none';
+                    }, 1000);
+                </script>";
+
+                    ClientScript.RegisterStartupScript(this.GetType(), "HideMessage", script);
+
+
+                    cargarUsuarios();
 
                 }
                 else
@@ -1101,7 +1068,7 @@ namespace Medical_App
 
                         if (listaEnfermedades.Count > 0)
                         {
-                            listaEnfermedades = listaEnfermedades.FindAll(p => p.IdPaciente == id);
+                            listaEnfermedades = listaEnfermedades.FindAll(p => p.id == id);
                             DataTable dt = GeneraTablaDinamica<oEnfermedades>(listaEnfermedades);
                             gridLista.DataSource = dt;
                             gridLista.DataBind();

@@ -36,7 +36,6 @@ namespace Medical_App
     public class oEnfermedades
     {
         public int id { get; set; }
-        public int IdPaciente { get; set; }
         public string nombre { get; set; }
 
         public string descripcion { get; set; }

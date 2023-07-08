@@ -414,16 +414,16 @@ namespace Medical_App
                         var objEnfermedades = new oEnfermedades();
 
                         // Parsing the 'id' field
-                        int IdPaciente;
-                        if (int.TryParse(dtEnfermedades.Rows[i]["IdPaciente"].ToString(), out IdPaciente))
+                        int Id;
+                        if (int.TryParse(dtEnfermedades.Rows[i]["IdPaciente"].ToString(), out Id))
                         {
-                            objEnfermedades.IdPaciente = IdPaciente;
+                            objEnfermedades.id = Id;
                         }
                         else
                         {
                             // Handle the parsing error
                             // For example, you can assign a default value or log an error message
-                            objEnfermedades.IdPaciente = 0; // Default value or appropriate error handling
+                            objEnfermedades.id = 0; // Default value or appropriate error handling
                         }
 
                         objEnfermedades.nombre = dtEnfermedades.Rows[i]["Nombre de enfermedad"].ToString();
@@ -514,13 +514,13 @@ namespace Medical_App
                         int IdPaciente;
                         if (int.TryParse(dtEnfermedades.Rows[i]["IdPaciente"].ToString(), out IdPaciente))
                         {
-                            objEnfermedades.IdPaciente = IdPaciente;
+                            objEnfermedades.id = IdPaciente;
                         }
                         else
                         {
                             // Handle the parsing error
                             // For example, you can assign a default value or log an error message
-                            objEnfermedades.IdPaciente = 0; // Default value or appropriate error handling
+                            objEnfermedades.id = 0; // Default value or appropriate error handling
                         }
 
                         objEnfermedades.nombre = dtEnfermedades.Rows[i]["Nombre de enfermedad"].ToString();
@@ -579,7 +579,7 @@ namespace Medical_App
 
                     if (listaEnfermedades.Count > 0)
                     {
-                        listaEnfermedades = listaEnfermedades.FindAll(p => p.IdPaciente == id);
+                        listaEnfermedades = listaEnfermedades.FindAll(p => p.id == id);
                         DataTable dt = GeneraTablaDinamica<oEnfermedades>(listaEnfermedades);
                         gridLista.DataSource = dt;
                         gridLista.DataBind();
