@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="medicos.aspx.cs" Inherits="Medical_App.medicos" EnableEventValidation="false" %>
 
 
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -63,17 +64,18 @@
                         <li class="nav-item">
                             <asp:Button ID="bEnfermedades" runat="server" class="button button5" Text="Enfermedades" OnClick="bEnfermedades_Click" />
                         </li>
-                       <li class="nav-item">
-                  <asp:Button ID="bCitas" runat="server" class="button button5" Text="Agendar cita" OnClick="bCitas_Click"  /> 
-              </li>   
+                     
+                      <li class="nav-item">
+                        <asp:Button ID="bCitas" runat="server" class="button button5" Text="Agendar cita" OnClick="bCitas_Click" />
+                        <h2 class="hover-message">Para agendar una cita debe registrar primero al paciente</h2>
+                    </li>
+
                     </ul>
                 </div>
             </nav>
             <nav class="mobile_header navbar navbar-expand-lg navbar-light bg-light">
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="images/logo.png"></a>
-                </div>
+                <div class="logo"><a href="index.html">
+                    <img src="images/logo.png"></a></div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -121,13 +123,19 @@
                     <div class="col-md-6">
                         <div class="about_taital">
                             <h4 class="about_text">Tabla de información</h4>
+
+                            <asp:Label ID="lblMessage" runat="server" Visible="false" Text="" CssClass="message1"></asp:Label>
+
+                            
                             <asp:GridView ID="gridLista" runat="server" class="gridview" OnRowCommand="gridLista_RowCommand"></asp:GridView>
                             <columns>
                                 <asp:ButtonField ButtonType="Button" CommandName="Select" Text="Seleccionar" ControlStyle-CssClass="button-select" />
 
+                                <div>
+                                   <asp:Button ID="btnNuevoPaciente" runat="server" Text="Nuevo Paciente" CssClass="btnClassExpediente" OnClick="btnNuevoPaciente_Click" Style="display: none" />
 
-                                   <asp:Button ID="btnNuevoPaciente" runat="server" Text="Nuevo Paciente" CssClass="btnClass" OnClick="btnNuevoPaciente_Click" Style="display: none" />
-                               
+                                </div>
+
                             </columns>
                         </div>
                     </div>
@@ -150,14 +158,65 @@
         <script src="js/owl.carousel.js"></script>
         <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 
-   
-    <div> <asp:Button ID="btnAñadirMeds" runat="server" Text="Insertar Medicamentos" CssClass="btnClass" OnClick="btnMostrarMeds_Click" Height="59px" Width="246px" style =" display: none"/></div>
-    <div> <asp:Button ID="btnAñadirEnfe" runat="server" Text="Insertar Enfermedad" CssClass="btnClass" OnClick="btnMostrarEnfe_Click" Height="59px" Width="246px" style =" display: none"/></div>
-
-        <!-- Funciones de insertar Medico -->
 
 
-         <!-- Insertar Medicamentos -->
+
+        <div>
+            <asp:Button ID="btnAñadirUsu" runat="server" Text="Insertar Usuario" CssClass="btnClass" OnClick="btnMostrarUsu_Click" Height="59px" Width="246px" Style="display: none" /></div>
+
+        <div>
+            <asp:Button ID="btnAñadirMedico" runat="server" Text="Insertar Médico" CssClass="btnClass" OnClick="btnMostrarMedic_Click" Height="59px" Width="246px" Style="display: none" /></div>
+        <div>
+            <asp:Button ID="btnAñadirMeds" runat="server" Text="Insertar Medicamentos" CssClass="btnClass" OnClick="btnMostrarMeds_Click" Height="59px" Width="246px" Style="display: none" /></div>
+        <div>
+            <asp:Button ID="btnAñadirSucu" runat="server" Text="Insertar Sucursal" CssClass="btnClass" OnClick="btnMostrarSucu_Click" Height="59px" Width="246px" Style="display: none" /></div>
+        <div>
+            <asp:Button ID="btnAñadirPac" runat="server" Text="Insertar Persona" CssClass="btnClass" OnClick="btnMostrarUsu_Click" Height="59px" Width="246px" Style="display: none" /></div>
+        <div>
+            <asp:Button ID="btnAñadirEnfe" runat="server" Text="Insertar Enfermedad" CssClass="btnClass" OnClick="btnMostrarEnfe_Click" Height="59px" Width="246px" Style="display: none" /></div>
+
+       
+        
+        
+          <!-- Funciones de insertar -->
+        
+        
+        <div class="dialog-container" id="divAgregarUsu" style="display: none;" runat="server">
+            <div class="container">
+                <div id="mensajeContenido">
+                    <asp:TextBox ID="txtCorreo" runat="server" CssClass="txtClass" placeholder="Correo"></asp:TextBox>
+                    <asp:TextBox ID="txtPass" runat="server" CssClass="txtClass" placeholder="Contraseña"></asp:TextBox>
+                    <asp:TextBox ID="txtRol" runat="server" CssClass="txtClass" placeholder="Rol"></asp:TextBox>
+
+                    <asp:Button ID="BtnCerrar" runat="server" Text="Cerrar" CssClass="btnClass" OnClick="btnCerrar_Click" />
+                   
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="dialog-container" id="divAgregarMedico" style="display: none;" runat="server">
+            <div class="container">
+                <div id="mensajeContenidoMedic">
+
+                    <asp:TextBox ID="txtNom_Medic" runat="server" CssClass="txtClass" placeholder="Nombre"></asp:TextBox>
+                    <asp:TextBox ID="txtApell_Medic" runat="server" CssClass="txtClass" placeholder="Apellido"></asp:TextBox>
+                    <asp:TextBox ID="txtTipoIdent" runat="server" CssClass="txtClass" placeholder="Tipo de Identificación"></asp:TextBox>
+                    <asp:TextBox ID="txtIdenti" runat="server" CssClass="txtClass" placeholder="Identificación"></asp:TextBox>
+
+                    <asp:TextBox ID="txtGenero" runat="server" CssClass="txtClass" placeholder="Género"></asp:TextBox>
+                    <asp:TextBox ID="txtEstadoCivil" runat="server" CssClass="txtClass" placeholder="Estado Civil"></asp:TextBox>
+                    <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="txtClass" placeholder="Fecha de Nacimiento" type="datetime-local"></asp:TextBox>
+                    <asp:TextBox ID="txtEspec" runat="server" CssClass="txtClass" placeholder="Especialidad"></asp:TextBox>
+                    <asp:TextBox ID="txtTelef" runat="server" CssClass="txtClass" placeholder="Teléfono"></asp:TextBox>
+                    <asp:TextBox ID="txtCorreo_Med" runat="server" CssClass="txtClass" placeholder="Correo"></asp:TextBox>
+                    <asp:Button ID="Button1" runat="server" Text="Cerrar" CssClass="btnClass" OnClick="btnCerrarMedic_Click" />
+                    <asp:Button ID="Button2" runat="server" Text="Agregar" CssClass="btnClass" OnClick="bAgregarMedic_Click" />
+
+                </div>
+            </div>
+        </div>
 
         <div class="dialog-container" id="divAgregarMeds" style="display: none;" runat="server">
             <div class="container">
@@ -166,15 +225,28 @@
                     <asp:TextBox ID="txtNombre_Meds" runat="server" CssClass="txtClass" placeholder="Nombre del medicamento"></asp:TextBox>
                     <asp:TextBox ID="txt_CasaFarma" runat="server" CssClass="txtClass" placeholder="Casa farmaceútica"></asp:TextBox>
                     <asp:TextBox ID="txtCantidad" runat="server" CssClass="txtClass" placeholder="Cantidad"></asp:TextBox>
-                    
                     <asp:Button ID="bCerrarMeds" runat="server" Text="Cerrar" CssClass="btnClass" OnClick="btnCerrarMeds_Click" />
                     <asp:Button ID="bGuardarMeds" runat="server" Text="Agregar" CssClass="btnClass" OnClick="bAgregarMeds_Click" />
 
                 </div>
             </div>
         </div>
-          
-         <!-- Insertar Enfermedades -->
+
+        <div class="dialog-container" id="divAgregarSucu" style="display: none;" runat="server">
+            <div class="container">
+                <div id="mensajeContenidoSucu">
+
+                    <asp:TextBox ID="txtLugar_Sucu" runat="server" CssClass="txtClass" placeholder="Provincia de la sucursal"></asp:TextBox>
+                    <asp:TextBox ID="txtDireccion" runat="server" CssClass="txtClass" placeholder="Dirección"></asp:TextBox>
+                    <asp:TextBox ID="txtTelefono" runat="server" CssClass="txtClass" placeholder="Teléfono"></asp:TextBox>
+                    <asp:TextBox ID="txtCorreo_Sucu" runat="server" CssClass="txtClass" placeholder="Correo"></asp:TextBox>
+                    <asp:Button ID="bCerrar_Sucu" runat="server" Text="Cerrar" CssClass="btnClass" OnClick="btnCerrarSucu_Click" />
+                    <asp:Button ID="bGuardar_Sucu" runat="server" Text="Agregar" CssClass="btnClass" OnClick="bAgregarSucu_Click" />
+
+                </div>
+            </div>
+        </div>
+
         <div class="dialog-container" id="divAgregarEnfe" style="display: none;" runat="server">
             <div class="container">
                 <div id="mensajeContenidoEnfe">
@@ -187,6 +259,8 @@
                 </div>
             </div>
         </div>
+
+
 
 
         <!-- Mensajes en pantalla -->
@@ -203,11 +277,11 @@
         </div>
 
 
-        <div class="dialog-container" id="divMensaje2" style="display: none;" runat="server">
+          <div class="dialog-container" id="divMensaje2" style="display: none;" runat="server">
             <div class="message-box">
                 <div id="mensajeContenido2">
                     <span id="mensajeTexto2" runat="server"></span>
-
+                    
                 </div>
 
             </div>

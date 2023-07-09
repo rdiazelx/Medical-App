@@ -15,18 +15,22 @@ namespace Medical_App
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //cargarEnfermedades();
+            cargarExpediente();
+
 
         }
+
+
 
         private void cargarPacientes()
         {
             try
             {
 
-                btnAñadirMeds.Style["display"] = "none";
-                btnAñadirEnfe.Style["display"] = "none";
-                btnNuevoPaciente.Style["display"] = "block";
+
+
+                lblMessage.Visible = true;
+                lblMessage.Text = "Para ver un expediente, haga click en el paciente";
 
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
@@ -90,7 +94,11 @@ namespace Medical_App
                         objPacientes.telefono = dtPacientes.Rows[i]["Teléfono"].ToString();
                         objPacientes.genero = dtPacientes.Rows[i]["Género"].ToString();
                         objPacientes.estadoCivil = dtPacientes.Rows[i]["Estado civil"].ToString();
-                        objPacientes.fechaNacimiento = DateTime.Parse(dtPacientes.Rows[i]["Fecha de nacimiento"].ToString());
+                        DateTime fechaNacimiento;
+                        if (DateTime.TryParse(dtPacientes.Rows[i]["Fecha de nacimiento"].ToString(), out fechaNacimiento))
+                        {
+                            objPacientes.fechaNacimiento = fechaNacimiento;
+                        }
                         objPacientes.nacionalidad = dtPacientes.Rows[i]["Nacionalidad"].ToString();
                         objPacientes.provincia = dtPacientes.Rows[i]["Provincia"].ToString();
                         objPacientes.correo = dtPacientes.Rows[i]["correo"].ToString();
@@ -112,15 +120,22 @@ namespace Medical_App
                 // Mostrar el cuadro de mensaje
                 divMensaje.Style["display"] = "block";
             }
+
         }
         private void cargarSucursales()
         {
             try
             {
-                
+
+
+
+                btnAñadirSucu.Style["display"] = "none";
                 btnAñadirMeds.Style["display"] = "none";
+                btnAñadirMedico.Style["display"] = "none";
                 btnAñadirEnfe.Style["display"] = "none";
+                btnAñadirUsu.Style["display"] = "none";
                 btnNuevoPaciente.Style["display"] = "none";
+
 
 
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
@@ -196,9 +211,18 @@ namespace Medical_App
         {
             try
             {
+
+                var listaUsuarios = (List<oUsuarios>)Session["listaUsuarios"];
+
+
+                btnAñadirSucu.Style["display"] = "none";
                 btnAñadirMeds.Style["display"] = "none";
+                btnAñadirMedico.Style["display"] = "none";
                 btnAñadirEnfe.Style["display"] = "none";
+                btnAñadirUsu.Style["display"] = "none";
                 btnNuevoPaciente.Style["display"] = "none";
+
+
 
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
@@ -239,11 +263,11 @@ namespace Medical_App
                 gridLista.DataBind();
 
 
-                foreach (GridViewRow row in gridLista.Rows)
+                /*foreach (GridViewRow row in gridLista.Rows)
                 {
                     row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridLista, "Select$" + row.RowIndex);
                 }
-
+                */
 
                 //listado de Pacientes
                 //Recorrer la tabla (dt) para cargar la lista de pacientes
@@ -283,14 +307,21 @@ namespace Medical_App
                 // Mostrar el cuadro de mensaje
                 divMensaje.Style["display"] = "block";
             }
+
         }
 
         private void cargarMedicamentos()
         {
             try
             {
+                var listaUsuarios = (List<oUsuarios>)Session["listaUsuarios"];
+
+
+                btnAñadirSucu.Style["display"] = "none";
                 btnAñadirMeds.Style["display"] = "block";
+                btnAñadirMedico.Style["display"] = "none";
                 btnAñadirEnfe.Style["display"] = "none";
+                btnAñadirUsu.Style["display"] = "none";
                 btnNuevoPaciente.Style["display"] = "none";
 
 
@@ -379,15 +410,23 @@ namespace Medical_App
                 // Mostrar el cuadro de mensaje de error
                 divMensaje.Style["display"] = "block";
             }
+
         }
 
         private void cargarEnfermedades()
         {
             try
             {
+                var listaUsuarios = (List<oUsuarios>)Session["listaUsuarios"];
+
+
+                btnAñadirSucu.Style["display"] = "none";
                 btnAñadirMeds.Style["display"] = "none";
+                btnAñadirMedico.Style["display"] = "none";
                 btnAñadirEnfe.Style["display"] = "block";
+                btnAñadirUsu.Style["display"] = "none";
                 btnNuevoPaciente.Style["display"] = "none";
+
 
 
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
@@ -477,15 +516,26 @@ namespace Medical_App
                 // Mostrar el cuadro de mensaje
                 divMensaje.Style["display"] = "block";
             }
+
+
         }
 
-        private void cargarUsuarios()
+        
+        public void cargarExpediente()
         {
             try
             {
+
+                var listaUsuarios = (List<oUsuarios>)Session["listaUsuarios"];
+
+
+                btnAñadirSucu.Style["display"] = "none";
                 btnAñadirMeds.Style["display"] = "none";
+                btnAñadirMedico.Style["display"] = "none";
                 btnAñadirEnfe.Style["display"] = "none";
+                btnAñadirUsu.Style["display"] = "none";
                 btnNuevoPaciente.Style["display"] = "none";
+
 
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
@@ -507,50 +557,65 @@ namespace Medical_App
                 string hojaExcel = dtExcel.Rows[0]["TABLE_NAME"].ToString();
 
 
-                string hojaUsuarios = "Usuarios$";
+                string hojaExpediente = "Expedientes$";
 
                 //crear un datatable
-                DataTable dtUsuarios = new DataTable();
+                DataTable dtExpediente = new DataTable();
 
 
                 //obtiene la data del la hoja pacientes
-                cmdExcel.CommandText = "SELECT Id, Usuario, Rol FROM [" + hojaUsuarios + "]";
+                cmdExcel.CommandText = "Select * from [" + hojaExpediente + "]";
                 adapterExcel.SelectCommand = cmdExcel;
-                adapterExcel.Fill(dtUsuarios);
+                adapterExcel.Fill(dtExpediente);
 
                 connExcel.Close();
 
                 //mis datos están en el dt
 
-                gridLista.DataSource = dtUsuarios;
-                gridLista.DataBind();
+                gridLista.DataSource = dtExpediente;
+                //gridLista.DataBind();
 
 
-                foreach (GridViewRow row in gridLista.Rows)
+                var listaExpediente = new List<oExpediente>();
+
+                if (dtExpediente.Rows.Count > 0)
                 {
-                    row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridLista, "Select$" + row.RowIndex);
-                }
-
-
-                //listado de Pacientes
-                //Recorrer la tabla (dt) para cargar la lista de pacientes
-                var listaUsuarios = new List<oUsuarios>();
-
-                if (dtUsuarios.Rows.Count > 0)
-                {
-                    for (int i = 0; i < dtUsuarios.Rows.Count; i++)
+                    for (int i = 0; i < dtExpediente.Rows.Count; i++)
                     {
-                        var objUsuarios = new oUsuarios();
+                        var objExpediente = new oExpediente();
 
-                        objUsuarios.Id = Int32.Parse(dtUsuarios.Rows[i]["Id"].ToString());
-                        objUsuarios.usuario = dtUsuarios.Rows[i]["Usuario"].ToString();
-                        objUsuarios.rol = dtUsuarios.Rows[i]["rol"].ToString();
+                        objExpediente.idPaciente = Int32.Parse(dtExpediente.Rows[i]["idPaciente"].ToString());
+                        objExpediente.nombre = dtExpediente.Rows[i]["nombre"].ToString();
 
-                        listaUsuarios.Add(objUsuarios);
+                        DateTime fechaNacimiento;
+                        if (DateTime.TryParse(dtExpediente.Rows[i]["fechaNacimiento"].ToString(), out fechaNacimiento))
+                        {
+                            objExpediente.fechaNacimiento = fechaNacimiento;
+                        }
+                        DateTime fechaCita;
+                        if (DateTime.TryParse(dtExpediente.Rows[i]["fechaCita"].ToString(), out fechaCita))
+                        {
+                            objExpediente.fechaNacimiento = fechaCita;
+                        }
+                        objExpediente.medico = dtExpediente.Rows[i]["medico"].ToString();
+                        objExpediente.especialidad = dtExpediente.Rows[i]["especialidad"].ToString();
+                        objExpediente.enfermedad = dtExpediente.Rows[i]["enfermedad"].ToString();
+                        objExpediente.indicaciones = dtExpediente.Rows[i]["indicaciones"].ToString();
+                        DateTime fechaPrescripcion;
+                        if (DateTime.TryParse(dtExpediente.Rows[i]["fechaPrescripcion"].ToString(), out fechaPrescripcion))
+                        {
+                            objExpediente.fechaNacimiento = fechaPrescripcion;
+                        }
+                        objExpediente.sucursal = dtExpediente.Rows[i]["sucursal"].ToString();
+
+
+
+
+                        listaExpediente.Add(objExpediente);
                     }
 
 
-                    Session["listaUsuarios"] = listaUsuarios;
+                    Session["listaExpediente"] = listaExpediente;
                 }
 
 
@@ -558,21 +623,18 @@ namespace Medical_App
             }
             catch (Exception ex)
             {
-                // Establecer el texto del mensaje
+
                 mensajeTexto.InnerText = "Ocurrió un error. (Error: " + ex.Message + ")";
-                // Mostrar el cuadro de mensaje
                 divMensaje.Style["display"] = "block";
+
             }
         }
 
 
 
-        //funciones click
-        protected void bUsu_Click(object sender, EventArgs e)
-        {
-            cargarUsuarios();
 
-        }
+        //funciones click
+       
         protected void bEnfermedades_Click(object sender, EventArgs e)
         {
             cargarEnfermedades();
@@ -598,25 +660,114 @@ namespace Medical_App
             cargarPacientes();
 
         }
-        protected void btnNuevoPaciente_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("/Pacientes.aspx");
-        }
-
-
-
-
-
 
         //funciones escribir en archivo
 
+        protected void bAgregarMedic_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                Random random = new Random();
+                int ID = random.Next(10000, 100000);
+                string Nombre = txtNom_Medic.Text;
+                string Apellido = txtApell_Medic.Text;
+                string TipoIdent = txtTipoIdent.Text;
+                string Identif = txtIdenti.Text;
+                string Genero = txtGenero.Text;
+                string EstadCivil = txtEstadoCivil.Text;
+                string FechNac = txtFechaNacimiento.Text;
+                string Espec = txtEspec.Text;
+                string Telef = txtTelef.Text;
+                string Correo_Med = txtCorreo_Med.Text;
+
+
+
+
+                if (ID != 0 || !string.IsNullOrEmpty(Nombre) || !string.IsNullOrEmpty(Apellido))
+                {
+
+
+                    string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx");
+
+                    //leer el archivo de excel
+                    string conec = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
+
+                    conec = string.Format(conec, ruta, "Yes");
+
+                    OleDbConnection connExcel = new OleDbConnection(conec);
+                    OleDbCommand cmdExcel = new OleDbCommand();
+                    OleDbDataAdapter adapterExcel = new OleDbDataAdapter();
+
+                    cmdExcel.Connection = connExcel;
+
+                    //abrir el archivo
+                    //obtener el nombre de la primer hoja
+                    connExcel.Open();
+                    DataTable dtExcel = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                    string hojaExcel = dtExcel.Rows[0]["TABLE_NAME"].ToString();
+
+
+                    string hojaUsu = "Medicos$";
+                    string consulta = "INSERT INTO [" + hojaUsu + "]  VALUES (@ID, @Nombre, @Apellido, @TipoIden, @Iden, @Genero, @EstadCiv, @FechaNac, @Espec, @Telef, @Correo)";
+
+                    cmdExcel.Parameters.AddWithValue("@ID", ID);
+                    cmdExcel.Parameters.AddWithValue("@Nombre", Nombre);
+                    cmdExcel.Parameters.AddWithValue("@Apellido", Apellido);
+                    cmdExcel.Parameters.AddWithValue("@TipoIden", TipoIdent);
+                    cmdExcel.Parameters.AddWithValue("@Iden", Identif);
+                    cmdExcel.Parameters.AddWithValue("@Genero", Genero);
+                    cmdExcel.Parameters.AddWithValue("@EstadCiv", EstadCivil);
+                    cmdExcel.Parameters.AddWithValue("@FechaNac", DateTime.Parse(FechNac));
+                    cmdExcel.Parameters.AddWithValue("@Espec", Espec);
+                    cmdExcel.Parameters.AddWithValue("@Telef", Telef);
+                    cmdExcel.Parameters.AddWithValue("@Correo", Correo_Med);
+
+                    cmdExcel.CommandText = consulta;
+                    cmdExcel.ExecuteNonQuery();
+                    //adapterExcel.SelectCommand = cmdExcel;
+                    connExcel.Close();
+
+
+                    divAgregarMedico.Style["display"] = "none";
+
+                    mensajeTexto2.InnerText = "Medicamento Agregado";
+                    divMensaje2.Style["display"] = "block";
+
+                    string script = @"<script>
+                    setTimeout(function(){
+                        document.getElementById('" + divMensaje2.ClientID + @"').style.display = 'none';
+                    }, 1000);
+                </script>";
+
+                    ClientScript.RegisterStartupScript(this.GetType(), "HideMessage", script);
+
+
+                    cargarMedicos();
+
+                }
+                else
+                {
+                    // Establecer el texto del mensaje
+                    mensajeTexto.InnerText = "El nombre o la identificación no puede ser vacío.";
+                    // Mostrar el cuadro de mensaje
+                    divMensaje.Style["display"] = "block";
+                }
+            }
+            catch (Exception ex)
+            {
+                // Establecer el texto del mensaje
+                mensajeTexto.InnerText = "Ocurrió un error. (Error: " + ex.Message + ")";
+                // Mostrar el cuadro de mensaje
+                divMensaje.Style["display"] = "block";
+
+            }
+        }
 
         protected void bAgregarMeds_Click(object sender, EventArgs e)
         {
             try
             {
-
-
 
                 Random random = new Random();
                 int ID = random.Next(10000, 100000);
@@ -624,9 +775,6 @@ namespace Medical_App
                 string CasaFarma = txt_CasaFarma.Text;
                 int Cantidad = Int32.Parse(txtCantidad.Text);
 
-                txtNombre_Meds.Text = string.Empty;
-                txt_CasaFarma.Text = string.Empty;
-                txtCantidad.Text = string.Empty;
 
                 if (ID != 0 || !string.IsNullOrEmpty(Nombre) || !string.IsNullOrEmpty(CasaFarma))
                 {
@@ -667,7 +815,7 @@ namespace Medical_App
 
                     divAgregarMeds.Style["display"] = "none";
                     cargarMedicamentos();
-                  
+
 
                 }
                 else
@@ -688,6 +836,75 @@ namespace Medical_App
             }
         }
 
+        protected void bAgregarSucu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                string Sucursal = txtLugar_Sucu.Text;
+                string Direccion = txtDireccion.Text;
+                string Telefono = txtTelefono.Text;
+                string Correo = txtCorreo_Sucu.Text;
+
+
+                if (!string.IsNullOrEmpty(Sucursal) || !string.IsNullOrEmpty(Direccion))
+                {
+
+
+                    string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx");
+
+                    //leer el archivo de excel
+                    string conec = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
+
+                    conec = string.Format(conec, ruta, "Yes");
+
+                    OleDbConnection connExcel = new OleDbConnection(conec);
+                    OleDbCommand cmdExcel = new OleDbCommand();
+                    OleDbDataAdapter adapterExcel = new OleDbDataAdapter();
+
+                    cmdExcel.Connection = connExcel;
+
+                    //abrir el archivo
+                    //obtener el nombre de la primer hoja
+                    connExcel.Open();
+                    DataTable dtExcel = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                    string hojaExcel = dtExcel.Rows[0]["TABLE_NAME"].ToString();
+
+
+                    string hojaUsu = "Sucursales$";
+                    string consulta = "INSERT INTO [" + hojaUsu + "]  VALUES (@Sucursal, @Dirección, @Teléfono, @Correo)";
+
+                    cmdExcel.Parameters.AddWithValue("@Sucursal", Sucursal);
+                    cmdExcel.Parameters.AddWithValue("@Dirección", Direccion);
+                    cmdExcel.Parameters.AddWithValue("@Teléfono", Telefono);
+                    cmdExcel.Parameters.AddWithValue("@Correo", Correo);
+
+                    cmdExcel.CommandText = consulta;
+                    cmdExcel.ExecuteNonQuery();
+                    //adapterExcel.SelectCommand = cmdExcel;
+                    connExcel.Close();
+
+                    divAgregarSucu.Style["display"] = "none";
+                    cargarSucursales();
+
+                }
+                else
+                {
+                    // Establecer el texto del mensaje
+                    mensajeTexto.InnerText = "El nombre o la identificación no puede ser vacío.";
+                    // Mostrar el cuadro de mensaje
+                    divMensaje.Style["display"] = "block";
+                }
+            }
+            catch (Exception ex)
+            {
+                // Establecer el texto del mensaje
+                mensajeTexto.InnerText = "Ocurrió un error. (Error: " + ex.Message + ")";
+                // Mostrar el cuadro de mensaje
+                divMensaje.Style["display"] = "block";
+
+            }
+        }
 
         protected void bAgregarEnfe_Click(object sender, EventArgs e)
         {
@@ -700,8 +917,6 @@ namespace Medical_App
                 string Des_Enfe = txtDescri_Enfe.Text;
 
 
-                txtNom_Enfe.Text = string.Empty;
-                txtDescri_Enfe.Text = string.Empty;
 
                 if (!string.IsNullOrEmpty(Nom_Enfe) || !string.IsNullOrEmpty(Des_Enfe))
                 {
@@ -780,8 +995,24 @@ namespace Medical_App
 
         //funciones mostrar
 
-     
-       
+        protected void btnMostrarUsu_Click(object sender, EventArgs e)
+        {
+            divAgregarUsu.Style["display"] = "block";
+
+        }
+        protected void btnCerrar_Click(object sender, EventArgs e)
+        {
+            divAgregarUsu.Style["display"] = "none";
+
+        }
+        protected void btnMostrarMedic_Click(object sender, EventArgs e)
+        {
+            divAgregarMedico.Style["display"] = "block";
+        }
+        protected void btnCerrarMedic_Click(object sender, EventArgs e)
+        {
+            divAgregarMedico.Style["display"] = "none";
+        }
         protected void btnMostrarMeds_Click(object sender, EventArgs e)
         {
             divAgregarMeds.Style["display"] = "block";
@@ -789,6 +1020,14 @@ namespace Medical_App
         protected void btnCerrarMeds_Click(object sender, EventArgs e)
         {
             divAgregarMeds.Style["display"] = "none";
+        }
+        protected void btnMostrarSucu_Click(object sender, EventArgs e)
+        {
+            divAgregarSucu.Style["display"] = "block";
+        }
+        protected void btnCerrarSucu_Click(object sender, EventArgs e)
+        {
+            divAgregarSucu.Style["display"] = "none";
         }
         protected void btnMostrarEnfe_Click(object sender, EventArgs e)
         {
@@ -799,9 +1038,15 @@ namespace Medical_App
             divAgregarEnfe.Style["display"] = "none";
         }
 
+        protected void btnNuevoPaciente_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/Pacientes.aspx");
+        }
+
 
         protected void gridLista_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+
             try
             {
 
@@ -812,28 +1057,57 @@ namespace Medical_App
                     int id = Int32.Parse(selectedRow.Cells[0].Text);
 
 
-                    var listaEnfermedades = (List<oEnfermedades>)Session["listaEnfermedades"];
+                    var listExpediente = (List<oExpediente>)Session["listaExpediente"];
 
-                    if (listaEnfermedades.Count > 0)
+                    /*
+                    if (listExpediente.Count > 0)
                     {
-                        listaEnfermedades = listaEnfermedades.FindAll(p => p.id == id);
-                        DataTable dt = GeneraTablaDinamica<oEnfermedades>(listaEnfermedades);
+                        listExpediente = listExpediente.FindAll(p => p.idPaciente == id);
+                        DataTable dt = GeneraTablaDinamica<oExpediente>(listExpediente);
                         gridLista.DataSource = dt;
                         gridLista.DataBind();
                     }
 
+                }*/
+
+                    if (listExpediente.Count > 0)
+                    {
+                        listExpediente = listExpediente.Where(p => p.idPaciente == id).ToList();
+
+
+
+                        // obtener los valores
+                        string nombre = listExpediente[0].nombre;
+                        string apellido = listExpediente[0].apellido;
+                        DateTime fechaNacimiento = listExpediente[0].fechaNacimiento;
+
+                        string medico = listExpediente[0].medico;
+                        string especialidadMedico = listExpediente[0].especialidad;
+                        string enfermedad = listExpediente[0].enfermedad;
+                        DateTime fechaCita = listExpediente[0].fechaCita;
+                        string medicamentos = listExpediente[0].medicamentos;
+                        string indicaciones = listExpediente[0].indicaciones;
+                        DateTime fechaPrescripcion = listExpediente[0].fechaPrescripcion;
+                        string sucursal = listExpediente[0].sucursal;
+
+                        // Combine nombre and apellido
+                        string nombreCompleto = $"{nombre} {apellido}";
+
+                        // Construct the query string
+                        string queryString = $"nombreCompleto={Uri.EscapeDataString(nombreCompleto)}&fechaNacimiento={fechaNacimiento}&medico={medico}&especialidadMedico={especialidadMedico}&enfermedad={enfermedad}&fechaCita={fechaCita}&medicamentos={medicamentos}&indicaciones={indicaciones}&fechaPrescripcion={fechaPrescripcion}&sucursal={sucursal}";
+
+                        // Redirect to Expediente.aspx with the query string
+                        Response.Redirect("Expediente.aspx?" + queryString);
+                    }
+
                 }
-
-
-
-
             }
             catch (Exception ex)
             {
-                // Establecer el texto del mensaje
+
                 mensajeTexto.InnerText = "Ocurrió un error. (Error: " + ex.Message + ")";
-                // Mostrar el cuadro de mensaje
                 divMensaje.Style["display"] = "block";
+
             }
         }
 
@@ -863,10 +1137,9 @@ namespace Medical_App
 
         protected void bCitas_Click(object sender, EventArgs e)
         {
-        //aqui va la logica para crear citas (Jefferson)
-
+            Response.Redirect("Citas.aspx?");
         }
-       
-
     }
 }
+
+
