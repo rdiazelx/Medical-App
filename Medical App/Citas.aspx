@@ -7,41 +7,72 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Citas</title>
     <link href="Styles/Style.css" rel="stylesheet" />
+    <script src="Scripts/General.js"></script>
 </head>
 <body>
-    <h2>Agendar Cita</h2>
-    <div class="containerTable">
+
+
+    
+    <div class="containerCitas">
         <form id="form1" runat="server">
-            <h4>Paciente:</h4>
-            <asp:DropDownList ID="dpPacientes" runat="server" CssClass="txtClass">
-                <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
-            </asp:DropDownList>
+
+            <h2>Agendar Cita</h2>
+
+            <h4>Informacion del paciente:</h4>
+
+            <h4>ID Paciente</h4>
+            <asp:Label ID="lblId" runat="server" ></asp:Label>
+
+            <h4>Fecha de Nacimiento</h4>
+            <asp:Label ID="lblFechaNacimiento" runat="server" ></asp:Label>
+
+           <asp:DropDownList ID="dpPacientes" runat="server" CssClass="txtClass" OnSelectedIndexChanged="dpPacientes_SelectedIndexChanged" AutoPostBack="True">
+    <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
+</asp:DropDownList>
+
+
+             <h4>Fecha de cita:</h4>
+              <asp:TextBox ID="txtFechaCita" runat="server" CssClass="txtClass" placeholder="Fecha de Cita" TextMode="Date"></asp:TextBox>
+
             <h4>Medico:</h4>
             <asp:DropDownList ID="dpMedicos" runat="server" CssClass="txtClass"  AutoPostBack="true" OnSelectedIndexChanged="dpMedicos_SelectedIndexChanged">
                 <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
             </asp:DropDownList>
+
+
+
               <h4>Especialidad:</h4>
              <asp:TextBox ID="txtEspecialidad" runat="server" CssClass="txtClass" ReadOnly="true"></asp:TextBox>
+
+
             <h4>Enfermedad o Sintomas:</h4>
              <asp:TextBox ID="txtEnfermedad" runat="server" CssClass="txtClass"></asp:TextBox>
+
+
              <h4>Medicamentos:</h4>
              <asp:TextBox ID="txtMedicamentos" runat="server" CssClass="txtClass"></asp:TextBox>
+
+
              <h4>Indicaciones:</h4>
              <asp:TextBox ID="txtIndicaciones" runat="server" CssClass="txtClass"></asp:TextBox>
+
+
             <h4>Fecha Prescripción:</h4>
-             <asp:TextBox ID="txtFecha" runat="server" CssClass="txtClass" TextMode="Date"></asp:TextBox>
+              <asp:TextBox ID="txtFecha" runat="server" CssClass="txtClass" placeholder="Fecha Nacimiento" TextMode="Date"></asp:TextBox>
 
             <h4>Sucursal:</h4>
-            <asp:DropDownList ID="dpSucursal" CssClass="txtClass" runat="server">
+           <asp:DropDownList ID="dpSucursal" CssClass="txtClass" runat="server">
                 <asp:ListItem Text="Seleccione" Value=""></asp:ListItem>
                 <asp:ListItem Text="San José" Value="1"></asp:ListItem>
                 <asp:ListItem Text="Heredia" Value="2"></asp:ListItem>
                 <asp:ListItem Text="Puntarenas" Value="3"></asp:ListItem>
             </asp:DropDownList>
 
+
             <asp:Button ID="Button1" runat="server" Text="Guardar Cita" CssClass="btnClass" OnClick="GuardarCita"/>
 
-             
+             <asp:Button ID="Button3" runat="server" Text="Cancelar" CssClass="btnClass" OnClick="Button3_Click" />
+
          <div class="divLeft">
                <asp:Button ID="Button2" runat="server" Text="Ver Citas" CssClass="btnClass" OnClick="VerCitas" />
                 </div>

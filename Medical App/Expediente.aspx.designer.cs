@@ -51,6 +51,15 @@ namespace Medical_App
         protected global::System.Web.UI.WebControls.Label lblEspecialidad;
 
         /// <summary>
+        /// lblEnfermedad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEnfermedad;
+
+        /// <summary>
         /// lblFechaConsulta control.
         /// </summary>
         /// <remarks>

@@ -24,6 +24,32 @@ h2 {
         background-color: silver;
     }
 
+.message {
+    display: none;
+    font-size: 18px;
+    color: red;
+    font-weight: bold;
+   
+}
+.message1 {
+    display: none;
+    font-size: 18px;
+    color: red;
+    font-weight: bold;
+}
+
+
+.hover-message {
+    display: none;
+}
+
+.nav-item:hover .hover-message {
+    display: block;
+}
+.nav-item:hover h2 {
+    color: white;
+}
+
 
 
 .btnClass {
@@ -93,6 +119,36 @@ body {
     max-width: 500px; /* Adjust the value as per your needs */
     margin: 0 auto; /* Center the container horizontally */
 }
+
+.containerCitas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+    .containerCitas form {
+        max-width: 400px;
+        width: 80%;
+    }
+
+    .containerCitas .txtClass,
+    .containerCitas select {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .containerCitas .btnClass {
+        width: 100%;
+    }
+
+    .containerCitas .lblClass {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+
 
 
 

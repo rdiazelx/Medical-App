@@ -65,6 +65,12 @@
                         <li class="nav-item">
                             <asp:Button ID="bUsu" runat="server" class="button button5" Text="Usuarios" OnClick="bUsu_Click" />
                         </li>
+
+                      <li class="nav-item">
+                        <asp:Button ID="bCitas" runat="server" class="button button5" Text="Agendar cita" OnClick="bCitas_Click" />
+                        <h2 class="hover-message">Para agendar una cita debe registrar primero al paciente</h2>
+                    </li>
+
                     </ul>
                 </div>
             </nav>
@@ -118,6 +124,10 @@
                     <div class="col-md-6">
                         <div class="about_taital">
                             <h4 class="about_text">Tabla de información</h4>
+
+                            <asp:Label ID="lblMessage" runat="server" Visible="false" Text="" CssClass="message1"></asp:Label>
+
+                            
                             <asp:GridView ID="gridLista" runat="server" class="gridview" OnRowCommand="gridLista_RowCommand"></asp:GridView>
                             <columns>
                                 <asp:ButtonField ButtonType="Button" CommandName="Select" Text="Seleccionar" ControlStyle-CssClass="button-select" />
@@ -127,7 +137,6 @@
 
                                 </div>
 
-                                <!-- Other columns... -->
                             </columns>
                         </div>
                     </div>

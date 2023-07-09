@@ -120,6 +120,7 @@ namespace Medical_App
         public string medico { get; set; }
 
         public string especialidad { get; set; }
+        public string enfermedad { get; set; }
 
         public string medicamentos { get; set; }
 
@@ -139,7 +140,7 @@ namespace Medical_App
         public string Sucursal { get; set; }
         public DateTime Fecha { get; set; }
         public string Especialidad { get; set; }
-
+    
         public string Enfermedad { get; set; }
         public string Medicamentos { get; set; }
 

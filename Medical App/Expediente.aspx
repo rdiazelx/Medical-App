@@ -48,10 +48,17 @@
                 <td style="font-weight: bold;">Nombre del medico:</td>
                 <td><asp:Label ID="lblNombreMedico" runat="server" Text="Label"></asp:Label></td>
             </tr>
+
             <tr>
                 <td style="font-weight: bold;">Especialidad:</td>
                 <td><asp:Label ID="lblEspecialidad" runat="server" Text="Label"></asp:Label></td>
             </tr>
+
+             <tr>
+                <td style="font-weight: bold;">Enfermedad:</td>
+                <td><asp:Label ID="lblEnfermedad" runat="server" Text="Label"></asp:Label></td>
+            </tr>
+
             <tr>
                 <td style="font-weight: bold;">Fecha de consulta:</td>
                 <td><asp:Label ID="lblFechaConsulta" runat="server" Text="Label"></asp:Label></td>

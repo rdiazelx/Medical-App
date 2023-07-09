@@ -13,6 +13,8 @@ using ClosedXML.Excel;
 using System.Globalization;
 using System.Data.SqlClient;
 using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Office2010.Excel;
+using System.Data.SqlTypes;
 
 namespace Medical_App
 {
@@ -55,7 +57,7 @@ namespace Medical_App
                 // Obtener el nombre de la hoja "Pacientes"
                 connExcel.Open();
                 DataTable dtExcel = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-                string hojaPacientes = dtExcel.Rows[4]["TABLE_NAME"].ToString();
+                string hojaPacientes = dtExcel.Rows[5]["TABLE_NAME"].ToString();
                 connExcel.Close();
 
                 // Cargar los datos de la hoja "Pacientes" en un DataTable
@@ -74,7 +76,7 @@ namespace Medical_App
                     for (int i = 0; i < dtPacientes.Rows.Count; i++)
                     {
                         var objPaciente = new oPersonas();
-                        objPaciente.id = dtPacientes.Rows[i]["Id"].ToString();
+                        objPaciente.id = dtPacientes.Rows[i]["id"].ToString();
                         objPaciente.nombre = dtPacientes.Rows[i]["Nombre"].ToString();
                         objPaciente.apellido = dtPacientes.Rows[i]["Apellido"].ToString();
 
@@ -116,7 +118,7 @@ namespace Medical_App
                 // Obtener el nombre de la hoja "Medicos"
                 connExcel.Open();
                 DataTable dtExcel = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-                string hojaMedicos = dtExcel.Rows[3]["TABLE_NAME"].ToString();
+                string hojaMedicos = dtExcel.Rows[4]["TABLE_NAME"].ToString();
                 connExcel.Close();
 
                 // Cargar los datos de la hoja "Medicos" en un DataTable
@@ -170,7 +172,7 @@ namespace Medical_App
                 dropDownList.DataValueField = "nombreCompleto";
                 dropDownList.DataBind();
 
-                dropDownList.Items.Insert(0, new ListItem("Seleccione", ""));
+                dropDownList.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Seleccione", ""));
 
             }
             catch (Exception ex)
@@ -179,7 +181,6 @@ namespace Medical_App
                 lblError.Text = errorMessage;
                 lblError.Visible = true;
             }
-
         }
 
         private void CargarDropDownListM(DropDownList dropDownList, List<oMedicos> items)
@@ -191,7 +192,7 @@ namespace Medical_App
                 dropDownList.DataValueField = "nombreCompleto";
                 dropDownList.DataBind();
 
-                dropDownList.Items.Insert(0, new ListItem("Seleccione", ""));
+                dropDownList.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Seleccione", ""));
             }
             catch (Exception ex)
             {
@@ -199,8 +200,41 @@ namespace Medical_App
                 lblError.Text = errorMessage;
                 lblError.Visible = true;
             }
-
         }
+
+
+
+        protected void dpPacientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Session["listaPacientes"] != null)
+            {
+                var listaPacientes = (List<oPersonas>)Session["listaPacientes"];
+
+                string nombre = dpPacientes.SelectedItem.Text;
+
+                var pacienteSeleccionado = listaPacientes.Find(p => p.nombreCompleto == nombre);
+
+                if (pacienteSeleccionado != null)
+                {
+                    string id = pacienteSeleccionado.id;
+                    DateTime fechaNacimiento = pacienteSeleccionado.fechaNacimiento;
+
+
+                    lblId.Text = id;
+                    lblFechaNacimiento.Text = fechaNacimiento.ToString();
+
+                }
+                else
+                {
+
+                }
+            }
+        }
+
+
+
+
+
 
         protected void dpMedicos_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -218,7 +252,6 @@ namespace Medical_App
                 txtEspecialidad.Text = string.Empty;
             }
         }
-
 
 
 
@@ -336,8 +369,6 @@ namespace Medical_App
 
         protected void gridLista_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-
-
             try
             {
 
@@ -400,16 +431,60 @@ namespace Medical_App
         {
             try
             {
+                string id = lblId.Text;
+                DateTime fechaNacimiento = DateTime.Parse(lblFechaNacimiento.Text);
                 string paciente = dpPacientes.SelectedValue;
+                DateTime fechaCita = DateTime.Parse(txtFechaCita.Text);
                 string medico = dpMedicos.SelectedValue;
-                string sucursal = dpSucursal.SelectedItem.Text;
-                DateTime fecha = DateTime.Now;
-                DateTime fechaPrescripcion = DateTime.Parse(txtFecha.Text);
                 string especialidad = txtEspecialidad.Text;
+                string enfermedad = txtEnfermedad.Text;
                 string medicamentos = txtMedicamentos.Text;
                 string indicaciones = txtIndicaciones.Text;
-                string enfermedad = txtEnfermedad.Text;
+                DateTime fechaPrescripcion = DateTime.Parse(txtFecha.Text);
+                string sucursal = dpSucursal.SelectedItem.Text;
 
+
+
+                string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx");
+
+                // Leer el archivo de Excel
+                string conec = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
+                conec = string.Format(conec, ruta, "Yes");
+
+                OleDbConnection connExcel = new OleDbConnection(conec);
+                OleDbCommand cmdExcel = new OleDbCommand();
+                OleDbDataAdapter adapterExcel = new OleDbDataAdapter();
+
+                cmdExcel.Connection = connExcel;
+
+                // Abrir el archivo
+                // Obtener el nombre de la primera hoja
+                connExcel.Open();
+                DataTable dtExcel = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                string hojaExcel = dtExcel.Rows[0]["TABLE_NAME"].ToString();
+
+                // Preparar la consulta para insertar los valores en la hoja "Expediente"
+                string hojaExpediente = "Expedientes$";
+                string consulta = "INSERT INTO [" + hojaExpediente + "] VALUES (@idPaciente, @Nombre, @fechaNacimiento, @fechaCita, @medico, @especialidad, @enfermedad, @Medicamentos, @Indicaciones, @fechaPrescripcion, @Sucursal)";
+
+                // Asignar los valores a los parámetros de la consulta
+                cmdExcel.Parameters.AddWithValue("@idPaciente", id);
+                cmdExcel.Parameters.AddWithValue("@Nombre", paciente);
+                cmdExcel.Parameters.AddWithValue("@fechaNacimiento", fechaNacimiento);
+                cmdExcel.Parameters.AddWithValue("@fechaCita", fechaCita);
+                cmdExcel.Parameters.AddWithValue("@medico", medico);
+                cmdExcel.Parameters.AddWithValue("@especialidad", especialidad);
+                cmdExcel.Parameters.AddWithValue("@enfermedad", enfermedad);
+                cmdExcel.Parameters.AddWithValue("@Medicamentos", medicamentos);
+                cmdExcel.Parameters.AddWithValue("@Indicaciones", indicaciones);
+                cmdExcel.Parameters.AddWithValue("@fechaPrescripcion", fechaPrescripcion);
+                cmdExcel.Parameters.AddWithValue("@Sucursal", sucursal);
+
+                // Ejecutar la consulta para insertar los valores en la hoja "Expediente"
+                cmdExcel.CommandText = consulta;
+                cmdExcel.ExecuteNonQuery();
+
+                connExcel.Close();
 
                 if (!string.IsNullOrEmpty(paciente) && !string.IsNullOrEmpty(medico))
                 {
@@ -438,7 +513,7 @@ namespace Medical_App
                             worksheet.Cell(lastRow + 1, 2).Value = paciente; // IdPaciente
                             worksheet.Cell(lastRow + 1, 3).Value = medico; // IdMedico
                             worksheet.Cell(lastRow + 1, 4).Value = sucursal; // Sucursal
-                            worksheet.Cell(lastRow + 1, 5).Value = fecha; // Fecha
+                            worksheet.Cell(lastRow + 1, 5).Value = fechaCita; // Fecha
                             worksheet.Cell(lastRow + 1, 6).Value = especialidad;
                             worksheet.Cell(lastRow + 1, 7).Value = medicamentos;
                             worksheet.Cell(lastRow + 1, 8).Value = indicaciones;
@@ -447,10 +522,27 @@ namespace Medical_App
 
                             // Guardar el archivo Excel
                             workbook.Save();
+
+                            var listaUsuarios = (List<oUsuarios>)Session["listaUsuarios"];
+                            string rol = "";
+
+                            foreach (var usuario in listaUsuarios)
+                            {
+                                rol = usuario.rol;
+                                if (rol == "administrador")
+                                {
+                                    Response.Redirect("/admin.aspx");
+                                }
+                                else if (rol == "medico")
+                                {
+                                    Response.Redirect("/medicos.aspx");
+                                }
+                            }
                         }
                     }
 
                 }
+
             }
             catch (Exception ex)
             {
@@ -460,8 +552,30 @@ namespace Medical_App
             }
         }
 
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            var listaUsuarios = (List<oUsuarios>)Session["listaUsuarios"];
+            string rol = "";
 
+            foreach (var usuario in listaUsuarios)
+            {
+                rol = usuario.rol;
+                if (rol == "administrador")
+                {
+                    Response.Redirect("/admin.aspx");
+                }
+                else if (rol == "medico")
+                {
+                    Response.Redirect("/medicos.aspx");
+                }
+            }
+
+
+
+
+        }
     }
-
 }
+
+
 

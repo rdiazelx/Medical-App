@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data.OleDb;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using DocumentFormat.OpenXml.Wordprocessing;
+using System.ComponentModel;
+using DocumentFormat.OpenXml.Drawing;
 
 namespace Medical_App
 {
@@ -15,52 +16,59 @@ namespace Medical_App
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //cargarExpediente();
+
+
+            
 
             if (!IsPostBack)
             {
-                if (Request.QueryString["nombre"] != null)
+                if (Request.QueryString["nombreCompleto"] != null)
                 {
-                    string nombre = Request.QueryString["nombre"];
-                    string apellido = Request.QueryString["apellido"];
+                    string nombreCompleto = Request.QueryString["nombreCompleto"];
                     string fechaNacimiento = Request.QueryString["fechaNacimiento"];
                     string medico = Request.QueryString["medico"];
                     string especialidadMedico = Request.QueryString["especialidadMedico"];
+                    string enfermedad = Request.QueryString["enfermedad"];
                     string fechaCita = Request.QueryString["fechaCita"];
                     string medicamentos = Request.QueryString["medicamentos"];
                     string indicaciones = Request.QueryString["indicaciones"];
                     string fechaPrescripcion = Request.QueryString["fechaPrescripcion"];
                     string sucursal = Request.QueryString["sucursal"];
 
-                    // Agregamos los valores a los lables
-                    lblPaciente.Text = nombre + " " + apellido;
+                    // Split the nombreCompleto into nombre and apellido
+                    string[] nombreApellido = nombreCompleto.Split(' ');
+                    string nombre = nombreApellido[0];
+                    string apellido = nombreApellido.Length > 1 ? nombreApellido[1] : "";
+
+                    // Agregamos los valores a los labels
+                    lblPaciente.Text = nombreCompleto;
                     lblDOB.Text = fechaNacimiento;
                     lblNombreMedico.Text = medico;
                     lblEspecialidad.Text = especialidadMedico;
+                    lblEnfermedad.Text = enfermedad;
                     lblFechaConsulta.Text = fechaCita;
                     lblMedicamentos.Text = medicamentos;
                     lblIndicaciones.Text = indicaciones;
                     lblFechaPrescripcion.Text = fechaPrescripcion;
                     lblSucursal.Text = sucursal;
 
-
-                    //Guardamos los valores en la Session
-
-                    Session["NombreCompleto"] = nombre + " " + apellido;
+                    // Guardamos los valores en la Session
+                    Session["NombreCompleto"] = nombreCompleto;
                     Session["FechaNacimiento"] = fechaNacimiento.ToString();
                     Session["NombreMedico"] = medico;
                     Session["Especialidad"] = especialidadMedico;
+                    Session["enfermedad"] = enfermedad;
                     Session["FechaConsulta"] = fechaCita;
                     Session["Medicamentos"] = medicamentos;
                     Session["Indicaciones"] = indicaciones;
                     Session["FechaPrescripcion"] = fechaPrescripcion;
                     Session["Sucursal"] = sucursal;
-
-
-
                 }
             }
         }
+
+
+        
 
 
         /*

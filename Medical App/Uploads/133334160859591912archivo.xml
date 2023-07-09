@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+<SessionData>
+  <Data>
+    <NombreCompleto>Juan Pérez </NombreCompleto>
+    <FechaNacimiento>7/21/2023 12:00:00 AM</FechaNacimiento>
+    <NombreMedico>Carolina Rodríguez</NombreMedico>
+    <Especialidad>Cardiología</Especialidad>
+    <FechaConsulta>1/1/0001 12:00:00 AM</FechaConsulta>
+    <Medicamentos />
+    <Indicaciones>tomar 1 cada 12 horas</Indicaciones>
+    <FechaPrescripcion>1/1/0001 12:00:00 AM</FechaPrescripcion>
+    <Sucursal>San José</Sucursal>
+  </Data>
+</SessionData>

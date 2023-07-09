@@ -29,15 +29,12 @@ namespace Medical_App
             try
             {
 
-                btnAñadirSucu.Style["display"] = "none";
-                btnAñadirMeds.Style["display"] = "none";
-                btnAñadirMedico.Style["display"] = "none";
-                btnAñadirEnfe.Style["display"] = "none";
-                btnAñadirUsu.Style["display"] = "none";
-                btnNuevoPaciente.Style["display"] = "block";
 
 
-                string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
+                lblMessage.Visible = true;
+                lblMessage.Text = "Para ver un expediente, haga click en el paciente";
+
+               string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
                 //leer el archivo de excel
                 string conec = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
@@ -131,12 +128,17 @@ namespace Medical_App
         {
             try
             {
-                btnAñadirSucu.Style["display"] = "block";
-                btnAñadirMeds.Style["display"] = "none";
-                btnAñadirMedico.Style["display"] = "none";
-                btnAñadirEnfe.Style["display"] = "none";
-                btnAñadirUsu.Style["display"] = "none";
-                btnNuevoPaciente.Style["display"] = "none";
+
+             
+
+                        btnAñadirSucu.Style["display"] = "block";
+                        btnAñadirMeds.Style["display"] = "none";
+                        btnAñadirMedico.Style["display"] = "none";
+                        btnAñadirEnfe.Style["display"] = "none";
+                        btnAñadirUsu.Style["display"] = "none";
+                        btnNuevoPaciente.Style["display"] = "none";
+                        
+                
 
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
@@ -211,12 +213,18 @@ namespace Medical_App
         {
             try
             {
-                btnAñadirMedico.Style["display"] = "block";
-                btnAñadirMeds.Style["display"] = "none";
-                btnAñadirEnfe.Style["display"] = "none";
-                btnAñadirSucu.Style["display"] = "none";
-                btnAñadirUsu.Style["display"] = "none";
-                btnNuevoPaciente.Style["display"] = "none";
+
+                var listaUsuarios = (List<oUsuarios>)Session["listaUsuarios"];
+              
+
+                        btnAñadirSucu.Style["display"] = "none";
+                        btnAñadirMeds.Style["display"] = "block";
+                        btnAñadirMedico.Style["display"] = "none";
+                        btnAñadirEnfe.Style["display"] = "none";
+                        btnAñadirUsu.Style["display"] = "none";
+                        btnNuevoPaciente.Style["display"] = "none";
+               
+
 
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
@@ -308,13 +316,16 @@ namespace Medical_App
         {
             try
             {
-                btnAñadirMeds.Style["display"] = "block";
-                btnAñadirEnfe.Style["display"] = "none";
-                btnAñadirMedico.Style["display"] = "none";
-                btnAñadirSucu.Style["display"] = "none";
-                btnAñadirUsu.Style["display"] = "none";
-                btnNuevoPaciente.Style["display"] = "none";
+                var listaUsuarios = (List<oUsuarios>)Session["listaUsuarios"];
+              
 
+                        btnAñadirSucu.Style["display"] = "none";
+                        btnAñadirMeds.Style["display"] = "block";
+                        btnAñadirMedico.Style["display"] = "none";
+                        btnAñadirEnfe.Style["display"] = "none";
+                        btnAñadirUsu.Style["display"] = "none";
+                        btnNuevoPaciente.Style["display"] = "none";
+              
 
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
@@ -408,12 +419,16 @@ namespace Medical_App
         {
             try
             {
-                btnAñadirEnfe.Style["display"] = "block";
-                btnAñadirMeds.Style["display"] = "none";
-                btnAñadirMedico.Style["display"] = "none";
-                btnAñadirSucu.Style["display"] = "none";
-                btnAñadirUsu.Style["display"] = "none";
-                btnNuevoPaciente.Style["display"] = "none";
+                var listaUsuarios = (List<oUsuarios>)Session["listaUsuarios"];
+               
+
+                        btnAñadirSucu.Style["display"] = "none";
+                        btnAñadirMeds.Style["display"] = "none";
+                        btnAñadirMedico.Style["display"] = "none";
+                        btnAñadirEnfe.Style["display"] = "block";
+                        btnAñadirUsu.Style["display"] = "none";
+                        btnNuevoPaciente.Style["display"] = "none";
+          
 
 
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
@@ -509,101 +524,112 @@ namespace Medical_App
        
         private void cargarUsuarios()
         {
-            try
-            {
-                btnAñadirUsu.Style["display"] = "block";
-                btnAñadirMeds.Style["display"] = "none";
-                btnAñadirMedico.Style["display"] = "none";
-                btnAñadirSucu.Style["display"] = "none";
-                btnAñadirEnfe.Style["display"] = "none";
-                btnNuevoPaciente.Style["display"] = "none";
+            
+               
+                        btnAñadirSucu.Style["display"] = "block";
+                        btnAñadirMeds.Style["display"] = "none";
+                        btnAñadirMedico.Style["display"] = "none";
+                        btnAñadirEnfe.Style["display"] = "none";
+                        btnAñadirUsu.Style["display"] = "none";
+                        btnNuevoPaciente.Style["display"] = "none";
 
 
-                string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
+                    try
+                    {
+                        string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
-                //leer el archivo de excel
-                string conec = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
+                        //leer el archivo de excel
+                        string conec = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
 
-                conec = string.Format(conec, ruta, "Yes");
+                        conec = string.Format(conec, ruta, "Yes");
 
-                OleDbConnection connExcel = new OleDbConnection(conec);
-                OleDbCommand cmdExcel = new OleDbCommand();
-                OleDbDataAdapter adapterExcel = new OleDbDataAdapter();
+                        OleDbConnection connExcel = new OleDbConnection(conec);
+                        OleDbCommand cmdExcel = new OleDbCommand();
+                        OleDbDataAdapter adapterExcel = new OleDbDataAdapter();
 
-                cmdExcel.Connection = connExcel;
+                        cmdExcel.Connection = connExcel;
 
-                //abrir el archivo
-                //obtener el nombre de la primer hoja
-                connExcel.Open();
-                DataTable dtExcel = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-                string hojaExcel = dtExcel.Rows[0]["TABLE_NAME"].ToString();
-
-
-                string hojaUsuarios = "Usuarios$";
-
-                //crear un datatable
-                DataTable dtUsuarios = new DataTable();
+                        //abrir el archivo
+                        //obtener el nombre de la primer hoja
+                        connExcel.Open();
+                        DataTable dtExcel = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                        string hojaExcel = dtExcel.Rows[0]["TABLE_NAME"].ToString();
 
 
-                //obtiene la data del la hoja pacientes
-                cmdExcel.CommandText = "SELECT Id, Usuario, Rol FROM [" + hojaUsuarios + "]";
-                adapterExcel.SelectCommand = cmdExcel;
-                adapterExcel.Fill(dtUsuarios);
+                        string hojaUsuarios = "Usuarios$";
 
-                connExcel.Close();
+                        //crear un datatable
+                        DataTable dtUsuarios = new DataTable();
 
-                //mis datos están en el dt
 
-                gridLista.DataSource = dtUsuarios;
-                gridLista.DataBind();
+                        //obtiene la data del la hoja pacientes
+                        cmdExcel.CommandText = "SELECT Id, Usuario, Rol FROM [" + hojaUsuarios + "]";
+                        adapterExcel.SelectCommand = cmdExcel;
+                        adapterExcel.Fill(dtUsuarios);
+
+                        connExcel.Close();
+
+                        //mis datos están en el dt
+
+                        gridLista.DataSource = dtUsuarios;
+                        gridLista.DataBind();
 
 
                 //listado de Pacientes
                 //Recorrer la tabla (dt) para cargar la lista de pacientes
-                var listaUsuarios = new List<oUsuarios>();
+                var listaUsuarios = (List<oUsuarios>)Session["listaUsuarios"];
 
                 if (dtUsuarios.Rows.Count > 0)
-                {
-                    for (int i = 0; i < dtUsuarios.Rows.Count; i++)
-                    {
-                        var objUsuarios = new oUsuarios();
+                        {
+                            for (int i = 0; i < dtUsuarios.Rows.Count; i++)
+                            {
 
-                        objUsuarios.Id = Int32.Parse(dtUsuarios.Rows[i]["Id"].ToString());
-                        objUsuarios.usuario = dtUsuarios.Rows[i]["Usuario"].ToString();
-                        objUsuarios.rol = dtUsuarios.Rows[i]["rol"].ToString();
+                                var objUsuarios = new oUsuarios();
 
-                        listaUsuarios.Add(objUsuarios);
+                                objUsuarios.Id = Int32.Parse(dtUsuarios.Rows[i]["Id"].ToString());
+                                objUsuarios.usuario = dtUsuarios.Rows[i]["Usuario"].ToString();
+                                objUsuarios.rol = dtUsuarios.Rows[i]["rol"].ToString();
+
+                                listaUsuarios.Add(objUsuarios);
+                            }
+
+
+                            Session["listaUsuarios"] = listaUsuarios;
+                            
+                        }
+
+
+
                     }
-
-
-                    Session["listaUsuarios"] = listaUsuarios;
-                }
-
-
-
-            }
             catch (Exception ex)
             {
-                // Establecer el texto del mensaje
+                
                 mensajeTexto.InnerText = "Ocurrió un error. (Error: " + ex.Message + ")";
-                // Mostrar el cuadro de mensaje
+               
                 divMensaje.Style["display"] = "block";
             }
 
         }
+                    
+        
+        
 
         public void cargarExpediente()
         {
             try
             {
 
-                btnAñadirUsu.Style["display"] = "none";
-                btnAñadirMeds.Style["display"] = "none";
-                btnAñadirMedico.Style["display"] = "none";
-                btnAñadirSucu.Style["display"] = "none";
-                btnAñadirEnfe.Style["display"] = "none";
-                btnNuevoPaciente.Style["display"] = "none";
+                var listaUsuarios = (List<oUsuarios>)Session["listaUsuarios"];
+            
 
+                        btnAñadirSucu.Style["display"] = "none";
+                        btnAñadirMeds.Style["display"] = "none";
+                        btnAñadirMedico.Style["display"] = "none";
+                        btnAñadirEnfe.Style["display"] = "none";
+                        btnAñadirUsu.Style["display"] = "none";
+                        btnNuevoPaciente.Style["display"] = "none";
+
+            
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
                 //leer el archivo de excel
@@ -653,7 +679,7 @@ namespace Medical_App
 
                         objExpediente.idPaciente = Int32.Parse(dtExpediente.Rows[i]["idPaciente"].ToString());
                         objExpediente.nombre = dtExpediente.Rows[i]["nombre"].ToString();
-                        objExpediente.apellido = dtExpediente.Rows[i]["apellido"].ToString();
+                    
                         DateTime fechaNacimiento;
                         if (DateTime.TryParse(dtExpediente.Rows[i]["fechaNacimiento"].ToString(), out fechaNacimiento))
                         {
@@ -666,7 +692,7 @@ namespace Medical_App
                         }
                         objExpediente.medico = dtExpediente.Rows[i]["medico"].ToString();
                         objExpediente.especialidad = dtExpediente.Rows[i]["especialidad"].ToString();
-                        objExpediente.medicamentos = dtExpediente.Rows[i]["medicamentos"].ToString();
+                        objExpediente.enfermedad = dtExpediente.Rows[i]["enfermedad"].ToString();
                         objExpediente.indicaciones = dtExpediente.Rows[i]["indicaciones"].ToString();
                         DateTime fechaPrescripcion;
                         if (DateTime.TryParse(dtExpediente.Rows[i]["fechaPrescripcion"].ToString(), out fechaPrescripcion))
@@ -1222,23 +1248,29 @@ namespace Medical_App
 
                     if (listExpediente.Count > 0)
                     {
-                        listExpediente = listExpediente.FindAll(p => p.idPaciente == id);
+                        listExpediente = listExpediente.Where(p => p.idPaciente == id).ToList();
 
-                        // Get the values you want to pass to Expediente.aspx
+
+
+                        // obtener los valores
                         string nombre = listExpediente[0].nombre;
                         string apellido = listExpediente[0].apellido;
                         DateTime fechaNacimiento = listExpediente[0].fechaNacimiento;
 
                         string medico = listExpediente[0].medico;
                         string especialidadMedico = listExpediente[0].especialidad;
+                        string enfermedad = listExpediente[0].enfermedad;
                         DateTime fechaCita = listExpediente[0].fechaCita;
                         string medicamentos = listExpediente[0].medicamentos;
                         string indicaciones = listExpediente[0].indicaciones;
                         DateTime fechaPrescripcion = listExpediente[0].fechaPrescripcion;
                         string sucursal = listExpediente[0].sucursal;
 
+                        // Combine nombre and apellido
+                        string nombreCompleto = $"{nombre} {apellido}";
+
                         // Construct the query string
-                        string queryString = $"nombre={nombre}&apellido={apellido}&fechaNacimiento={fechaNacimiento}&medico={medico}&especialidadMedico={especialidadMedico}&fechaCita={fechaCita}&medicamentos={medicamentos}&indicaciones={indicaciones}&fechaPrescripcion={fechaPrescripcion}&sucursal={sucursal}";
+                        string queryString = $"nombreCompleto={Uri.EscapeDataString(nombreCompleto)}&fechaNacimiento={fechaNacimiento}&medico={medico}&especialidadMedico={especialidadMedico}&enfermedad={enfermedad}&fechaCita={fechaCita}&medicamentos={medicamentos}&indicaciones={indicaciones}&fechaPrescripcion={fechaPrescripcion}&sucursal={sucursal}";
 
                         // Redirect to Expediente.aspx with the query string
                         Response.Redirect("Expediente.aspx?" + queryString);
@@ -1279,7 +1311,10 @@ namespace Medical_App
             return dt;
         }
 
-        
+        protected void bCitas_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Citas.aspx?");
+        }
     }
 }
 
