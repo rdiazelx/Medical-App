@@ -62,6 +62,7 @@ namespace Medical_App
         public string nombre { get; set; }
 
         public string apellido { get; set; }
+        public string nombreCompleto => nombre + " " + apellido;
 
         public string genero { get; set; }
         public string estadoCivil { get; set; }
@@ -95,6 +96,7 @@ namespace Medical_App
         public int id { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
+        public string nombreCompleto => nombre + " " + apellido;
         public string tipoIdentificacion { get; set; }
         public string identificacion { get; set; }
         public string genero { get; set; }
@@ -128,6 +130,25 @@ namespace Medical_App
         public string sucursal { get; set; }
     }
 
+    public class oCitas
+    {
 
+        public int IdCita { get; set; }
+        public string Paciente { get; set; }
+        public string Medico { get; set; }
+        public string Sucursal { get; set; }
+        public DateTime Fecha { get; set; }
+        public string Especialidad { get; set; }
+
+        public string Enfermedad { get; set; }
+        public string Medicamentos { get; set; }
+
+        public string Indicaciones { get; set; }
+
+        public DateTime fechaPrescripcion { get; set; }
 
     }
+
+
+
+}

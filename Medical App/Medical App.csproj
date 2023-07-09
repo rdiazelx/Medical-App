@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin.aspx" />
+    <Content Include="Citas.aspx" />
     <Content Include="Expediente.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Pacientes.aspx" />
@@ -93,6 +94,13 @@
     </Compile>
     <Compile Include="admin.aspx.designer.cs">
       <DependentUpon>admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Citas.aspx.cs">
+      <DependentUpon>Citas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Citas.aspx.designer.cs">
+      <DependentUpon>Citas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Expediente.aspx.cs">
       <DependentUpon>Expediente.aspx</DependentUpon>
