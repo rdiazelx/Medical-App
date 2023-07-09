@@ -107,9 +107,7 @@ namespace Medical_App
             }
             catch (Exception ex)
             {
-                // Establecer el texto del mensaje
                 mensajeTexto.InnerText = "Ocurrió un error. (Error: " + ex.Message + ")";
-                // Mostrar el cuadro de mensaje
                 divMensaje.Style["display"] = "block";
             }
 

@@ -45,6 +45,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.69.1.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\UH\11vo Cuatri\Progra IV\archivos de clase\ClosedXML.dll</HintPath>
+    </Reference>
     <Reference Include="DocumentFormat.OpenXml">
       <HintPath>..\..\..\..\OneDrive\UH\11vo Cuatri\Progra IV\archivos de clase\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>

@@ -27,7 +27,7 @@ h2 {
 
 
 .btnClass {
-  width: 100px;
+  width: 150px;
   padding: 10px;
   background-color: #4CAF50;
   color: #fff;
@@ -84,6 +84,17 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+.containerNuevoPaciente {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    max-width: 500px; /* Adjust the value as per your needs */
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+
 
 
 /*Clases para el mensaje*/

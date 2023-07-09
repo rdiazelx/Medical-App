@@ -124,7 +124,10 @@
                             <asp:GridView ID="gridLista" runat="server" class="gridview" OnRowCommand="gridLista_RowCommand"></asp:GridView>
                             <columns>
                                 <asp:ButtonField ButtonType="Button" CommandName="Select" Text="Seleccionar" ControlStyle-CssClass="button-select" />
-                                <!-- Other columns... -->
+
+
+                                   <asp:Button ID="btnNuevoPaciente" runat="server" Text="Nuevo Paciente" CssClass="btnClass" OnClick="btnNuevoPaciente_Click" Style="display: none" />
+                               
                             </columns>
                         </div>
                     </div>

@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.ComponentModel;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 
 namespace Medical_App
@@ -82,10 +83,7 @@ namespace Medical_App
 
                 var listaPacientes = (List<oPersonas>)Session["listaPacientes"];
 
-                if (listaPacientes != null)
-                {
-                    linkListaPacientes.Style["display"] = "block";
-                }
+               
             }
         }
 
@@ -114,7 +112,7 @@ namespace Medical_App
 
 
                     // Obtener achivos de excel
-                    string excelFilePath = Server.MapPath("~/Uploads/Basedatos-Catalogoss.xlsx"); // Ruta del excel guardado
+                    string excelFilePath = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del excel guardado
 
                     using (XLWorkbook workbook = new XLWorkbook(excelFilePath))
                     {
@@ -138,6 +136,26 @@ namespace Medical_App
 
                         // Guardar los cambios de Excel
                         workbook.Save();
+
+                        var listaUsuarios = (List<oUsuarios>)Session["listaUsuarios"];
+                        string rol = "";
+
+                        foreach (var usuario in listaUsuarios)
+                        {
+                            rol = usuario.rol;
+                            if (rol == "administrador")
+                            {
+                                Response.Redirect("/admin.aspx");
+                            }
+                            else if (rol == "medico")
+                            {
+                                Response.Redirect("/medicos.aspx");
+                            }
+
+
+                        }
+                            
+
                     }
 
                     // Borrar la información 
@@ -153,12 +171,13 @@ namespace Medical_App
                     txtTelefono.Text = "";
                     txtCorreo.Text = "";
 
-                    linkListaPacientes.Style["display"] = "block";
+                  
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //La excepción
+                mensajeTexto.InnerText = "Ocurrió un error. (Error: " + ex.Message + ")";
+                divMensaje.Style["display"] = "block";
             }
         }
 

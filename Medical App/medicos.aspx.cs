@@ -23,6 +23,11 @@ namespace Medical_App
         {
             try
             {
+
+                btnAñadirMeds.Style["display"] = "none";
+                btnAñadirEnfe.Style["display"] = "none";
+                btnNuevoPaciente.Style["display"] = "block";
+
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
                 //leer el archivo de excel
@@ -115,7 +120,8 @@ namespace Medical_App
                 
                 btnAñadirMeds.Style["display"] = "none";
                 btnAñadirEnfe.Style["display"] = "none";
-               
+                btnNuevoPaciente.Style["display"] = "none";
+
 
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
@@ -192,6 +198,7 @@ namespace Medical_App
             {
                 btnAñadirMeds.Style["display"] = "none";
                 btnAñadirEnfe.Style["display"] = "none";
+                btnNuevoPaciente.Style["display"] = "none";
 
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
@@ -284,6 +291,7 @@ namespace Medical_App
             {
                 btnAñadirMeds.Style["display"] = "block";
                 btnAñadirEnfe.Style["display"] = "none";
+                btnNuevoPaciente.Style["display"] = "none";
 
 
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
@@ -379,6 +387,7 @@ namespace Medical_App
             {
                 btnAñadirMeds.Style["display"] = "none";
                 btnAñadirEnfe.Style["display"] = "block";
+                btnNuevoPaciente.Style["display"] = "none";
 
 
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
@@ -476,6 +485,8 @@ namespace Medical_App
             {
                 btnAñadirMeds.Style["display"] = "none";
                 btnAñadirEnfe.Style["display"] = "none";
+                btnNuevoPaciente.Style["display"] = "none";
+
                 string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
 
                 //leer el archivo de excel
@@ -587,6 +598,10 @@ namespace Medical_App
             cargarPacientes();
 
         }
+        protected void btnNuevoPaciente_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/Pacientes.aspx");
+        }
 
 
 
@@ -595,7 +610,7 @@ namespace Medical_App
 
         //funciones escribir en archivo
 
-    
+
         protected void bAgregarMeds_Click(object sender, EventArgs e)
         {
             try
