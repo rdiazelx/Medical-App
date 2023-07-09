@@ -218,8 +218,8 @@ namespace Medical_App
               
 
                         btnAñadirSucu.Style["display"] = "none";
-                        btnAñadirMeds.Style["display"] = "block";
-                        btnAñadirMedico.Style["display"] = "none";
+                        btnAñadirMeds.Style["display"] = "none";
+                        btnAñadirMedico.Style["display"] = "block";
                         btnAñadirEnfe.Style["display"] = "none";
                         btnAñadirUsu.Style["display"] = "none";
                         btnNuevoPaciente.Style["display"] = "none";
@@ -526,11 +526,11 @@ namespace Medical_App
         {
             
                
-                        btnAñadirSucu.Style["display"] = "block";
+                        btnAñadirSucu.Style["display"] = "none";
                         btnAñadirMeds.Style["display"] = "none";
                         btnAñadirMedico.Style["display"] = "none";
                         btnAñadirEnfe.Style["display"] = "none";
-                        btnAñadirUsu.Style["display"] = "none";
+                        btnAñadirUsu.Style["display"] = "block";
                         btnNuevoPaciente.Style["display"] = "none";
 
 

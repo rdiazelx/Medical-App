@@ -139,7 +139,7 @@ namespace Medical_App
                 if (validCredentials)
                 {
 
-                    Response.Redirect("/admin.aspx");
+                  
 
                     if (rol == "administrador")
                     {
