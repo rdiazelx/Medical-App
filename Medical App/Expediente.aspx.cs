@@ -15,9 +15,55 @@ namespace Medical_App
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargarExpediente();
+            //cargarExpediente();
+
+            if (!IsPostBack)
+            {
+                if (Request.QueryString["nombre"] != null)
+                {
+                    string nombre = Request.QueryString["nombre"];
+                    string apellido = Request.QueryString["apellido"];
+                    string fechaNacimiento = Request.QueryString["fechaNacimiento"];
+                    string medico = Request.QueryString["medico"];
+                    string especialidadMedico = Request.QueryString["especialidadMedico"];
+                    string fechaCita = Request.QueryString["fechaCita"];
+                    string medicamentos = Request.QueryString["medicamentos"];
+                    string indicaciones = Request.QueryString["indicaciones"];
+                    string fechaPrescripcion = Request.QueryString["fechaPrescripcion"];
+                    string sucursal = Request.QueryString["sucursal"];
+
+                    // Agregamos los valores a los lables
+                    lblPaciente.Text = nombre + " " + apellido;
+                    lblDOB.Text = fechaNacimiento;
+                    lblNombreMedico.Text = medico;
+                    lblEspecialidad.Text = especialidadMedico;
+                    lblFechaConsulta.Text = fechaCita;
+                    lblMedicamentos.Text = medicamentos;
+                    lblIndicaciones.Text = indicaciones;
+                    lblFechaPrescripcion.Text = fechaPrescripcion;
+                    lblSucursal.Text = sucursal;
+
+
+                    //Guardamos los valores en la Session
+
+                    Session["NombreCompleto"] = nombre + " " + apellido;
+                    Session["FechaNacimiento"] = fechaNacimiento.ToString();
+                    Session["NombreMedico"] = medico;
+                    Session["Especialidad"] = especialidadMedico;
+                    Session["FechaConsulta"] = fechaCita;
+                    Session["Medicamentos"] = medicamentos;
+                    Session["Indicaciones"] = indicaciones;
+                    Session["FechaPrescripcion"] = fechaPrescripcion;
+                    Session["Sucursal"] = sucursal;
+
+
+
+                }
+            }
         }
 
+
+        /*
         public void cargarExpediente()
         {
 
@@ -98,6 +144,8 @@ namespace Medical_App
             }
             
             }
+
+        */
 
          protected void btnDescargarXML_Click1(object sender, EventArgs e)
         {

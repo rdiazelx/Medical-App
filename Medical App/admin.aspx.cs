@@ -17,8 +17,9 @@ namespace Medical_App
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            //cargarEnfermedades();
-            
+            cargarExpediente();
+
+
         }
 
 
@@ -90,7 +91,7 @@ namespace Medical_App
                     for (int i = 0; i < dtPacientes.Rows.Count; i++)
                     {
                         var objPacientes = new oPersonas();
-                        objPacientes.id = Int32.Parse(dtPacientes.Rows[i]["Id"].ToString());
+                        objPacientes.id = dtPacientes.Rows[i]["Id"].ToString();
                         objPacientes.nombre = dtPacientes.Rows[i]["Nombre"].ToString();
                         objPacientes.apellido = dtPacientes.Rows[i]["Apellido"].ToString();
                         objPacientes.tipoIdentificacion = dtPacientes.Rows[i]["Tipo de identificación"].ToString();
@@ -98,7 +99,11 @@ namespace Medical_App
                         objPacientes.telefono = dtPacientes.Rows[i]["Teléfono"].ToString();
                         objPacientes.genero = dtPacientes.Rows[i]["Género"].ToString();
                         objPacientes.estadoCivil = dtPacientes.Rows[i]["Estado civil"].ToString();
-                        objPacientes.fechaNacimiento = DateTime.Parse(dtPacientes.Rows[i]["Fecha de nacimiento"].ToString());
+                        DateTime fechaNacimiento;
+                        if (DateTime.TryParse(dtPacientes.Rows[i]["Fecha de nacimiento"].ToString(), out fechaNacimiento))
+                        {
+                            objPacientes.fechaNacimiento = fechaNacimiento;
+                        }
                         objPacientes.nacionalidad = dtPacientes.Rows[i]["Nacionalidad"].ToString();
                         objPacientes.provincia = dtPacientes.Rows[i]["Provincia"].ToString();
                         objPacientes.correo = dtPacientes.Rows[i]["correo"].ToString();
@@ -252,11 +257,11 @@ namespace Medical_App
                 gridLista.DataBind();
 
 
-                foreach (GridViewRow row in gridLista.Rows)
+                /*foreach (GridViewRow row in gridLista.Rows)
                 {
                     row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridLista, "Select$" + row.RowIndex);
                 }
-
+                */
 
                 //listado de Pacientes
                 //Recorrer la tabla (dt) para cargar la lista de pacientes
@@ -553,12 +558,6 @@ namespace Medical_App
                 gridLista.DataBind();
 
 
-                foreach (GridViewRow row in gridLista.Rows)
-                {
-                    row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridLista, "Select$" + row.RowIndex);
-                }
-
-
                 //listado de Pacientes
                 //Recorrer la tabla (dt) para cargar la lista de pacientes
                 var listaUsuarios = new List<oUsuarios>();
@@ -592,6 +591,111 @@ namespace Medical_App
             }
 
         }
+
+        public void cargarExpediente()
+        {
+            try
+            {
+
+                btnAñadirUsu.Style["display"] = "none";
+                btnAñadirMeds.Style["display"] = "none";
+                btnAñadirMedico.Style["display"] = "none";
+                btnAñadirSucu.Style["display"] = "none";
+                btnAñadirEnfe.Style["display"] = "none";
+                btnNuevoPaciente.Style["display"] = "none";
+
+                string ruta = Server.MapPath("~/Uploads/BaseDeDatos.xlsx"); // Ruta del archivo en la carpeta "Uploads"
+
+                //leer el archivo de excel
+                string conec = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR={1}'";
+
+                conec = string.Format(conec, ruta, "Yes");
+
+                OleDbConnection connExcel = new OleDbConnection(conec);
+                OleDbCommand cmdExcel = new OleDbCommand();
+                OleDbDataAdapter adapterExcel = new OleDbDataAdapter();
+
+                cmdExcel.Connection = connExcel;
+
+                //abrir el archivo
+                //obtener el nombre de la primer hoja
+                connExcel.Open();
+                DataTable dtExcel = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                string hojaExcel = dtExcel.Rows[0]["TABLE_NAME"].ToString();
+
+
+                string hojaExpediente = "Expedientes$";
+
+                //crear un datatable
+                DataTable dtExpediente = new DataTable();
+
+
+                //obtiene la data del la hoja pacientes
+                cmdExcel.CommandText = "Select * from [" + hojaExpediente + "]";
+                adapterExcel.SelectCommand = cmdExcel;
+                adapterExcel.Fill(dtExpediente);
+
+                connExcel.Close();
+
+                //mis datos están en el dt
+
+                gridLista.DataSource = dtExpediente;
+                //gridLista.DataBind();
+
+
+                var listaExpediente = new List<oExpediente>();
+
+                if (dtExpediente.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dtExpediente.Rows.Count; i++)
+                    {
+                        var objExpediente = new oExpediente();
+
+                        objExpediente.idPaciente = Int32.Parse(dtExpediente.Rows[i]["idPaciente"].ToString());
+                        objExpediente.nombre = dtExpediente.Rows[i]["nombre"].ToString();
+                        objExpediente.apellido = dtExpediente.Rows[i]["apellido"].ToString();
+                        DateTime fechaNacimiento;
+                        if (DateTime.TryParse(dtExpediente.Rows[i]["fechaNacimiento"].ToString(), out fechaNacimiento))
+                        {
+                            objExpediente.fechaNacimiento = fechaNacimiento;
+                        }
+                        DateTime fechaCita;
+                        if (DateTime.TryParse(dtExpediente.Rows[i]["fechaCita"].ToString(), out fechaCita))
+                        {
+                            objExpediente.fechaNacimiento = fechaCita;
+                        }
+                        objExpediente.medico = dtExpediente.Rows[i]["medico"].ToString();
+                        objExpediente.especialidad = dtExpediente.Rows[i]["especialidad"].ToString();
+                        objExpediente.medicamentos = dtExpediente.Rows[i]["medicamentos"].ToString();
+                        objExpediente.indicaciones = dtExpediente.Rows[i]["indicaciones"].ToString();
+                        DateTime fechaPrescripcion;
+                        if (DateTime.TryParse(dtExpediente.Rows[i]["fechaPrescripcion"].ToString(), out fechaPrescripcion))
+                        {
+                            objExpediente.fechaNacimiento = fechaPrescripcion;
+                        }
+                        objExpediente.sucursal = dtExpediente.Rows[i]["sucursal"].ToString();
+
+
+
+
+                        listaExpediente.Add(objExpediente);
+                    }
+
+
+                    Session["listaExpediente"] = listaExpediente;
+                }
+
+
+
+            }catch (Exception ex)
+            {
+
+                mensajeTexto.InnerText = "Ocurrió un error. (Error: " + ex.Message + ")";
+                divMensaje.Style["display"] = "block";
+
+            }
+        }
+
 
 
 
@@ -1093,39 +1197,61 @@ namespace Medical_App
         protected void gridLista_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
-
             try
             {
-                              
-                    if (e.CommandName == "Select")
+
+                if (e.CommandName == "Select")
+                {
+                    int rowIndex = Convert.ToInt32(e.CommandArgument);
+                    GridViewRow selectedRow = gridLista.Rows[rowIndex];
+                    int id = Int32.Parse(selectedRow.Cells[0].Text);
+
+
+                    var listExpediente = (List<oExpediente>)Session["listaExpediente"];
+
+                    /*
+                    if (listExpediente.Count > 0)
                     {
-                        int rowIndex = Convert.ToInt32(e.CommandArgument);
-                        GridViewRow selectedRow = gridLista.Rows[rowIndex];
-                        int id = Int32.Parse(selectedRow.Cells[0].Text);
-
-
-                        var listaEnfermedades = (List<oEnfermedades>)Session["listaEnfermedades"];
-
-                        if (listaEnfermedades.Count > 0)
-                        {
-                            listaEnfermedades = listaEnfermedades.FindAll(p => p.id == id);
-                            DataTable dt = GeneraTablaDinamica<oEnfermedades>(listaEnfermedades);
-                            gridLista.DataSource = dt;
-                            gridLista.DataBind();
-                        }
-
+                        listExpediente = listExpediente.FindAll(p => p.idPaciente == id);
+                        DataTable dt = GeneraTablaDinamica<oExpediente>(listExpediente);
+                        gridLista.DataSource = dt;
+                        gridLista.DataBind();
                     }
 
-                
-                   
+                }*/
 
+                    if (listExpediente.Count > 0)
+                    {
+                        listExpediente = listExpediente.FindAll(p => p.idPaciente == id);
+
+                        // Get the values you want to pass to Expediente.aspx
+                        string nombre = listExpediente[0].nombre;
+                        string apellido = listExpediente[0].apellido;
+                        DateTime fechaNacimiento = listExpediente[0].fechaNacimiento;
+
+                        string medico = listExpediente[0].medico;
+                        string especialidadMedico = listExpediente[0].especialidad;
+                        DateTime fechaCita = listExpediente[0].fechaCita;
+                        string medicamentos = listExpediente[0].medicamentos;
+                        string indicaciones = listExpediente[0].indicaciones;
+                        DateTime fechaPrescripcion = listExpediente[0].fechaPrescripcion;
+                        string sucursal = listExpediente[0].sucursal;
+
+                        // Construct the query string
+                        string queryString = $"nombre={nombre}&apellido={apellido}&fechaNacimiento={fechaNacimiento}&medico={medico}&especialidadMedico={especialidadMedico}&fechaCita={fechaCita}&medicamentos={medicamentos}&indicaciones={indicaciones}&fechaPrescripcion={fechaPrescripcion}&sucursal={sucursal}";
+
+                        // Redirect to Expediente.aspx with the query string
+                        Response.Redirect("Expediente.aspx?" + queryString);
+                    }
+
+                }
             }
             catch (Exception ex)
             {
-                // Establecer el texto del mensaje
+
                 mensajeTexto.InnerText = "Ocurrió un error. (Error: " + ex.Message + ")";
-                // Mostrar el cuadro de mensaje
                 divMensaje.Style["display"] = "block";
+
             }
         }
 

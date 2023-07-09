@@ -58,7 +58,7 @@ namespace Medical_App
     }
     public class oPersonas
     {
-        public int id { get; set; }
+        public string id { get; set; }
         public string nombre { get; set; }
 
         public string apellido { get; set; }
@@ -104,12 +104,30 @@ namespace Medical_App
         public string telefono { get; set; }
         public string correo { get; set; }
 
+    }
 
+    public class oExpediente
+    {
 
+        public int idPaciente { get; set; }
+        public string nombre { get; set; }
+        public string apellido { get; set; }
+        public DateTime fechaNacimiento { get; set; }
+        public DateTime fechaCita { get; set; }
 
+        public string medico { get; set; }
+
+        public string especialidad { get; set; }
+
+        public string medicamentos { get; set; }
+
+        public string indicaciones { get; set; }
+
+        public DateTime fechaPrescripcion { get; set; }
+
+        public string sucursal { get; set; }
     }
 
 
 
-
-}
+    }

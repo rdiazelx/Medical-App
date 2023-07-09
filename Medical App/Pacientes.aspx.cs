@@ -93,6 +93,8 @@ namespace Medical_App
             try
             {
                 // Obtener los valores del formulario
+                Random random = new Random();
+                int Id = random.Next(10000, 100000);
                 string nombre = txtNombre.Text;
                 string apellido = txtApellido1.Text;
                 string numeroIdentificacion = txtNumeroIdentificacion.Text;
@@ -122,17 +124,18 @@ namespace Medical_App
                         int lastRow = worksheet.CellsUsed(c => c.Address.ColumnLetter == "A").LastOrDefault().Address.RowNumber;
 
                         // Agregar los nuevos a la fila disponible
-                        worksheet.Cell(lastRow + 1, 1).Value = nombre;
-                        worksheet.Cell(lastRow + 1, 2).Value = apellido;
-                        worksheet.Cell(lastRow + 1, 3).Value = tipoIdentificacion;
-                        worksheet.Cell(lastRow + 1, 4).Value = numeroIdentificacion;
-                        worksheet.Cell(lastRow + 1, 5).Value = genero;
-                        worksheet.Cell(lastRow + 1, 6).Value = estadoCivil;
-                        worksheet.Cell(lastRow + 1, 7).Value = fechaNacimiento;
-                        worksheet.Cell(lastRow + 1, 8).Value = nacionalidad;
-                        worksheet.Cell(lastRow + 1, 9).Value = provincia;
-                        worksheet.Cell(lastRow + 1, 10).Value = telefono;
-                        worksheet.Cell(lastRow + 1, 11).Value = correo;
+                        worksheet.Cell(lastRow + 1, 1).Value = Id.ToString();
+                        worksheet.Cell(lastRow + 1, 2).Value = nombre;
+                        worksheet.Cell(lastRow + 1, 3).Value = apellido;
+                        worksheet.Cell(lastRow + 1, 4).Value = tipoIdentificacion;
+                        worksheet.Cell(lastRow + 1, 5).Value = numeroIdentificacion;
+                        worksheet.Cell(lastRow + 1, 6).Value = genero;
+                        worksheet.Cell(lastRow + 1, 7).Value = estadoCivil;
+                        worksheet.Cell(lastRow + 1, 8).Value = DateTime.Parse(fechaNacimiento);
+                        worksheet.Cell(lastRow + 1, 9).Value = nacionalidad;
+                        worksheet.Cell(lastRow + 1, 10).Value = provincia;
+                        worksheet.Cell(lastRow + 1, 11).Value = telefono;
+                        worksheet.Cell(lastRow + 1, 12).Value = correo;
 
                         // Guardar los cambios de Excel
                         workbook.Save();

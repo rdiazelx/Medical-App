@@ -123,7 +123,7 @@
                                 <asp:ButtonField ButtonType="Button" CommandName="Select" Text="Seleccionar" ControlStyle-CssClass="button-select" />
 
                                 <div>
-                                   <asp:Button ID="btnNuevoPaciente" runat="server" Text="Nuevo Paciente" CssClass="btnClass" OnClick="btnNuevoPaciente_Click" Style="display: none" />
+                                   <asp:Button ID="btnNuevoPaciente" runat="server" Text="Nuevo Paciente" CssClass="btnClassExpediente" OnClick="btnNuevoPaciente_Click" Style="display: none" />
 
                                 </div>
 

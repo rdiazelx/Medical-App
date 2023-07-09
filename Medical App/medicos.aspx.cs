@@ -82,7 +82,7 @@ namespace Medical_App
                     for (int i = 0; i < dtPacientes.Rows.Count; i++)
                     {
                         var objPacientes = new oPersonas();
-                        objPacientes.id = Int32.Parse(dtPacientes.Rows[i]["Id"].ToString());
+                        objPacientes.id = dtPacientes.Rows[i]["Id"].ToString();
                         objPacientes.nombre = dtPacientes.Rows[i]["Nombre"].ToString();
                         objPacientes.apellido = dtPacientes.Rows[i]["Apellido"].ToString();
                         objPacientes.tipoIdentificacion = dtPacientes.Rows[i]["Tipo de identificación"].ToString();
