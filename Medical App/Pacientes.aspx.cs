@@ -116,7 +116,7 @@ namespace Medical_App
 
                     using (XLWorkbook workbook = new XLWorkbook(excelFilePath))
                     {
-                        IXLWorksheet worksheet = workbook.Worksheet("Expedientes");
+                        IXLWorksheet worksheet = workbook.Worksheet("Pacientes");
 
 
                         int lastRow = worksheet.CellsUsed(c => c.Address.ColumnLetter == "A").LastOrDefault().Address.RowNumber;
